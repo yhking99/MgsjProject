@@ -3,7 +3,7 @@ package com.project.review.domain;
 import java.util.Date;
 
 public class ReviewReplyDTO {
-	
+	 
 	private int rvReplyNum;
 	private int rvno;
 	private int rvReplyContent;

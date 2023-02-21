@@ -1,5 +1,5 @@
 package com.project.inquire.domain;
-
+ 
 public class AskDTO {
 	private int askNum;
 	private int pno;

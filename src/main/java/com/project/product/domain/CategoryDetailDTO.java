@@ -1,5 +1,5 @@
 package com.project.product.domain;
-
+ 
 public class CategoryDetailDTO {
 
 	private int cdno;

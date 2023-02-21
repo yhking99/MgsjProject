@@ -1,7 +1,7 @@
 package com.project.member.domain;
 
 public class MemberAddressDTO {
-	
+	 
 	private String userId;
 	private String postAddress;
 	private String address;

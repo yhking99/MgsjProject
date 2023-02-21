@@ -1,7 +1,7 @@
 package com.project.inquire.domain;
 
 import java.util.Date;
-
+ 
 public class AskFileDTO {
 	
 	private int askFileNumber;
