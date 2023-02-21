@@ -4,12 +4,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.project.board.domain.BoardDTO;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -26,7 +23,7 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		logger.info("BoardDAOImpl에서 운영진 게시글 등록하기 시작");
 		
-		sqlSession.insert(Namespace + ".boardWriteOp", boardDTO);
+		sqlSession.insert(NAME_SPACE + ".boardWriteOp", boardDTO);
 	}
 	
 	@Override
@@ -34,7 +31,7 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		logger.info("BoardDAOImpl에서 이용자 게시글 등록하기 시작");
 		
-		sqlSession.insert(Namespace + ".boardWrite", boardDTO);
+		sqlSession.insert(NAME_SPACE + ".boardWrite", boardDTO);
 	}
 
 }

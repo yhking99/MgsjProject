@@ -1,5 +1,7 @@
 package com.project.member.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 public class MemberController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	@Autowired
 	private MemberService memberService;
@@ -21,7 +22,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/membersignuppage", method=RequestMethod.GET)
 	public String signUpMemberPage() throws Exception{
 		
-		log.info("회원가입 페이지 접속 joinMember - (controller)");
+		logger.info("회원가입 페이지 접속 joinMember - (controller)");
 		
 		return "/member/membersignuppage";
 	}
@@ -30,7 +31,7 @@ public class MemberController {
 	@RequestMapping(value ="/member/memberSignUp", method=RequestMethod.POST)
 	public String signUpMember(MemberDTO memberDTO) throws Exception{
 		
-		log.info("회원가입 실행 signUpMember - (controller)");
+		logger.info("회원가입 실행 signUpMember - (controller)");
 		
 		memberService.signUpMember(memberDTO);
 		

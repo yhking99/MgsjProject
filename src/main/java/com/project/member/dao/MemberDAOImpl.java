@@ -1,16 +1,17 @@
 package com.project.member.dao;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project.member.domain.MemberDTO;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Repository
 public class MemberDAOImpl implements MemberDAO {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberDAOImpl.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -19,7 +20,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void signUpMember(MemberDTO memberDTO) throws Exception {
-		log.info("회원가입 실행 signUpMember - (DAO)");
+		logger.info("회원가입 실행 signUpMember - (DAO)");
 		
 		sqlSession.insert(NAME_SPACE + ".signUpMember", memberDTO);
 	}
