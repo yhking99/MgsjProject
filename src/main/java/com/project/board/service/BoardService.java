@@ -1,5 +1,5 @@
 package com.project.board.service;
-
+ 
 import com.project.board.domain.BoardDTO;
 
 public interface BoardService {

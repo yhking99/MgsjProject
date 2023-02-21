@@ -37,7 +37,7 @@ public class BoardController {
 		
 		
 		return "/board/boardWriteForm";
-	}
+	} 
 	
 	// 게시글 등록하기 ( 운영진 게시판 )
 	@RequestMapping(value = "/board/boardWriteOp", method = RequestMethod.POST)
