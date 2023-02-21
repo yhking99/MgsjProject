@@ -1,7 +1,7 @@
 package com.project.review.domain;
 
 import java.util.Date;
-
+ 
 public class ReviewBoardDTO {
 
 	private int rvno;

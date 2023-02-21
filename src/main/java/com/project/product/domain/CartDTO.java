@@ -1,5 +1,5 @@
 package com.project.product.domain;
-
+ 
 public class CartDTO {
 	private int cartNum;
 	private int pno;
