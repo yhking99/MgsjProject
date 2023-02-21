@@ -18,6 +18,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static final String NAME_SPACE = "mappers.memberMapper";
 	
+	// 회원가입 로직 구현
 	@Override
 	public void signUpMember(MemberDTO memberDTO) throws Exception {
 		logger.info("회원가입 실행 signUpMember - (DAO)");
@@ -25,4 +26,12 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert(NAME_SPACE + ".signUpMember", memberDTO);
 	}
 	
+	// 로그인 로직 구현
+	@Override
+	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception {
+		
+		logger.info("로그인 실행 memberLogin - (DAO)");
+		
+		return sqlSession.selectOne(NAME_SPACE + ".memberLogin", memberDTO);
+	}
 }

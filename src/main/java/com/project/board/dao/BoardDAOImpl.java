@@ -18,6 +18,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	private static final String NAME_SPACE = "mappers.boardMapper";
 	
+	// 공지사항 등록
 	@Override
 	public void boardWriteOp(BoardDTO boardDTO) throws Exception {
 		
@@ -26,6 +27,7 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(NAME_SPACE + ".boardWriteOp", boardDTO);
 	}
 	
+	// 일반게시판 등록
 	@Override
 	public void boardWrite(BoardDTO boardDTO) throws Exception {
 		

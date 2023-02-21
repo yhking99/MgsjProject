@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="/member/memberSignUp" method="post">
+		<form action="/member/memberLogin" method="post">
 			<div>
 				<label for="id">아이디</label>
 				<input type="text" id="userId" name="userId"/>
@@ -30,9 +30,9 @@
 				<input type="email" id="userEmail" name="userEmail"/>
 			</div>
 			<div>
-				<input type="radio" id="Female" name="userGender">
+				<input type="radio" id="F" name="userGender">
 				<label for="check"> 여 </label>
-				<input type="radio" id="Male" name="userGender">
+				<input type="radio" id="M" name="userGender">
 				<label for="check"> 남 </label>
 			</div>
 			<button type="submit">회원가입</button>

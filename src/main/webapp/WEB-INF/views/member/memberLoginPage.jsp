@@ -3,10 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>멤버로그인페이지</title>
+<meta charset="UTF-8">
+<title>멤버로그인페이지</title>
 </head>
 <body>
-	시발
+	<form action="/member/memberLogin" method="post">
+		<div>
+			<label for="id">아이디</label>
+			<input type="text" id="userId" name="userId" />
+		</div>
+		<div>
+			<label for="password">비밀번호</label>
+			<input type="password" id="userPwd" name="userPwd"/>
+		</div>
+		<div>
+			<button type="submit">로그인</button>
+		</div>
+	</form>
 </body>
 </html>

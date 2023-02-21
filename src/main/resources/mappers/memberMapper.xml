@@ -19,5 +19,13 @@
 			memberdto (userNum , userId , userPwd , userName , userPhoneNumber , userEmail , userGender)
 		values (#{userNum} , #{userId} , #{userPwd} , #{userName} , #{userPhoneNumber} , #{userEmail} , #{userGender})
 	</insert>
-
+	
+	<!-- 로그인 -->
+	<select id="memberLogin" parameterType="com.project.member.domain.MemberDTO" resultType="com.project.member.domain.MemberDTO">
+		select userNum, userId, userPwd
+		from memberdto
+		where userId = #{userId}
+		and userPwd = #{userPwd}
+	</select>
+	
 </mapper>
