@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardMapper">
-	<!-- 
-		bno	int
-		userId	varchar(20)
-		writer	varchar(20)
-		title	varchar(50)
-		content	text
-		regDate	datetime
-	 -->
-	 
+	<!-- bno int userId varchar(20) writer varchar(20) title varchar(50) content 
+		text regDate datetime -->
+	<insert id="boardWriteOp"
+		parameterType="com.project.board.domain.BoardDTO">
+
+
+		INSERT INTO boarddto(bno, userId, writer, title, content)
+		values (1, 'nam', '재국', 'test', '내용');
+
+
+	</insert>
+
+	<insert id="boardWrite"
+		parameterType="com.project.board.domain.BoardDTO">
+
+
+		INSERT INTO boarddto(bno, userId, writer, title, content)
+		values (1, 'nam', '재국', 'test', '내용');
+
+
+	</insert>
 </mapper>
