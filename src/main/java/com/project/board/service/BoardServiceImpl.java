@@ -8,7 +8,7 @@ import com.project.board.dao.BoardDAO;
 import com.project.board.domain.BoardDTO;
 
 public class BoardServiceImpl implements BoardService {
-
+ 
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Autowired
