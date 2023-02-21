@@ -1,5 +1,5 @@
 package com.project.member.domain;
-
+ 
 import java.util.Date;
 
 public class MemberDTO {

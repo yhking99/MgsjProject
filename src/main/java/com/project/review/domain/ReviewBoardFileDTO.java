@@ -26,7 +26,7 @@ public class ReviewBoardFileDTO {
 	}
 	public String getRvOriginFileName() {
 		return rvOriginFileName;
-	}
+	} 
 	public void setRvOriginFileName(String rvOriginFileName) {
 		this.rvOriginFileName = rvOriginFileName;
 	}

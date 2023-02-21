@@ -7,7 +7,7 @@ public class OrderDTO {
 	private int orderNum;
 	private int userNum;
 	private String userId;
-	private Date orderDate;
+	private Date orderDate; 
 	private String postAddress;
 	private String detailAddress;
 	private String detailAddress2;

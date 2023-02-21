@@ -3,7 +3,7 @@ package com.project.order.domain;
 public class OrderDetailDTO {
 	
 	private int orderNum;
-	private int pno;
+	private int pno; 
 	private int productPrice;
 	private int productCnt;
 	private String orderStatus;
