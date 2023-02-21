@@ -10,4 +10,11 @@
 		regDate	datetime
 	 -->
 	 
+	 <!-- 일반게시판 회원 등록 -->
+	 <insert id="boardWrite" parameterType="com.project.board.domain.BoardDTO">
+	 	insert into 
+	 		boarddto (bno, userId, writer, title, content)
+	 		values(#{bno},#{userId},#{writer},#{title},#{content})
+	 </insert>
+	 
 </mapper>

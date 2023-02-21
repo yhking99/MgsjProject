@@ -26,7 +26,6 @@ public class BoardController {
 		
 		logger.info("BoardController에서 운영진 게시글 쓰기 시작");
 		
-		
 		return "/board/boardWriteFormOp";
 	}
 	// 이용자 게시글 작성폼

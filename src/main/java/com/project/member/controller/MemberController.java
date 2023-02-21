@@ -1,5 +1,7 @@
 package com.project.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
+
+/**
+ * 
+ * @author 김재국
+ *
+ */
 
 @Controller
 public class MemberController {
@@ -53,11 +61,29 @@ public class MemberController {
 	
 	// 로그인 기능 구현
 	@RequestMapping(value = "/member/memberLogin", method = RequestMethod.POST)
-	public String memberLogin(MemberDTO memberDTO) throws Exception {
+	public String memberLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
 		
 		logger.info("로그인 진행 memberLoginPage - (controller)");
 		
-		memberService.memberLogin(memberDTO);
+		MemberDTO memberLogin = memberService.memberLogin(memberDTO); 
+		
+		if (memberLogin == null) {
+			session.setAttribute("isMemberLogon", null);
+			
+		} else {
+			session.setAttribute("memberLogon", memberLogin);
+		}
+		
+		return "redirect:/board/boardMain";
+	}
+	
+	// 로그아웃 기능 구현
+	@RequestMapping(value = "/member/memberLogout", method = RequestMethod.GET)
+	public String memberLogout(HttpSession session) throws Exception {
+		
+		logger.info("유저 로그아웃, 로그아웃 계정 : {}",session.getAttribute("memberLogon").toString());
+		
+		session.invalidate();
 		
 		return "redirect:/board/boardMain";
 	}
