@@ -3,7 +3,7 @@ package com.project.product.domain;
 import java.util.Date;
 
 public class ProductDTO {
-
+ 
 	private int pno;
 	private int cno;
 	private String productName;

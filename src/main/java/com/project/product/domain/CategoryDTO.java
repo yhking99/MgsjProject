@@ -1,7 +1,7 @@
 package com.project.product.domain;
 
 public class CategoryDTO {
-
+ 
 	private int cno;
 	private String categoryName;
 	
