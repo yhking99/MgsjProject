@@ -3,10 +3,12 @@ package com.project.board.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.project.board.dao.BoardDAO;
 import com.project.board.domain.BoardDTO;
 
+@Service
 public class BoardServiceImpl implements BoardService {
  
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
