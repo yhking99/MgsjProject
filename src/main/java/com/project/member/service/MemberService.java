@@ -1,5 +1,9 @@
 package com.project.member.service;
 
-public interface MemberService {
+import com.project.member.domain.MemberDTO;
 
+public interface MemberService {
+	
+	// 회원가입 로직
+	public void signUpMember(MemberDTO memberDTO) throws Exception;
 }
