@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.project.board.domain.BoardDTO;
 
-public class BoardDAOImpl implements BoardDAO {
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
+@Repository
+public class BoardDAOImpl implements BoardDAO {
+  
+  private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static String Namespace = "com.project.board";
+	private static final String NAME_SPACE = "mappers.boardMapper";
 	
 	@Override
 	public void boardWriteOp(BoardDTO boardDTO) throws Exception {
@@ -31,4 +36,5 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		sqlSession.insert(Namespace + ".boardWrite", boardDTO);
 	}
+
 }

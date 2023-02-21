@@ -1,5 +1,5 @@
 package com.project.board.dao;
- 
+
 import com.project.board.domain.BoardDTO;
 
 public interface BoardDAO {

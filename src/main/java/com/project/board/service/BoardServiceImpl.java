@@ -12,7 +12,7 @@ public class BoardServiceImpl implements BoardService {
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Autowired
-	BoardDAO boardDAO;
+	private BoardDAO boardDAO;
 	
 	// 운영진 게시글 등록하기
 	@Override
@@ -31,7 +31,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		boardDAO.boardWrite(boardDTO);
 	}
-	
 	
 }
 
