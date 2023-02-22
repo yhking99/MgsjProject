@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="/member/memberLogin" method="post">
+		<form action="/member/memberSignUp" method="post">
 			<div>
 				<label for="id">아이디</label>
 				<input type="text" id="userId" name="userId"/>
@@ -29,10 +29,22 @@
 				<label for="email">이메일</label>
 				<input type="email" id="userEmail" name="userEmail"/>
 			</div>
+			<!-- <div>
+				<label for="post">우편번호</label>
+				<input type="text" id="postAddress" name="postAddress"/>
+			</div>
 			<div>
-				<input type="radio" id="F" name="userGender">
+				<label for="address">상세주소1</label>
+				<input type="text" id="address" name="address"/>
+			</div>
+			<div>
+				<label for="detailAddress">상세주소2</label>
+				<input type="text" id="detailAddress" name="detailAddress"/>
+			</div> -->
+			<div>
+				<input type="radio" name="userGender" value="F">
 				<label for="check"> 여 </label>
-				<input type="radio" id="M" name="userGender">
+				<input type="radio" name="userGender" value="M">
 				<label for="check"> 남 </label>
 			</div>
 			<button type="submit">회원가입</button>

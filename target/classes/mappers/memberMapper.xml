@@ -1,3 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.memberMapper"></mapper>
+<mapper namespace="mappers.memberMapper">
+	<!-- 
+		DB 컬럼명 쉽게보셈
+		userNum	int
+		userId	varchar(20)
+		userPwd	varchar(30)
+		userName	varchar(15)
+		userPhoneNumber	varchar(20)
+		userEmail	varchar(40)
+		userJoinDate	datetime
+		userGender	varchar(2) 
+	-->
+	
+	<!-- 회원가입 -->
+	<insert id="signUpMember" parameterType="com.project.member.domain.MemberDTO">
+		insert into
+			memberdto (userId , userPwd , userName , userPhoneNumber , userEmail , userGender)
+		values (#{userId} , #{userPwd} , #{userName} , #{userPhoneNumber} , #{userEmail} , #{userGender})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="memberLogin" parameterType="com.project.member.domain.MemberDTO" resultType="com.project.member.domain.MemberDTO">
+		select userNum, userId, userPwd, userVerify
+		from memberdto
+		where userId = #{userId}
+		and userPwd = #{userPwd}
+	</select>
+	
+</mapper>

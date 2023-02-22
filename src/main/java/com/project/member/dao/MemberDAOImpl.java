@@ -10,28 +10,29 @@ import com.project.member.domain.MemberDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberDAOImpl.class);
-	
+
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	private static final String NAME_SPACE = "mappers.memberMapper";
-	
+
 	// 회원가입 로직 구현
 	@Override
 	public void signUpMember(MemberDTO memberDTO) throws Exception {
 		logger.info("회원가입 실행 signUpMember - (DAO)");
-		
+
 		sqlSession.insert(NAME_SPACE + ".signUpMember", memberDTO);
 	}
-	
+
 	// 로그인 로직 구현
 	@Override
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception {
-		
+
 		logger.info("로그인 실행 memberLogin - (DAO)");
-		
+
 		return sqlSession.selectOne(NAME_SPACE + ".memberLogin", memberDTO);
 	}
+
 }
