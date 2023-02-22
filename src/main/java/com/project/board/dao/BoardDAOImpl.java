@@ -1,5 +1,7 @@
 package com.project.board.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,6 +73,25 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".boardDetail", bno);
 		
+	}
+	
+
+	//공지 게시글 목록
+	@Override
+	public List<BoardDTO> boardListOp() throws Exception {
+		
+		logger.info("BoardDAOImpl에서 이용자 게시글 목록 조회하기 시작");
+		
+		return sqlSession.selectList(NAME_SPACE + ".boardListOp");
+	}
+	
+	//일반 게시글 목록
+	@Override
+	public List<BoardDTO> boardList() throws Exception {
+		
+		logger.info("BoardDAOImpl에서 일반 게시글 목록 조회하기 시작");
+		
+		return sqlSession.selectList(NAME_SPACE + ".boardList");
 	}
 
 }
