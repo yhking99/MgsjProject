@@ -2,7 +2,7 @@ package com.project.inquire.domain;
 
 import java.util.Date;
 
-public class AskDTO {
+public class InquireDTO {
 
 	private int askNum;
 	private int pno;

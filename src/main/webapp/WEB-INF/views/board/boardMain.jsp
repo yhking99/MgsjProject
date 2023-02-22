@@ -27,7 +27,8 @@
 	<%
 		} else {
 	%>
-			<a href="#">일반유저만 볼수잇는 페이지</a> <br>
+			<a href="/member/memberModifyPage">회원정보수정</a>
+			<br>
 			<a href="javascript:memberLogout()">로그아웃</a>
 	<%
 		}

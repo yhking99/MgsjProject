@@ -34,5 +34,13 @@ public class MemberDAOImpl implements MemberDAO {
 
 		return sqlSession.selectOne(NAME_SPACE + ".memberLogin", memberDTO);
 	}
+	
+	@Override
+	public void memberModify(MemberDTO memberDTO) throws Exception {
+		
+		logger.info("회원정보 수정 memberModify - DAO");
+		
+		sqlSession.update(NAME_SPACE + ".memberModify", memberDTO);
+	}
 
 }
