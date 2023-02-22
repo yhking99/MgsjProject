@@ -2,19 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardMapper">
 	<!-- 
-		bno	int
-		userId	varchar(20)
-		writer	varchar(20)
-		title	varchar(50)
-		content	text
-		regDate	datetime
-	 -->
-	 
-	 <!-- 일반게시판 회원 등록 -->
-	 <insert id="boardWrite" parameterType="com.project.board.domain.BoardDTO">
-	 	insert into 
-	 		boarddto (bno, userId, writer, title, content)
-	 		values(#{bno},#{userId},#{writer},#{title},#{content})
-	 </insert>
-	 
+	bno int 
+	userId varchar(20) 
+	writer varchar(20) 
+	title varchar(50) 
+	content text 
+	regDate datetime 
+	-->
+	<insert id="boardWriteOp" parameterType="com.project.board.domain.BoardDTO">
+		INSERT INTO boarddto (userId, writer, title, content)
+		values ();
+	</insert>
+
+	<insert id="boardWrite" parameterType="com.project.board.domain.BoardDTO">
+		INSERT INTO boarddto (userId, writer, title, content)
+		values ();
+	</insert>
 </mapper>

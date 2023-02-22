@@ -1,5 +1,6 @@
 package com.project.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,7 +27,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	// 테스트 메인페이지 (리다이렉트용 추후 삭제예정)
+	// ********************************테스트 메인페이지 (리다이렉트용 추후 삭제예정)
 	@RequestMapping(value = "/board/boardMain", method = RequestMethod.GET)
 	public void connectBoardMain() throws Exception {
 		logger.info("축하합니다 원하는 작업이 성공적으로 동작했군요!!");
@@ -44,7 +45,7 @@ public class MemberController {
 	public String signUpMember(MemberDTO memberDTO) throws Exception {
 
 		logger.info("회원가입 실행 signUpMember - (controller)");
-
+		
 		memberService.signUpMember(memberDTO);
 		
 		logger.info("회원가입 정보 : {}", memberDTO);
@@ -61,17 +62,26 @@ public class MemberController {
 	
 	// 로그인 기능 구현
 	@RequestMapping(value = "/member/memberLogin", method = RequestMethod.POST)
-	public String memberLogin(MemberDTO memberDTO, HttpSession session) throws Exception {
+	public String memberLogin(MemberDTO memberDTO, HttpServletRequest req) throws Exception {
 		
 		logger.info("로그인 진행 memberLoginPage - (controller)");
 		
-		MemberDTO memberLogin = memberService.memberLogin(memberDTO); 
+		MemberDTO memberInfo = memberService.memberLogin(memberDTO);
 		
-		if (memberLogin == null) {
-			session.setAttribute("isMemberLogon", null);
+		HttpSession session = req.getSession();
+		
+		if (memberInfo == null) {
+			logger.info("로그인 실패");
 			
 		} else {
-			session.setAttribute("memberLogon", memberLogin);
+			session.setAttribute("memberLogon", memberInfo);
+			
+			if (memberInfo.getUserVerify() == 128) {
+				logger.info("관리자 로그인 : {}", session.getAttribute("memberLogon"));
+			} else {
+				logger.info("일반유저 로그인 : {}", session.getAttribute("memberLogon"));
+			}
+			
 		}
 		
 		return "redirect:/board/boardMain";
@@ -86,5 +96,11 @@ public class MemberController {
 		session.invalidate();
 		
 		return "redirect:/board/boardMain";
+	}
+	
+	// 회원정보수정 기능 구현
+	@RequestMapping(value = "/member/memberModifyPage", method = RequestMethod.GET)
+	public String connectMemberModifyPage() throws Exception {
+
 	}
 }

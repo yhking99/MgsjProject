@@ -15,14 +15,14 @@
 	
 	<!-- 회원가입 -->
 	<insert id="signUpMember" parameterType="com.project.member.domain.MemberDTO">
-		insert into 
-			memberdto (userNum , userId , userPwd , userName , userPhoneNumber , userEmail , userGender)
-		values (#{userNum} , #{userId} , #{userPwd} , #{userName} , #{userPhoneNumber} , #{userEmail} , #{userGender})
+		insert into
+			memberdto (userId , userPwd , userName , userPhoneNumber , userEmail , userGender)
+		values (#{userId} , #{userPwd} , #{userName} , #{userPhoneNumber} , #{userEmail} , #{userGender})
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="memberLogin" parameterType="com.project.member.domain.MemberDTO" resultType="com.project.member.domain.MemberDTO">
-		select userNum, userId, userPwd
+		select userNum, userId, userPwd, userVerify
 		from memberdto
 		where userId = #{userId}
 		and userPwd = #{userPwd}

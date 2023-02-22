@@ -9,18 +9,31 @@
 </head>
 <body>
 	여기까지오면 일단 당신이 하는 작업은 성공한겁니다!! (따봉)
+	<br>
+	<!-- 일반유저 계정 -->
 	<%
-	MemberDTO memberLogon = (MemberDTO)session.getAttribute("isMemberLogon");
-	if(memberLogon != null){
+	MemberDTO memberLogon = (MemberDTO)session.getAttribute("memberLogon");
+	
+	if(memberLogon == null){
 	%>
-	<a href="javascript:memberLogout()">로그아웃하기</a>
+		<a href="/member/memberLoginPage">로그인</a>
 	<%
 	} else {
+		
+		if(memberLogon.getUserVerify() == 128){
 	%>
-	<p>로그인을 하셔야 로그아웃창이 보여용</p>
+			<a href="#">관리자페이지</a><br>
+			<a href="javascript:memberLogout()">관리자 계정 로그아웃</a>
 	<%
+		} else {
+	%>
+			<a href="#">일반유저만 볼수잇는 페이지</a> <br>
+			<a href="javascript:memberLogout()">로그아웃</a>
+	<%
+		}
 	}
 	%>
+	
 </body>
 <script type="text/javascript">
 	function memberLogout() {
@@ -28,7 +41,8 @@
 		
 		if(logoutYN == true){
 			alert("로그아웃이 됫서용");
-			location.href = "/board/boardMain";
+			location.href = "/member/memberLogout"; 	/* 세션 invalidate */
+			location.href = "/member/memberLoginPage"; 	/* 로그인페이지 */
 		} else {
 			alert("로그아웃 취소댓서용");
 		}
