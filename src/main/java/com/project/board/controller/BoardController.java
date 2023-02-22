@@ -1,5 +1,7 @@
 package com.project.board.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,7 +143,33 @@ public class BoardController {
 	}
 	*/
 	
-	
+	// 공지 게시글 목록보기
+		@RequestMapping(value = "/board/boardListOp", method = RequestMethod.GET)
+		public void boardListOp(Model model) throws Exception {
+			
+			logger.info("BoardController에서 공지 게시글 목록보기 시작");
+			
+			List<BoardDTO> boardList = boardService.boardListOp();
+			
+			logger.info("공지 게시글 목록 ==> " + boardList);
+			
+			model.addAttribute("boardListOp", boardList);
+			 
+		}
+		
+		// 일반 게시글 목록보기
+		@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
+		public void boardList(Model model) throws Exception {
+			
+			logger.info("BoardController에서 일반 게시글 목록보기 시작");
+			
+			List<BoardDTO> boardList = boardService.boardList();
+			
+			logger.info("일반 게시글 목록 ==> " + boardList);
+			
+			model.addAttribute("boardList", boardList);
+			
+		}
 	
 }
 
