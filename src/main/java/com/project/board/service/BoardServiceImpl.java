@@ -1,5 +1,7 @@
 package com.project.board.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +71,24 @@ public class BoardServiceImpl implements BoardService {
 
 		return boardDAO.boardDetail(bno);
 	}
+	
+	// 공지 게시글 목록보기
+		@Override
+		public List<BoardDTO> boardListOp() throws Exception {
+			
+			logger.info("BoardServiceImpl에서 공지 게시글 상세 조회하기 시작");
+		
+			return boardDAO.boardListOp();
+		}
+		
+		//일반 게시글 목록보기
+		
+		@Override
+		public List<BoardDTO> boardList() throws Exception {
+			
+			logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
+			
+			return boardDAO.boardList();
+		}
+
 }

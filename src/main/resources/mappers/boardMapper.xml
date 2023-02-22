@@ -9,6 +9,29 @@
 	regDate datetime
 	readCount int
 	 -->
+	 <!-- 공지 게시글 상세 조회하기 -->
+	<select id = "boardDetailOp" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
+	
+	SELECT bno, userId, write, title, content, regDate, readCount
+	FROM boarddto
+	WHERE bno = #{bno}
+	and userId = '1111'
+	
+	</select>
+	
+	
+	<!-- 이용자 게시글 상세 조회하기 -->	
+	<select id = "boardDetail" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
+	
+	SELECT bno, write, title, content, regDate, readCount
+	FROM boarddto
+	WHERE bno = #{bno}
+	and not userId = '1111'
+	
+	
+	</select>
+	 
+	 <!-- 공지 게시판 게시글 작성 -->
 	<insert id="boardWriteOp"
 		parameterType="com.project.board.domain.BoardDTO">
 
@@ -17,6 +40,7 @@
 
 	</insert>
 
+	<!-- 일반 게시판 게시글 작성 -->
 	<insert id="boardWrite"
 		parameterType="com.project.board.domain.BoardDTO">
 
