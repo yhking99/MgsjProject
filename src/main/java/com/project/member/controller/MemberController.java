@@ -101,6 +101,7 @@ public class MemberController {
 	// 회원정보수정 기능 구현
 	@RequestMapping(value = "/member/memberModifyPage", method = RequestMethod.GET)
 	public String connectMemberModifyPage() throws Exception {
-
+		
+		return "";
 	}
 }
