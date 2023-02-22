@@ -9,4 +9,5 @@ public interface MemberDAO {
 	
 	// 로그인 로직 구현 DAO
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception;
+	
 }

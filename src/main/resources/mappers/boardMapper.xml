@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardMapper">
-	
 	<!-- 
 	bno int userId varchar(20) 
 	writer varchar(20) 
@@ -13,7 +12,6 @@
 	<insert id="boardWriteOp"
 		parameterType="com.project.board.domain.BoardDTO">
 
-
 		INSERT INTO boarddto(bno, userId, writer, title, content, readCount)
 		values (#{bno}, #{userId}, #{writer}, #{title}, #{content}, #{readCount});
 
@@ -22,10 +20,8 @@
 	<insert id="boardWrite"
 		parameterType="com.project.board.domain.BoardDTO">
 
-
 		INSERT INTO boarddto(bno, userId, writer, title, content, readCount)
 		values (#{bno}, #{userId}, #{writer}, #{title}, #{content}, #{readCount});
-
 
 	</insert>
 	
@@ -59,8 +55,6 @@
 	</update>
 	
 	<!-- 이용자 게시글 수정하기 -->
-
-
 
 
 	<!-- 공지 게시글 상세 조회하기 -->
