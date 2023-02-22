@@ -12,6 +12,7 @@ public class MemberDTO {
 	private String userEmail;
 	private Date userJoinDate;
 	private String userGender;
+	private int userVerify;
 
 	public int getUserNum() {
 		return userNum;
@@ -77,10 +78,19 @@ public class MemberDTO {
 		this.userGender = userGender;
 	}
 
+	public int getUserVerify() {
+		return userVerify;
+	}
+
+	public void setUserVerify(int userVerify) {
+		this.userVerify = userVerify;
+	}
+
 	@Override
 	public String toString() {
-		return "MemberDTO [userNum=" + userNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", PhoneNumber="
-				+ userPhoneNumber + ", userEmail=" + userEmail + ", userJoinDate=" + userJoinDate + ", userGender=" + userGender + "]";
+		return "MemberDTO [userNum=" + userNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userPhoneNumber="
+				+ userPhoneNumber + ", userEmail=" + userEmail + ", userJoinDate=" + userJoinDate + ", userGender=" + userGender + ", userVerify="
+				+ userVerify + "]";
 	}
 
 }

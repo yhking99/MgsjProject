@@ -9,4 +9,5 @@ public interface MemberService {
 	
 	// 로그인 로직
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception;
+	
 }
