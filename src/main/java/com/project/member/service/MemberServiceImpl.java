@@ -33,5 +33,15 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberDAO.memberLogin(memberDTO);
 	}
+	
+	// 회원정보 수정
+	@Override
+	public void memberModify(MemberDTO memberDTO) throws Exception {
+		
+		logger.info("회원정보 수정 memberModify - service");
+		
+		memberDAO.memberModify(memberDTO);
+		
+	}
 
 }

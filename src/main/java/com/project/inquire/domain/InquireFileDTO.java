@@ -2,7 +2,7 @@ package com.project.inquire.domain;
 
 import java.util.Date;
  
-public class AskFileDTO {
+public class InquireFileDTO {
 	
 	private int askFileNumber;
 	private int askNum;
