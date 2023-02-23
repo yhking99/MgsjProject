@@ -10,4 +10,6 @@ public interface MemberDAO {
 	// 로그인 로직 구현 DAO
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception;
 	
+	// 회원정보 수정 DATO
+	public void memberModify(MemberDTO memberDTO) throws Exception;
 }

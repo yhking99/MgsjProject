@@ -3,14 +3,14 @@
 <mapper namespace="mappers.memberMapper">
 	<!-- 
 		DB 컬럼명 쉽게보셈
-		userNum	int
-		userId	varchar(20)
-		userPwd	varchar(30)
-		userName	varchar(15)
-		userPhoneNumber	varchar(20)
-		userEmail	varchar(40)
-		userJoinDate	datetime
-		userGender	varchar(2) 
+		userNum	int 				- 수정불가
+		userId	varchar(20)			- 수정불가
+		userPwd	varchar(30)			- 가능
+		userName	varchar(15)		- 수정불가
+		userPhoneNumber	varchar(20)	- 수정불가
+		userEmail	varchar(40)		- 가능
+		userJoinDate	datetime	- 수정불가
+		userGender	varchar(2) 		- 수정불가
 	-->
 	
 	<!-- 회원가입 -->
@@ -22,10 +22,19 @@
 	
 	<!-- 로그인 -->
 	<select id="memberLogin" parameterType="com.project.member.domain.MemberDTO" resultType="com.project.member.domain.MemberDTO">
-		select userNum, userId, userPwd, userVerify
+		select userNum, userId, userPwd, userName, userPhoneNumber, userEmail , userJoinDate , userVerify
 		from memberdto
 		where userId = #{userId}
 		and userPwd = #{userPwd}
 	</select>
 	
+	<!-- 회원정보 수정 -->
+	<update id="memberModify" parameterType="com.project.member.domain.MemberDTO">
+		update memberdto
+			set
+				userPwd = #{userPwd},
+				userEmail = #{userEmail}
+			where userId = #{userId}
+		
+	</update>
 </mapper>

@@ -22,9 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
 	/* DB연동 테스트해보자 */
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired // bean 자동주입.
@@ -32,6 +30,7 @@ public class HomeController {
 	
 	@RequestMapping("/testconnectionDB")
 	public String dbTest(Model model) {
+
 		Connection conn = null;
 		Statement stmt = null;
 		

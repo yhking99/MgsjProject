@@ -100,8 +100,24 @@ public class MemberController {
 	
 	// 회원정보수정 기능 구현
 	@RequestMapping(value = "/member/memberModifyPage", method = RequestMethod.GET)
-	public String connectMemberModifyPage() throws Exception {
+	public void connectMemberModifyPage() throws Exception {
 		
-		return "";
+		logger.info("회원정보 수정 페이지 접속 connectMemberModifyPage - controller");
+	}
+	
+	// 회원정보 수정 기능 로직
+	@RequestMapping(value = "/member/memberModify", method = RequestMethod.POST)
+	public String memberModify(MemberDTO memberDTO, HttpSession session) throws Exception {
+		
+		logger.info("회원정보 수정, 수정회원 정보 : {}", memberDTO);
+		
+		memberService.memberModify(memberDTO);
+		
+		// 회원정보 수정이 완료되면 세션아이디를 초기화 시켜야 한다.
+		// 왜? 수정된 정보의 데이터는 이전 세션에 저장되지 않기 때문이다.
+		
+		memberLogout(session);
+		
+		return "redirect:/board/boardMain";
 	}
 }

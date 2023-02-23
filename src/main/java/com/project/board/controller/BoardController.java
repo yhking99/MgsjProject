@@ -75,7 +75,7 @@ public class BoardController {
 		
 		
 	// 이용자 게시글 삭제하기
-	@RequestMapping(value = "/board/boardDeleteOp", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.POST)
 	public String boardDelete(int bno) throws Exception {
 		
 		logger.info("BoardController에서 이용자 게시글 삭제하기 시작");
