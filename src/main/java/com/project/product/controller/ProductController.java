@@ -80,7 +80,7 @@ public class ProductController {
 	// 상품 게시글 목록 
 	@RequestMapping(value = "/product/productList", method = RequestMethod.GET)
 	public void ProductList(Model model) throws Exception {
-		
+		 
 		logger.info("상품 게시글 목록 조회 ProductList - Controller");
 		
 		List<ProductDTO> productList = productService.productList();

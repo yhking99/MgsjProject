@@ -11,7 +11,7 @@ import com.project.product.dao.ProductDAO;
 import com.project.product.domain.ProductDTO;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService { 
 
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 	

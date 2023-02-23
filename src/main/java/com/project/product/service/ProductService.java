@@ -5,7 +5,7 @@ import java.util.List;
 import com.project.product.domain.ProductDTO;
 
 public interface ProductService {
-
+ 
 	// 상품 게시글 등록하기
 	public void productWrite(ProductDTO productDTO) throws Exception;
 	

@@ -1,7 +1,7 @@
 package com.project.product.dao;
 
 import java.util.List;
-
+ 
 import com.project.product.domain.ProductDTO;
 
 public interface ProductDAO {
