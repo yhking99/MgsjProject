@@ -12,11 +12,11 @@ import com.project.board.domain.BoardDTO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
-
+ 
 	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
 
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession;  
 
 	private static final String NAME_SPACE = "mappers.boardMapper";
 
@@ -29,7 +29,7 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(NAME_SPACE + ".boardWriteOp", boardDTO);
 	}
 
-	// 이용자 게시글 등록
+	// 일반 게시글 등록
 	@Override
 	public void boardWrite(BoardDTO boardDTO) throws Exception {
 
@@ -47,7 +47,7 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(NAME_SPACE + ".boardDeleteOp", bno);
 	}
 
-	// 이용자 게시글 삭제
+	// 일반 게시글 삭제
 	@Override
 	public void boardDelete(int bno) throws Exception {
 		
@@ -65,7 +65,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(NAME_SPACE + ".boardDetailOp", bno);
 	}
 	
-	//이용자 게시글 상세 조회
+	// 일반 게시글 상세 조회
 	@Override
 	public BoardDTO boardDetail(int bno) throws Exception {
 		
@@ -75,6 +75,7 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 	
+
 
 	//공지 게시글 목록
 	@Override
@@ -93,5 +94,7 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectList(NAME_SPACE + ".boardList");
 	}
+
+	
 
 }
