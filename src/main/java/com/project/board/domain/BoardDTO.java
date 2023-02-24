@@ -68,18 +68,20 @@ public class BoardDTO {
 
 	public int getReadCount() {
 		return readCount;
+
 	}
 
 	public void setReadCount(int readCount) {
 		this.readCount = readCount;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "BoardDTO [bno=" + bno + ", userId=" + userId + ", writer=" + writer + ", title=" + title + ", content="
 				+ content + ", regDate=" + regDate + ", readCount=" + readCount + "]";
 	}
 
+	
 	
 
 }
