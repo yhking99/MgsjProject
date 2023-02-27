@@ -38,59 +38,42 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList(NAME_SPACE + ".memberBoardList");
 	}
 
-	// 공지 게시글 등록
-	@Override
-	public void adminBoardWrite(BoardDTO boardDTO) throws Exception {
-
-		logger.info("BoardDAOImpl에서 공지 게시글 등록하기 시작");
-
-		sqlSession.insert(NAME_SPACE + ".adminBoardWrite", boardDTO);
-	}
-
 	// 이용자 게시글 등록
 	@Override
-	public void memberBoardWrite(BoardDTO boardDTO) throws Exception {
+	public void boardWrite(BoardDTO boardDTO) throws Exception {
 
 		logger.info("BoardDAOImpl에서 이용자 게시글 등록하기 시작");
 
-		sqlSession.insert(NAME_SPACE + ".memberBoardWrite", boardDTO);
-	}
-
-	// 공지 게시글 삭제
-	@Override
-	public void adminBoardDelete(int bno) throws Exception {
-
-		logger.info("BoardDAOImpl에서 공지 게시글 삭제하기 시작");
-
-		sqlSession.delete(NAME_SPACE + ".adminBoardDelete", bno);
+		sqlSession.insert(NAME_SPACE + ".boardWrite", boardDTO);
 	}
 
 	// 이용자 게시글 삭제
 	@Override
-	public void memberBoardDelete(int bno) throws Exception {
+	public void boardDelete(int bno) throws Exception {
 
 		logger.info("BoardDAOImpl에서 이용자 게시글 삭제하기 시작");
 
-		sqlSession.delete(NAME_SPACE + ".memberBoardDelete", bno);
+		sqlSession.delete(NAME_SPACE + ".boardDelete", bno);
 	}
 
-	// 공지 게시글 조회
-	@Override
-	public BoardDTO adminBoardView(int bno) throws Exception {
-
-		logger.info("BoardDAOImpl에서 공지 게시글 상세 조회하기 시작");
-
-		return sqlSession.selectOne(NAME_SPACE + ".adminBoardView", bno);
-	}
 
 	// 이용자 게시글 조회
 	@Override
-	public BoardDTO memberBoardView(int bno) throws Exception {
+	public BoardDTO boardView(int bno) throws Exception {
 
 		logger.info("BoardDAOImpl에서 이용자 게시글 상세 조회하기 시작");
 
-		return sqlSession.selectOne(NAME_SPACE + ".memberBoardView", bno);
+		return sqlSession.selectOne(NAME_SPACE + ".boardView", bno);
 
+	}
+	
+	// 게시글 수정 로직
+	@Override
+	public void boardModify(BoardDTO boardDTO) throws Exception {
+		
+		logger.info("게시글 수정 로직 실행 boardModify - DAO");
+		
+		sqlSession.update(NAME_SPACE + ".boardModify", boardDTO);
 	}
 
 }

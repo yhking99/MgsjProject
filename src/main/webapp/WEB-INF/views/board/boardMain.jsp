@@ -23,14 +23,17 @@
 		
 		if(memberLogon.getUserVerify() == 128){
 	%>
-			<a href="/board/adminBoardList">관리자게시판</a><br>
+			<a href="/board/admin/adminBoardList">관리자게시판</a><br>
+			<a href="/board/boardWritePage">관리자게시글 작성하기</a><br>
 			<a href="javascript:memberLogout()">관리자 계정 로그아웃</a>
 	<%
 		} else {
 	%>
 			<a href="/member/memberModifyPage">회원정보수정</a>
 			<br>
-			<a href="/board/memberBoardList">회원게시판</a>
+			<a href="/board/member/memberBoardList">회원게시판</a>
+			<br>
+			<a href="/board/boardWritePage">회원게시글 작성하기</a>
 			<br>
 			<a href="javascript:memberLogout()">로그아웃</a>
 	<%

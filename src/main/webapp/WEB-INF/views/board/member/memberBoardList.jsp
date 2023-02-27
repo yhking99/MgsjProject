@@ -15,6 +15,7 @@
 					<th class="col-sm-1  text-center">번 호</th>
 					<th class="col-sm-4  text-center">제 목</th>
 					<th class="col-sm-1  text-center">작성자</th>
+					<th class="col-sm-1  text-center">작성자아이디</th>
 					<th class="col-sm-3  text-center">작성일자</th>
 					<th class="col-sm-1  text-center">조회수</th>
 				</tr>
@@ -28,16 +29,18 @@
 				regDate datetime
 				readCount int
 			-->
-				<c:forEach var="boardList" items="${boardList}">
+				<c:forEach var="memberBoardList" items="${memberBoardList}">
 					<tr>
-						<td align="center">${boardList.bno}</td>
-						<td align="center" title="${boardList.content}">${boardList.title}</td>
+						<td align="center">${memberBoardList.bno}</td>
+						<td align="center" title="${memberBoardList.content}">
+						<a href="/board/boardView?bno=${memberBoardList.bno}">${memberBoardList.title}</a></td>
 						<!-- <td class = "hidden">${notice.content}</td>-->
-						<td align="center">${boardList.writer}</td>
+						<td align="center">${memberBoardList.writer}</td>
+						<td align="center">${memberBoardList.userId}</td>
 						<td>
-							<fmt:formatDate value="${boardList.regDate}" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${memberBoardList.regDate}" pattern="yyyy-MM-dd" />
 						</td>
-						<td align="center">${boardList.readCount}</td>
+						<td align="center">${memberBoardList.readCount}</td>
 						<!-- 나중 사용을 위해서 이미지 이름과 경로 히든 처리 -->
 					</tr>
 				</c:forEach>
