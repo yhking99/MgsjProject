@@ -19,5 +19,5 @@ public interface ProductService {
 	public List<ProductDTO> productList() throws Exception;
 	
 	// 상품 게시글 상세조회
-	public ProductDTO productDetail(int pno) throws Exception;
+	public ProductDTO productView(int pno) throws Exception;
 }

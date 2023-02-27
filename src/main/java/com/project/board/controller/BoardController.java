@@ -25,6 +25,9 @@ public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
+
+	private BoardServiceImpl boardService;
+	
 	private BoardService boardService;
 
 	@Autowired

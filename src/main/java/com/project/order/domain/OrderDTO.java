@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class OrderDTO {
 
-	private int orderNum;
 	private String userId;
 	private Date orderDate;
 	private String postAddress;
