@@ -2,37 +2,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.project.member.domain.MemberDTO"%>
 <!DOCTYPE html>
-<%
-MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberLogon");
-%>
 <html>
 <head>
 <meta charset="UTF-8">
-<%
-if (memberInfo.getUserVerify() == 128) {
-%>
-<title>공지 게시글 조회</title>
-<%
-} else {
-%>
-<title>게시글 조회</title>
-<%
-}
-%>
+<c:choose>
+	<c:when test="${(memberInfo.userVerify == 128) && (memberInfo != null) }">
+		<title>공지 게시글 조회</title>
+	</c:when>
+	<c:otherwise>
+		<title>게시글 조회</title>
+	</c:otherwise>
+</c:choose>
 </head>
 <body>
-	<%
-	if (memberInfo.getUserVerify() == 128) {
-	%>
-	<h1>공지글 작성하기</h1>
-	<%
-	} else {
-	%>
-	<h1>게시글 작성하기</h1>
-	<%
-	}
-	%>
-	<form method="post" action="/board/boardWrite">
+	<c:choose>
+		<c:when test="${(memberInfo.userVerify == 128) && (memberInfo != null) }">
+			<h1>공지글 작성하기</h1>
+		</c:when>
+		<c:otherwise>
+			<h1>게시글 작성하기</h1>
+		</c:otherwise>
+	</c:choose>
+	<form method="post" action="/board/boardWrite" autocomplete="off" role="form">
 
 		<div>
 			<label>게시글 제목 : </label>
@@ -41,16 +32,20 @@ if (memberInfo.getUserVerify() == 128) {
 
 		<hr>
 		<br>
-
-		<div>
-			<label>작성자 : </label>
-			<input type="text" name="writer">
-			<br>
-		</div>
-		<div>
-			<label>아이디 : </label>
-			<input type="text" name="userId" value="${memberLogon.userId }" readonly="readonly">
-		</div>
+		<c:choose>
+			<c:when test="${(memberInfo.userVerify == 128) && (memberInfo != null) }">
+				<div>
+					<label>작성자 : </label>
+					<input type="text" name="writer" value="" readonly="readonly">
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div>
+					<label>작성자 : </label>
+					<input type="text" name="writer" placeholder="비회원은 반드시 작성자를 입력해주세요">
+				</div>
+			</c:otherwise>
+		</c:choose>
 
 		<hr>
 		<br>
@@ -63,17 +58,14 @@ if (memberInfo.getUserVerify() == 128) {
 		<textarea rows="5" cols="50" class="boardTextarea" name="content" maxlength="2000"></textarea>
 		<br>
 
-		<%
-		if (memberInfo.getUserVerify() == 128) {
-		%>
-		<button type="submit">공지올리기</button>
-		<%
-		} else {
-		%>
-		<button type="submit">게시글 작성하기</button>
-		<%
-		}
-		%>
+		<c:choose>
+			<c:when test="${(memberInfo.userVerify == 128) && (memberInfo != null) }">
+				<button type="submit">공지올리기</button>
+			</c:when>
+			<c:otherwise>
+				<button type="submit">게시글 작성하기</button>
+			</c:otherwise>
+		</c:choose>
 	</form>
 
 </body>
