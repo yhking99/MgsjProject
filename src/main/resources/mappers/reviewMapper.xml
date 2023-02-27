@@ -30,7 +30,7 @@ WHERE rvno = #{rvno}
 </select>
 
 <!-- 리뷰 수정 -->
-
+ 
 <!-- 리뷰 삭제 -->
 <delete id = "reviewDelete" parameterType = "int">
 
@@ -45,6 +45,6 @@ WHERE rvno = #{rvno}
 SELECT rvno, pno, rvTitle, rvContent, rvWriter, rvRegDate
 FROM reviewboarddto
 ORDER BY rvno DESC
-
+ 
 </select>
 </mapper>
