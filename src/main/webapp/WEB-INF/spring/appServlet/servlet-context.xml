@@ -31,12 +31,13 @@
 	
 	<!-- 인터셉터 경로 및 객체생성-->
 	<context:component-scan base-package="com.project.loginterceptor"></context:component-scan>
+	<beans:bean id="LoggerInterceptor" class="com.project.loginterceptor.LoggerInterceptor"></beans:bean>
 	
 	<!-- 로깅 인터셉터 설정 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
-			<beans:bean id="LoginInterceptor" class="com.project.loginterceptor.LoggerInterceptor"></beans:bean>
+			<beans:ref bean="LoggerInterceptor"/>
 		</interceptor>
 	</interceptors>
 

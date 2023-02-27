@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>회원 게시판</title>
+	<title>관리자 전용 게시판</title>
 </head>
 <body>
 	<div align="center">
@@ -27,17 +27,19 @@
 				content text 
 				regDate datetime
 				readCount int
+				
 			-->
-				<c:forEach var="boardList" items="${boardList}">
+				<c:forEach var="adminBoardList" items="${adminBoardList}">
 					<tr>
-						<td align="center">${boardList.bno}</td>
-						<td align="center" title="${boardList.content}">${boardList.title}</td>
+						<td align="center">${adminBoardList.bno}</td>
+						<td align="center" title="${adminBoardList.content}">
+						<a href="/board/boardView?bno=${adminBoardList.bno}">${adminBoardList.title}</a></td>
 						<!-- <td class = "hidden">${notice.content}</td>-->
-						<td align="center">${boardList.writer}</td>
+						<td align="center">${adminBoardList.writer}</td>
 						<td>
-							<fmt:formatDate value="${boardList.regDate}" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${adminBoardList.regDate}" pattern="yyyy-MM-dd" />
 						</td>
-						<td align="center">${boardList.readCount}</td>
+						<td align="center">${adminBoardList.readCount}</td>
 						<!-- 나중 사용을 위해서 이미지 이름과 경로 히든 처리 -->
 					</tr>
 				</c:forEach>

@@ -11,12 +11,12 @@ import java.util.Date;
 public class BoardDTO {
 
 	private int bno;
-	private String userId;
 	private String writer;
 	private String title;
 	private String content;
 	private Date regDate;
 	private int readCount;
+	private int boardLevel;
 
 	public int getBno() {
 		return bno;
@@ -24,14 +24,6 @@ public class BoardDTO {
 
 	public void setBno(int bno) {
 		this.bno = bno;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public String getWriter() {
@@ -74,12 +66,18 @@ public class BoardDTO {
 		this.readCount = readCount;
 	}
 
-	@Override
-	public String toString() {
-		return "BoardDTO [bno=" + bno + ", userId=" + userId + ", writer=" + writer + ", title=" + title + ", content="
-				+ content + ", regDate=" + regDate + ", readCount=" + readCount + "]";
+	public int getBoardLevel() {
+		return boardLevel;
 	}
 
-	
+	public void setBoardLevel(int boardLevel) {
+		this.boardLevel = boardLevel;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDTO [bno=" + bno + ", writer=" + writer + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", readCount="
+				+ readCount + ", boardLevel=" + boardLevel + "]";
+	}
 
 }
