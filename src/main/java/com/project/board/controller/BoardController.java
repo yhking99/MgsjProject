@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.board.domain.BoardDTO;
 import com.project.board.service.BoardService;
@@ -22,7 +23,7 @@ public class BoardController {
 	private BoardService boardService;
 
 	// 공지 게시글 목록보기
-	@RequestMapping(value = "/board/adminBoardList", method = RequestMethod.GET)
+	@RequestMapping(value = "/board/admin/adminBoardList", method = RequestMethod.GET)
 	public void adminBoardList(Model model) throws Exception {
 
 		logger.info("BoardController에서 공지 게시글 목록보기 시작");
@@ -36,7 +37,7 @@ public class BoardController {
 	}
 
 	// 일반 게시글 목록보기
-	@RequestMapping(value = "/board/memberBoardList", method = RequestMethod.GET)
+	@RequestMapping(value = "/board/member/memberBoardList", method = RequestMethod.GET)
 	public void memberBoardList(Model model) throws Exception {
 
 		logger.info("BoardController에서 일반 게시글 목록보기 시작");
@@ -45,92 +46,73 @@ public class BoardController {
 
 		logger.info("일반 게시글 목록 ==> " + memberBoardList);
 
-		model.addAttribute("boardList", memberBoardList);
+		model.addAttribute("memberBoardList", memberBoardList);
 
 	}
 
-	// 공지 게시글 작성 페이지 접속
-	@RequestMapping(value = "/board/adminBoardWritePage", method = RequestMethod.GET)
-	public void connectAdminBoardWrite() throws Exception {
-
-		logger.info("관리자 게시글 작성 페이지 접속 adminBoardWrite - controller");
-
-	}
-
-	// 이용자 게시글 작성 페이지 접속
-	@RequestMapping(value = "/board/memberBoardWritePage", method = RequestMethod.GET)
+	// 작성 페이지 접속
+	@RequestMapping(value = "/board/boardWritePage", method = RequestMethod.GET)
 	public void connectMemberBoardWrite() throws Exception {
 
 		logger.info("회원 게시글 작성 페이지 접속 memberBoardWrite - controller");
-
+		
 	}
 
-	// 공지 게시글 작성하기
-	@RequestMapping(value = "/board/adminBoardWrite", method = RequestMethod.POST)
-	public String adminBoardWrite(BoardDTO boardDTO) throws Exception {
-
-		logger.info("공지 게시글 작성 adminBoardWrite - controller");
-
-		boardService.adminBoardWrite(boardDTO);
-
-		return "redirect:/board/main";
-	}
-
-	// 이용자 게시글 등록하기
-	@RequestMapping(value = "/board/memberBoardWrite", method = RequestMethod.POST)
-	public String memberBoardWrite(BoardDTO boardDTO) throws Exception {
+	// 게시글 등록하기
+	@RequestMapping(value = "/board/boardWrite", method = RequestMethod.POST)
+	public String boardWrite(BoardDTO boardDTO) throws Exception {
 
 		logger.info("회원 게시글 작성 memberBoardWrite - controller");
 
-		boardService.memberBoardWrite(boardDTO);
+		boardService.boardWrite(boardDTO);
 
-		return "redirect:/board/main";
+		return "redirect:/board/member/memberBoardList";
 	}
 
-	// 공지 게시글 삭제하기
-	@RequestMapping(value = "/board/adminBoardDelete", method = RequestMethod.POST)
-	public String adminBoardDelete(int bno) throws Exception {
-
-		logger.info("공지 게시글 삭제 adminBoardDelete - controller");
-
-		boardService.adminBoardDelete(bno);
-
-		return "redirect:/board/main";
-	}
-
-	// 이용자 게시글 삭제하기
-	@RequestMapping(value = "/board/memberBoardDelete", method = RequestMethod.POST)
-	public String memberBoardDelete(int bno) throws Exception {
+	// 게시글 삭제하기
+	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.GET)
+	public String boardDelete(@RequestParam("bno") int bno) throws Exception {
 
 		logger.info("회원 게시글 삭제 memberBoardDelete - BoardController");
 
-		boardService.memberBoardDelete(bno);
+		boardService.boardDelete(bno);
 
 		return "redirect:/board/main";
 	}
 
-	// 공지 게시글 조회하기
-	@RequestMapping(value = "/board/adminBoardView", method = RequestMethod.GET)
-	public void adminBoardView(Model model, BoardDTO boardDTO, int bno) throws Exception {
+	// 게시글 조회하기
+	@RequestMapping(value = "/board/boardView", method = RequestMethod.GET)
+	public void boardView(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
 
-		logger.info("공지 게시글 조회 adminBoardView - BoardController");
+		logger.info("회원 게시글 조회 memberBoardDetail - BoardController");
 
-		boardService.adminBoardView(bno);
+		boardDTO = boardService.boardView(bno);
 
 		model.addAttribute("boardDTO", boardDTO);
 
 	}
-
-	// 이용자 게시글 조회하기
-	@RequestMapping(value = "/board/memberBoardDetail", method = RequestMethod.GET)
-	public void memberBoardView(Model model, BoardDTO boardDTO, int bno) throws Exception {
-
-		logger.info("회원 게시글 조회 memberBoardDetail - BoardController");
-
-		boardService.memberBoardView(bno);
-
+	
+	// 게시글 수정하기 (의 개념으로 수정페이지 들어가기)
+	@RequestMapping(value = "/board/boardModifyPage", method = RequestMethod.GET)
+	public void connectBoardModify(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
+		
+		logger.info("공지 게시글 수정 페이지 접속 connectBoardModify - controller");
+		
+		boardDTO = boardService.boardView(bno);
+		
 		model.addAttribute("boardDTO", boardDTO);
-
+	}
+	
+	// 게시글 수정하기 로직
+	@RequestMapping(value = "/board/boardModify", method = RequestMethod.POST)
+	public String boardModify(BoardDTO boardDTO) throws Exception {
+		
+		logger.info("공지 게시글 수정 로직 boardModify - controller");
+		logger.info("게시글 번호 : {}", boardDTO.getBno());
+		
+		boardService.boardModify(boardDTO);
+		
+		return "redirect:/board/boardView?bno=" + boardDTO.getBno();
 	}
 
 }

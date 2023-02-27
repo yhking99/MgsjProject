@@ -53,22 +53,6 @@ public class MemberController {
 		return "redirect:/member/memberLoginPage";
 	}
 	
-	/*
-	 * // 상세주소 접속 페이지
-	 * 
-	 * @RequestMapping(value = "/member/connectMemberAddressPage", method = RequestMethod.GET) public void connectMemberAddressPage() throws Exception {
-	 * 
-	 * logger.info("회원 상세 정보 등록 connectMemberAddressPage - controller"); }
-	 * 
-	 * // 상세주소 구현 로직
-	 * 
-	 * @RequestMapping(value = "/member/memberInsertAddress", method = RequestMethod.GET) public String memberInsertAddress() throws Exception {
-	 * 
-	 * logger.info("상세주소기입 실행 memberInsertAddress - controller");
-	 * 
-	 * return "redirect:/member/memberLoginPage"; }
-	 */
-
 	// 로그인 페이지 접속
 	@RequestMapping(value = "/member/memberLoginPage", method = RequestMethod.GET)
 	public void memberLoginPage() throws Exception {

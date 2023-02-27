@@ -4,65 +4,53 @@
 	<!-- bno int userId varchar(20) writer varchar(20) title varchar(50) content text regDate datetime readCount int -->
 
 
-	<!-- 공지 게시글 목록 -->
+	<!-- 공지 게시글 목록 : join을 활용하여 유저인증번호로 조회하는 게시판이 다름 -->
 	<select id="adminBoardList" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, userId, writer, title, content, regDate, readCount
-		FROM boarddto
-		WHERE userId = 'admin'
+		SELECT bno, board.userId, writer, title, content, regDate, readCount
+		FROM boarddto as board
+		join memberdto as member
+		on board.userId = member.userId
+		where member.userVerify = 128
 		ORDER BY bno DESC
 	</select>
 
 
 	<!-- 일반 게시글 목록 -->
 	<select id="memberBoardList" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, userId, writer, title, content, regDate, readCount
-		FROM boarddto
-		where not userId = 'admin'
-		ORDER BY bno DESC;
+		SELECT bno, board.userId, writer, title, content, regDate, readCount
+		FROM boarddto as board
+		join memberdto as member
+		on board.userId = member.userId
+		where not member.userVerify = 128
+		ORDER BY bno DESC
 	</select>
 
-
-	<!-- 공지 게시판 게시글 작성 -->
-	<insert id="adminBoardWrite" parameterType="com.project.board.domain.BoardDTO">
-		INSERT INTO boarddto(userId, writer, title, content)
-		values (#{userId}, #{writer}, #{title}, #{content});
-	</insert>
-
-	<!-- 일반 게시판 게시글 작성 -->
-	<insert id="memberBoardWrite" parameterType="com.project.board.domain.BoardDTO">
+	<!-- 게시글 작성 -->
+	<insert id="boardWrite" parameterType="com.project.board.domain.BoardDTO">
 		INSERT INTO boarddto( userId, writer, title, content )
 		values (#{userId}, #{writer}, #{title}, #{content});
 	</insert>
 
-
-	<!-- 공지 게시글 삭제하기 -->
-	<delete id="adminBoardDelete" parameterType="int">
-		DELETE FROM boarddto
-		WHERE bno = #{bno}
-		AND userId = 'admin'
-	</delete>
-
-
-	<!-- 이용자 게시글 삭제하기 -->
-	<delete id="memberBoardDelete" parameterType="int">
+	<!-- 게시글 삭제하기 -->
+	<delete id="boardDelete" parameterType="int">
 		DELETE FROM boarddto
 		WHERE bno = #{bno}
 	</delete>
-
-	<!-- 공지 게시글 조회하기 -->
-	<select id="adminBoardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, userId, write, title, content, regDate, readCount
-		FROM boarddto
-		WHERE bno = #{bno}
-		and userId = 'admin'
-	</select>
 
 	<!-- 이용자 게시글 조회하기 -->
-	<select id="memberBoardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, write, title, content, regDate, readCount
+	<select id="boardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
+		SELECT bno, userId, writer, title, content, regDate, readCount
 		FROM boarddto
 		WHERE bno = #{bno}
-		and not userId = 'admin'
 	</select>
+	
+	<!-- 게시글 수정 쿼리(POST) -->
+	<update id="boardModify" parameterType="com.project.board.domain.BoardDTO">
+		update boarddto set
+			title = #{title},
+			writer = #{writer},
+			content = #{content}
+		where bno = #{bno}
+	</update>
 
 </mapper>

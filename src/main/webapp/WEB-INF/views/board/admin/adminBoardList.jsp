@@ -15,6 +15,7 @@
 					<th class="col-sm-1  text-center">번 호</th>
 					<th class="col-sm-4  text-center">제 목</th>
 					<th class="col-sm-1  text-center">작성자</th>
+					<th class="col-sm-1  text-center">작성자아이디</th>
 					<th class="col-sm-3  text-center">작성일자</th>
 					<th class="col-sm-1  text-center">조회수</th>
 				</tr>
@@ -27,13 +28,16 @@
 				content text 
 				regDate datetime
 				readCount int
+				
 			-->
 				<c:forEach var="adminBoardList" items="${adminBoardList}">
 					<tr>
 						<td align="center">${adminBoardList.bno}</td>
-						<td align="center" title="${adminBoardList.content}">${adminBoardList.title}</td>
+						<td align="center" title="${adminBoardList.content}">
+						<a href="/board/boardView?bno=${adminBoardList.bno}">${adminBoardList.title}</a></td>
 						<!-- <td class = "hidden">${notice.content}</td>-->
 						<td align="center">${adminBoardList.writer}</td>
+						<td align="center">${adminBoardList.userId}</td>
 						<td>
 							<fmt:formatDate value="${adminBoardList.regDate}" pattern="yyyy-MM-dd" />
 						</td>
