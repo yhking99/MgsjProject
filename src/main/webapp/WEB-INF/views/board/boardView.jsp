@@ -41,7 +41,7 @@ textarea {
 		private int readCount;
 	 -->
 	<%
-	MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberLogon");
+	MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
 
 	if (memberInfo.getUserVerify() == 128) {
 	%>
@@ -53,7 +53,6 @@ textarea {
 	<%
 	}
 	%>
-
 	<div>
 		<label>게시글 제목 : </label>
 		<input type="text" name="title" value="${boardDTO.title }" readonly="readonly">
@@ -65,11 +64,6 @@ textarea {
 	<div>
 		<label>작성자 : </label>
 		<input type="text" name="writer" value="${boardDTO.writer }" readonly="readonly">
-		<br>
-	</div>
-	<div style="font-size: 2px;">
-		<label>아이디 : </label>
-		<input style="font-size: 2px;" type="text" name="userId" value="${boardDTO.userId }" readonly="readonly">
 	</div>
 
 	<hr>
@@ -78,7 +72,7 @@ textarea {
 	<div>
 		<label>내용</label>
 	</div>
-	
+
 	<br>
 
 	<textarea rows="5" cols="50" class="boardTextarea" name="content" maxlength="2000" readonly="readonly">${boardDTO.content }</textarea>
@@ -87,14 +81,19 @@ textarea {
 	<%
 	if (memberInfo.getUserVerify() == 128) {
 	%>
-	<button type="submit" onclick="location.href='/board/boardModifyPage?bno=${boardDTO.bno}'">공지글 수정하기</button>
+	<a href="/board/boardModifyPage?bno=${boardDTO.bno}">
+		<button type="submit">공지글 수정하기</button>
+	</a>
 	<%
 	} else {
 	%>
-	<button type="submit" onclick="location.href='/board/boardModifyPage?bno=${boardDTO.bno}'">게시글 수정하기</button>
+	<a href="/board/boardModifyPage?bno=${boardDTO.bno}">
+		<button type="submit">게시글 수정하기</button>
+	</a>
 	<%
 	}
 	%>
+
 
 </body>
 </html>
