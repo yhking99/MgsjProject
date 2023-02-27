@@ -2,6 +2,8 @@ package com.project.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,201 +11,144 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.board.domain.BoardDTO;
-import com.project.board.service.BoardServiceImpl;
+import com.project.board.domain.BoardReplyDTO;
+import com.project.board.service.BoardService;
+import com.project.board.service.ReplyService;
+import com.project.member.domain.MemberDTO;
 
-// 클래스에 리퀘스트 매핑을 달면 검색이 어려워진다. -> 메서드에 자체적으로 달자 /패키지/요청
 @Controller
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
+
 	@Autowired
+
 	private BoardServiceImpl boardService;
 	
-	
-	// 공지 게시글 작성폼
-	@RequestMapping(value = "/board/boardWriteFormOp", method = RequestMethod.GET)
-	public String boardWriteFormOp() throws Exception {
-		
-		logger.info("BoardController에서 운영진 게시글 쓰기 시작");
-		
-		return "/board/boardWriteFormOp";
+	private BoardService boardService;
+
+	@Autowired
+	private ReplyService replyService;
+
+	// 공지 게시글 목록보기
+	@RequestMapping(value = "/board/admin/adminBoardList", method = RequestMethod.GET)
+	public void adminBoardList(Model model) throws Exception {
+
+		logger.info("BoardController에서 공지 게시글 목록보기 시작");
+
+		List<BoardDTO> adminBoardList = boardService.adminBoardList();
+
+		logger.info("공지 게시글 목록 ==> " + adminBoardList);
+
+		model.addAttribute("adminBoardList", adminBoardList);
+
 	}
-	// 이용자 게시글 작성폼
-	@RequestMapping(value = "/board/boardWriteForm", method = RequestMethod.GET)
-	public String boardWriteForm() throws Exception {
-		
-		logger.info("BoardController에서 이용자 게시글 쓰기 시작");
-		
-		
-		return "/board/boardWriteForm";
-	} 
-	
-	// 공지 게시글 등록하기
-	@RequestMapping(value = "/board/boardWriteOp", method = RequestMethod.POST)
-	public String boardWriteOp(BoardDTO boardDTO) throws Exception {
-		
-		logger.info("BoardController에서 운영진 게시글 등록하기 시작");
-		
-		boardService.boardWriteOp(boardDTO);
-		
-		return "redirect:/board/main";
+
+	// 일반 게시글 목록보기
+	@RequestMapping(value = "/board/member/memberBoardList", method = RequestMethod.GET)
+	public void memberBoardList(Model model) throws Exception {
+
+		logger.info("BoardController에서 일반 게시글 목록보기 시작");
+
+		List<BoardDTO> memberBoardList = boardService.memberBoardList();
+
+		logger.info("일반 게시글 목록 ==> " + memberBoardList);
+
+		model.addAttribute("memberBoardList", memberBoardList);
+
 	}
-	// 이용자 게시글 등록하기
-		@RequestMapping(value = "/board/boardWrite", method = RequestMethod.POST)
-		public String boardWrite(BoardDTO boardDTO) throws Exception {
+
+	// 작성 페이지 접속
+	@RequestMapping(value = "/board/boardWritePage", method = RequestMethod.GET)
+	public void connectMemberBoardWrite() throws Exception {
+
+		logger.info("회원 게시글 작성 페이지 접속 memberBoardWrite - controller");
+
+	}
+
+	// 게시글 등록하기
+	@RequestMapping(value = "/board/boardWrite", method = RequestMethod.POST)
+	public String boardWrite(BoardDTO boardDTO, HttpSession session) throws Exception {
+
+		logger.info("회원 게시글 작성 memberBoardWrite - controller");
+		
+		// 타입검사
+		logger.info("타입검사 결과 : {}" , session.getAttribute("memberInfo") instanceof Object);
+		
+		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+		
+		if(memberInfo != null) {
 			
-			logger.info("BoardController에서 이용자 게시글 등록하기 시작");
+			if (memberInfo.getUserVerify() == 128) {
+				boardDTO.setBoardLevel(1);
+				boardService.boardWrite(boardDTO);
+				
+			} else {
+				boardDTO.setBoardLevel(0);
+				boardService.boardWrite(boardDTO);
+				
+			}
 			
+		} else {
+			boardDTO.setBoardLevel(-1);
 			boardService.boardWrite(boardDTO);
 			
-			
-			return "redirect:/board/main";
+		}
+	
+		return "redirect:/board/member/memberBoardList";
 	}
-	// 공지 게시글 삭제하기
-	@RequestMapping(value = "/board/boardDeleteOp", method = RequestMethod.POST)
-	public String boardDeleteOp(int bno) throws Exception {
-		
-		logger.info("BoardController에서 운영진 게시글 삭제하기 시작");
-		
-		boardService.boardDeleteOp(bno);
-		
-		return "redirect:/board/main";
-	}
-		
-		
-	// 이용자 게시글 삭제하기
-	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.POST)
-	public String boardDelete(int bno) throws Exception {
-		
-		logger.info("BoardController에서 이용자 게시글 삭제하기 시작");
-		
+
+	// 게시글 삭제하기
+	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.GET)
+	public String boardDelete(@RequestParam("bno") int bno) throws Exception {
+
+		logger.info("회원 게시글 삭제 memberBoardDelete - BoardController");
+
 		boardService.boardDelete(bno);
-		
+
 		return "redirect:/board/main";
 	}
-	
-	// 공지 게시글 상세 조회하기
-	@RequestMapping(value = "/board/boardDetailOp", method = RequestMethod.GET)
-	public void boardDetailOp(Model model, BoardDTO boardDTO, int bno) throws Exception {
-		
-		logger.info("BoardController에서 공지 게시글 상세 조회 시작하기");
-		
-	
-		boardService.boardDetailOp(bno);
-		
-		
+
+	// 게시글 조회하기 + 댓글도 가져오기
+	@RequestMapping(value = "/board/boardView", method = RequestMethod.GET)
+	public void boardView(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
+
+		logger.info("회원 게시글 조회 boardView - BoardController");
+
+		boardDTO = boardService.boardView(bno);
+
+		// 댓글 가져오기
+		List<BoardReplyDTO> boardReplyDTO = replyService.replyList(bno);
+		logger.info("댓글 가져오기 boardView 에서 동시조회 후 계층형으로 - BoardController");
+
 		model.addAttribute("boardDTO", boardDTO);
-		
+
+		model.addAttribute("replyDTO", boardReplyDTO);
 	}
-	
-	// 이용자 게시글 조회하기
-	@RequestMapping(value = "/board/boardDetail", method = RequestMethod.GET)
-	public void boardDetail(Model model, BoardDTO boardDTO, int bno) throws Exception {
-		
-		logger.info("BoardController에서 이용자 게시글 상세 조회 시작하기");
-		
-	
-		boardService.boardDetail(bno);
-		
-		
+
+	// 게시글 수정하기 (의 개념으로 수정페이지 들어가기)
+	@RequestMapping(value = "/board/boardModifyPage", method = RequestMethod.GET)
+	public void connectBoardModify(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
+
+		logger.info("게시글 수정 페이지 접속 connectBoardModify - controller");
+
+		boardDTO = boardService.boardView(bno);
+
 		model.addAttribute("boardDTO", boardDTO);
-		
 	}
-	/*
-	// 공지 게시글 수정하기
-	@RequestMapping(value = "/board/boardUpdateOp", method = RequestMethod.POST)
-	public String boardUpdateOp(BoardDTO boardDTO) throws Exception {
-		
-		logger.info("BoardController에서 공지 게시글 수정하기 시작");
-		
-	
-		boardService.boardUpdateOp(boardDTO);
-		
-		
-		return "redirect:/board/main";
+
+	// 게시글 수정하기 로직
+	@RequestMapping(value = "/board/boardModify", method = RequestMethod.POST)
+	public String boardModify(BoardDTO boardDTO) throws Exception {
+
+		logger.info("게시글 수정 로직 실행 boardModify - controller");
+
+		boardService.boardModify(boardDTO);
+
+		return "redirect:/board/boardView?bno=" + boardDTO.getBno();
 	}
-		
-		
-	// 이용자 게시글 수정하기
-	@RequestMapping(value = "/board/board", method = RequestMethod.POST)
-	public String boardUpdate(BoardDTO boardDTO, int bno) throws Exception {
-		
-		logger.info("BoardController에서 공지 게시글 수정하기 시작");
-		
-		HashMap<String, Object> boardUpdate = new HashMap<String, Object>();
-		boardUpdate.put("bno", bno);
-		boardUpdate.put("boardDTO", boardDTO);
-		
-		boardService.boardUpdate(boardUpdate);
-		
-		return "redirect:/board/main";
-	}
-	*/
-	
-	// 공지 게시글 목록보기
-		@RequestMapping(value = "/board/boardListOp", method = RequestMethod.GET)
-		public void boardListOp(Model model) throws Exception {
-			
-			logger.info("BoardController에서 공지 게시글 목록보기 시작");
-			
-			List<BoardDTO> boardList = boardService.boardListOp();
-			
-			logger.info("공지 게시글 목록 ==> " + boardList);
-			
-			model.addAttribute("boardListOp", boardList);
-			 
-		}
-		
-		// 일반 게시글 목록보기
-		@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
-		public void boardList(Model model) throws Exception {
-			
-			logger.info("BoardController에서 일반 게시글 목록보기 시작");
-			
-			List<BoardDTO> boardList = boardService.boardList();
-			
-			logger.info("일반 게시글 목록 ==> " + boardList);
-			
-			model.addAttribute("boardList", boardList);
-			
-		}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

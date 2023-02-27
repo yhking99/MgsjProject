@@ -14,7 +14,7 @@
 	</appender>
 
 	<!-- Application Loggers -->
-	<logger name="com.board">
+	<logger name="com.project">
 		<level value="debug" />
 	</logger>
 

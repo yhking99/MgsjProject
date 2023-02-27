@@ -18,80 +18,58 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
 
-	// 운영진 게시글 등록하기
+	// 공지 게시글 목록보기
 	@Override
-	public void boardWriteOp(BoardDTO boardDTO) throws Exception {
+	public List<BoardDTO> adminBoardList() throws Exception {
 
-		logger.info("BoardServiceImpl에서 운영진 게시글 등록하기 시작");
+		logger.info("공지 게시글 목록 불러오기");
 
-		boardDAO.boardWriteOp(boardDTO);
+		return boardDAO.adminBoardList();
 	}
 
-	// 일반 게시글 등록하기
+	// 일반 게시글 목록보기
+	@Override
+	public List<BoardDTO> memberBoardList() throws Exception {
 
+		logger.info("일반 게시글 목록 불러오기");
+
+		return boardDAO.memberBoardList();
+	}
+
+	// 게시글 등록하기
 	@Override
 	public void boardWrite(BoardDTO boardDTO) throws Exception {
 
-		logger.info("BoardServiceImpl에서 일반 게시글 등록하기 시작");
+		logger.info("게시글 작성(service), boardWrite : {}", boardDTO);
 
 		boardDAO.boardWrite(boardDTO);
 	}
 
-	// 일반 게시글 삭제하기
-
+	// 게시글 삭제하기
 	@Override
 	public void boardDelete(int bno) throws Exception {
 
-		logger.info("BoardServiceImpl에서 일반 게시글 삭제하기 시작");
+		logger.info("게시글 삭제(service), boardDelete : {}", bno);
 
 		boardDAO.boardDelete(bno);
-
 	}
 
-	// 공지 게시글 삭제하기
+	// 공지 게시글 조회하기
 	@Override
-	public void boardDeleteOp(int bno) throws Exception {
+	public BoardDTO boardView(int bno) throws Exception {
 
-		logger.info("BoardServiceImpl에서 공지 게시글 삭제하기 시작");
+		logger.info("{} 번 게시글 조회 BoardServiceImpl - service", bno);
 
-		boardDAO.boardDeleteOp(bno);
+		return boardDAO.boardView(bno);
 	}
 
-	// 공지 게시글 상세 조회하기
+	// 게시글 수정
 	@Override
-	public BoardDTO boardDetailOp(int bno) throws Exception {
+	public void boardModify(BoardDTO boardDTO) throws Exception {
 
-		logger.info("BoardServiceImpl에서 공지 게시글 상세 조회하기 시작");
+		logger.info("공지 게시글 수정 boardModify - service");
 
-		return boardDAO.boardDetailOp(bno);
+		boardDAO.boardModify(boardDTO);
 	}
 
-	// 일반 게시글 상세 조회하기
-	@Override
-	public BoardDTO boardDetail(int bno) throws Exception {
-
-		logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
-
-		return boardDAO.boardDetail(bno);
-	}
-
-	// 공지 게시글 목록보기
-
-	@Override
-	public List<BoardDTO> boardListOp() throws Exception {
-
-		logger.info("BoardServiceImpl에서 공지 게시글 상세 조회하기 시작");
-
-		return boardDAO.boardListOp();
-	}
-
-	// 일반 게시글 목록보기
-
-	@Override
-	public List<BoardDTO> boardList() throws Exception {
-
-		logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
-
-		return boardDAO.boardList();
-	}
 }

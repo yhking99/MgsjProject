@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class ProductDTO {
 
-	private int pno; // [3] 이제 이 키를 가지고
 	private int cno;
 	private String productName;
 	private int productPrice;
@@ -79,9 +78,9 @@ public class ProductDTO {
 
 	@Override
 	public String toString() {
-		return "ProductDTO [pno=" + pno + ", cno=" + cno + ", productName=" + productName + ", productPrice="
-				+ productPrice + ", productStock=" + productStock + ", productDescription=" + productDescription
-				+ ", productRegDate=" + productRegDate + ", productReadCnt=" + productReadCnt + "]";
+		return "ProductDTO [pno=" + pno + ", cno=" + cno + ", productName=" + productName + ", productPrice=" + productPrice + ", productStock="
+				+ productStock + ", productDescription=" + productDescription + ", productRegDate=" + productRegDate + ", productReadCnt="
+				+ productReadCnt + "]";
 	}
 
 }

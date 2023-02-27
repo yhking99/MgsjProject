@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class OrderDTO {
 
-	private int orderNum; // [2] 여기로 역전됨
-	private int userNum; // [1] 이 구간에서 키가 
 	private String userId;
 	private Date orderDate;
 	private String postAddress;
@@ -20,14 +18,6 @@ public class OrderDTO {
 
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
-	}
-
-	public int getUserNum() {
-		return userNum;
-	}
-
-	public void setUserNum(int userNum) {
-		this.userNum = userNum;
 	}
 
 	public String getUserId() {
@@ -88,9 +78,8 @@ public class OrderDTO {
 
 	@Override
 	public String toString() {
-		return "OrderDTO [orderNum=" + orderNum + ", userNum=" + userNum + ", userId=" + userId + ", orderDate=" + orderDate + ", postAddress="
-				+ postAddress + ", detailAddress=" + detailAddress + ", detailAddress2=" + detailAddress2 + ", recipient=" + recipient
-				+ ", recipientPhone=" + recipientPhone + "]";
+		return "OrderDTO [orderNum=" + orderNum + ", userId=" + userId + ", orderDate=" + orderDate + ", postAddress=" + postAddress
+				+ ", detailAddress=" + detailAddress + ", detailAddress2=" + detailAddress2 + ", recipient=" + recipient + ", recipientPhone="
+				+ recipientPhone + "]";
 	}
-
 }
