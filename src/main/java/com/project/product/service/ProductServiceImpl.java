@@ -47,11 +47,11 @@ public class ProductServiceImpl implements ProductService {
 	
 	//상품 게시글 상세 조회
 	@Override
-	public ProductDTO productDetail(int pno) throws Exception {
+	public ProductDTO productView(int pno) throws Exception {
 
 		logger.info("상품 게시글 상세조회 productDetail - Service");
 		
-		return productDAO.productDetail(pno);
+		return productDAO.productView(pno);
 	}
 	
 	//상품 게시글 목록

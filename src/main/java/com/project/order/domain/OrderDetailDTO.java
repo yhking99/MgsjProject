@@ -2,12 +2,13 @@ package com.project.order.domain;
 
 public class OrderDetailDTO {
 	
-	private int orderNum;
-	private int pno; 
+	private int orderNum; // [2] 여기로 들어온 키가
+	private int pno;  // [3] 다시 여기로 역전됨
 	private int productPrice;
 	private int productCnt;
 	private String orderStatus;
 	private int userNum;
+	
 	public int getOrderNum() {
 		return orderNum;
 	}

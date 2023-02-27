@@ -10,8 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.inquire.domain.InquireDTO;
+import com.project.inquire.service.InquireService;
 import com.project.product.domain.ProductDTO;
 import com.project.product.service.ProductService;
+import com.project.review.domain.ReviewBoardDTO;
+import com.project.review.service.ReviewService;
 
 @Controller
 public class ProductController {
@@ -20,6 +24,12 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private InquireService inquireService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	// 수정 삭제는 상품등록자만 가능하게(비지니스 로직)
 	
@@ -68,14 +78,25 @@ public class ProductController {
 	}
 	
 	// 상품 게시글 상세조회
-	@RequestMapping(value = "/product/productDetail", method = RequestMethod.POST)
-	public String productDetail(int pno) throws Exception {
+	@RequestMapping(value = "/product/productView", method = RequestMethod.GET)
+	public void productDetail(Model model, ProductDTO productDTO, int pno) throws Exception {
 		
-		logger.info("상품 게시글 상세 조회 productDetail - Controller");
+		logger.info("상품 게시글 상세 조회 productView - Controller");
 		
-		productService.productDetail(pno);
+//--------------------------------- 로직 나중 구현 예정--------------------------------------------
+		List<InquireDTO> inquireList = inquireService.inquireList();
+
+		List<ReviewBoardDTO> reviewList = reviewService.reviewList();
 		
-		return "redirect:/product/main";
+		productService.productView(pno);
+		
+		model.addAttribute("productDTO", productDTO);
+		
+		model.addAttribute("inquireList", inquireList);
+		
+		model.addAttribute("reviewList", reviewList);
+		
+		
 	}
 	// 상품 게시글 목록 
 	@RequestMapping(value = "/product/productList", method = RequestMethod.GET)
