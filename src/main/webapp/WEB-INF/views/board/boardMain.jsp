@@ -12,16 +12,16 @@
 	<br>
 	<!-- 일반유저 계정 -->
 	<%
-	MemberDTO memberLogon = (MemberDTO)session.getAttribute("memberLogon");
+	MemberDTO memberInfo = (MemberDTO)session.getAttribute("memberInfo");
 	
-	if(memberLogon == null){
+	if(memberInfo== null){
 	%>
 		<a href="/member/memberLoginPage">로그인하러가기</a>
 		<a href="/member/memberSignUp">회원가입</a>
 	<%
 	} else {
 		
-		if(memberLogon.getUserVerify() == 128){
+		if(memberInfo.getUserVerify() == 128){
 	%>
 			<a href="/board/admin/adminBoardList">관리자게시판</a><br>
 			<a href="/board/boardWritePage">관리자게시글 작성하기</a><br>
@@ -41,6 +41,7 @@
 	}
 	%>
 	
+	
 </body>
 <script type="text/javascript">
 	function memberLogout() {
@@ -49,7 +50,7 @@
 		if(logoutYN == true){
 			alert("로그아웃이 됫서용");
 			location.href = "/member/memberLogout"; 	/* 세션 invalidate */
-			location.href = "/member/memberLoginPage"; 	/* 로그인페이지 */
+			location.href = "/"; 	/* 로그인페이지 */
 		} else {
 			alert("로그아웃 취소댓서용");
 		}
