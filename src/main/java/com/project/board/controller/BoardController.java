@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.board.domain.BoardDTO;
 import com.project.board.domain.BoardReplyDTO;
-import com.project.board.service.BoardService;
+import com.project.board.service.BoardServiceImpl;
 import com.project.board.service.ReplyService;
 import com.project.member.domain.MemberDTO;
 
@@ -27,8 +27,6 @@ public class BoardController {
 	@Autowired
 
 	private BoardServiceImpl boardService;
-	
-	private BoardService boardService;
 
 	@Autowired
 	private ReplyService replyService;
