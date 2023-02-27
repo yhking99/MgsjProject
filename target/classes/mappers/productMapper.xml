@@ -32,7 +32,7 @@
  
  
  <!-- 상품 게시글 상세 조회 -->
- <select id = "productDetail" parameterType = "int" resultType = "com.project.product.domain.ProductDTO">
+ <select id = "productView" parameterType = "int" resultType = "com.project.product.domain.ProductDTO">
  	
  	SELECT pno, cno, productName, productPrice, productStock, productDescription, productRegDate, productReadCnt
  	FROM productdto
