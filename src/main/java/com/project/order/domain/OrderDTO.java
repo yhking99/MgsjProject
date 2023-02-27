@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class OrderDTO {
 
-	private int orderNum;
-	private int userNum;
+	private int orderNum; // [2] 여기로 역전됨
+	private int userNum; // [1] 이 구간에서 키가 
 	private String userId;
 	private Date orderDate;
 	private String postAddress;

@@ -5,7 +5,7 @@ import java.util.Date;
 public class InquireDTO {
 
 	private int askNum;
-	private int pno;
+	private int pno; // [3] -> [4] 여기서 써먹어야함.
 	private String askTitle;
 	private String askContent;
 	private Date askRegDate;

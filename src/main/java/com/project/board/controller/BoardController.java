@@ -99,7 +99,7 @@ public class BoardController {
 		
 	}
 	
-	// 이용자 게시글 상세 조회하기
+	// 이용자 게시글 조회하기
 	@RequestMapping(value = "/board/boardDetail", method = RequestMethod.GET)
 	public void boardDetail(Model model, BoardDTO boardDTO, int bno) throws Exception {
 		

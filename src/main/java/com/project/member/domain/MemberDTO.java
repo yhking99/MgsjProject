@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberDTO {
 
-	private int userNum;
+	private int userNum; // [1] 근원
 	private String userId;
 	private String userPwd;
 	private String userName;
