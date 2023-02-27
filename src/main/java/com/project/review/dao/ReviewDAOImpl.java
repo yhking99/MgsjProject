@@ -14,7 +14,7 @@ import com.project.review.domain.ReviewBoardDTO;
 public class ReviewDAOImpl implements ReviewDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(ReviewDAOImpl.class);
-
+ 
 	@Autowired
 	private SqlSession sqlSession;
 	

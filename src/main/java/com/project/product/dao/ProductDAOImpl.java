@@ -49,11 +49,11 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	// 상품 게시글 상세조회
 	@Override
-	public ProductDTO productDetail(int pno) throws Exception {
+	public ProductDTO productView(int pno) throws Exception {
 		
 		logger.info("상품 게시글 상세조회 productDetail - productDAO");
 		
-		return sqlSession.selectOne(NAME_SPACE + ".productDetail", pno);
+		return sqlSession.selectOne(NAME_SPACE + ".productView", pno);
 	}
 	
 	// 상품 게시글 목록

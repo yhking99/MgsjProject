@@ -18,7 +18,7 @@ rvRegDate	datetime	NO
 INSERT INTO reviewboarddto (rvno, pno, rvTitle, rvContent, rvWriter, rvRegDate)
 VALUES (#{rvno}, #{pno}, #{rvTitle}, #{rvContent}, #{rvWriter}, NOW())
 
-</insert>
+</insert> 
 
 <!-- 리뷰 조회 -->
 <select id = "reviewView" parameterType = "int" resultType = "com.project.review.domain.ReviewBoardDTO">

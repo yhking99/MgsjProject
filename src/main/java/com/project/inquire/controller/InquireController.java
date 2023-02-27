@@ -24,21 +24,13 @@ public class InquireController {
 	@Autowired
 	private InquireService inquireService;
 	
-	@Autowired
-	private ProductService productService;
 	
 	// 제품 문의 페이지
 	@RequestMapping(value = "/inquire/inquireWritePage", method = RequestMethod.GET)
 	public String inquirePage(Model model,InquireDTO inquireDTO, int pno) throws Exception {
 		
 		logger.info("제품 문의 페이지 inquirePage - Controller");
-		
-		ProductDTO productDTO = productService.productDetail(pno);
-		
-		System.out.println(productDTO);
-		
-		model.addAttribute("productDTO", productDTO);            
-		
+
 		return "/inquire/inquireWritePage";
 		
 	}

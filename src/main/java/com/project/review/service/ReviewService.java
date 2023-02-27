@@ -12,7 +12,7 @@ public interface ReviewService {
 	
 	//리뷰 수정
 	public ReviewBoardDTO reviewView(int rvno) throws Exception;
-
+ 
 	//리뷰 조회
 	public void reviewUpdate(ReviewBoardDTO reviewBoardDTO) throws Exception;
 	

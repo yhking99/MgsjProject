@@ -8,7 +8,7 @@ public interface ReviewDAO {
 
 	//리뷰 등록
 	public void reviewWrite(ReviewBoardDTO reviewBoardDTO) throws Exception;	
-	
+	 
 	//리뷰 조회
 	public ReviewBoardDTO reviewView(int rvno) throws Exception;
 	

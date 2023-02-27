@@ -18,7 +18,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private ReviewDAO reviewDAO;
 	
-	//리뷰 등록
+	//리뷰 등록 
 	@Override
 	public void reviewWrite(ReviewBoardDTO reviewBoardDTO) throws Exception {
 		
