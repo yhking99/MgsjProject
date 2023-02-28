@@ -14,6 +14,8 @@
 	<div>
 		<h1>비회원</h1>
 		<a href="/board/boardWritePage">비회원 게시글 작성하기</a>
+		<br>
+		<a href="/board/member/memberBoardList">게시판으로</a>
 	</div>
 </body>
 </html>
