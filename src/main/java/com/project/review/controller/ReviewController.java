@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.review.domain.ReviewBoardDTO;
 import com.project.review.service.ReviewService;
@@ -21,9 +22,11 @@ public class ReviewController {
 	
 	// 리뷰 등록 페이지
 	@RequestMapping(value = "/review/reviewWritePage", method = RequestMethod.GET)
-	public String reviewPage() throws Exception {
+	public String reviewPage(@RequestParam("pno") int pno, Model model) throws Exception {
 		
 		logger.info("리뷰 등록 페이지 reviewWritePage - Controller");
+		
+		model.addAttribute("productNumber", pno);
 		
 		return "/review/reviewWritePage";
 	}
@@ -35,9 +38,8 @@ public class ReviewController {
 		
 		reviewService.reviewWrite(reviewBoardDTO);
 		
-		model.addAttribute("reviewBoardDTO", reviewBoardDTO);
 		
-		return "redirect:/review/main";
+		return "redirect:/product/productView";
 	}
 	//리뷰 조회
 	@RequestMapping(value = "/review/reviewView", method = RequestMethod.GET)

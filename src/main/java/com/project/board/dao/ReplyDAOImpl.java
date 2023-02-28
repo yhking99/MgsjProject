@@ -29,4 +29,24 @@ public class ReplyDAOImpl implements ReplyDAO{
 		return sqlSession.selectList(NAME_SPACE + ".replyList", bno);
 	}
 	
+	// 댓글 작성하기
+	@Override
+	public void replyWrite(BoardReplyDTO boardReplyDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	// 댓글 수정하기
+	@Override
+	public void replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	// 댓글 작성하기
+	@Override
+	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }
