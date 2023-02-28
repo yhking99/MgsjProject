@@ -13,9 +13,10 @@
 	 <select id="replyList" parameterType="int" resultType="com.project.board.domain.BoardReplyDTO">
 	 	select rno, bno, writer, content, regDate
 	 		from boardreplydto
-	 	where rno = #{rno}
-	 	and bno = #{bno}
+	 	where bno = #{bno}
+	 	order by rno asc;
 	 </select>
+	
 	
 	
 </mapper>
