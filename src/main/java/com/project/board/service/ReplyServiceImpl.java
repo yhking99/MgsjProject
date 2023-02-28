@@ -26,4 +26,31 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		return replyDAO.replyList(bno);
 	}
+	
+	// 댓글 작성하기
+	@Override
+	public void replyWrite(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글 작성 시작 replyWrite - Service : {}", boardReplyDTO);
+		
+		replyDAO.replyWrite(boardReplyDTO);
+	}
+	
+	// 댓글 수정하기
+	@Override
+	public void replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글 수정 시작 replyModify - Service: {}", boardReplyDTO);
+		
+		replyDAO.replyModify(boardReplyDTO);
+	}
+	
+	// 댓글 삭제하기
+	@Override
+	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글 삭제 시작 replyDelete - Service: {}", boardReplyDTO);
+		
+		replyDAO.replyDelete(boardReplyDTO);
+	}
 }

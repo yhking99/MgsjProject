@@ -47,5 +47,12 @@
 			content = #{content}
 		where bno = #{bno}
 	</update>
-
+	
+	<!-- 게시글 조회 -->
+	<select id="boardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
+		select bno, writer, title, content, regDate, readCount
+		from boarddto
+		where bno = #{bno}
+	</select>
+	
 </mapper>
