@@ -34,12 +34,12 @@ public class ProductController {
 	// 수정 삭제는 상품등록자만 가능하게(비지니스 로직)
 	
 	// 상품 게시글 작성폼
-	@RequestMapping(value = "/product/productWriteForm", method = RequestMethod.GET)
-	public String productWriteForm() throws Exception {
+	@RequestMapping(value = "/product/productWritePage", method = RequestMethod.GET)
+	public String productWritePage() throws Exception {
 		
-		logger.info("상품 게시글 작성폼 productWriteForm -  Controller");
+		logger.info("상품 게시글 등록 productWriteForm -  Controller");
 		
-		return "/product/productWriteForm";
+		return "/product/productWritePage";
 	}
 	
 	// 상품 게시글 등록하기

@@ -15,8 +15,8 @@
  <!-- 상품 게시글 등록하기 -->
  <insert id = "productWrite" parameterType = "com.project.product.domain.ProductDTO">
 	 
-	 INSERT INTO productdto(pno, cno, productName, productPrice, productStock, productDescription, productRegDate, productReadCnt)
-	 VALUES (#{pno}, #{cno}, #{productName}, #{productPrice}, #{productStock}, #{productDescription}, #{productRegDate}, #{productReadCnt})
+	 INSERT INTO productdto(pno, cno, productName, productPrice, productStock, productDescription, productRegDate)
+	 VALUES (#{pno}, #{cno}, #{productName}, #{productPrice}, #{productStock}, #{productDescription}, NOW())
 
  </insert>
  
