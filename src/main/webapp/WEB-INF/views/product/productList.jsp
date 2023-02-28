@@ -17,6 +17,7 @@ request.setCharacterEncoding("UTF-8");
 <body>
 
 <div align = "center">
+		
 		<table border = "1">
 			<thead>
 				<tr class = "warning">
@@ -46,7 +47,7 @@ request.setCharacterEncoding("UTF-8");
 					<td align = "center">${productList.pno}</td>
 					<td align = "center">${productList.cno}</td>
 					<!-- 제목에 마우스를올리면 내용이 말풍선으로 보인다. -->
-					<td align = "center" title = "${productList.productDescription}">${productList.productName}</td>
+					<td align = "center" title = "${productList.productDescription}"><a href = "${contextPath}/product/productView?pno=${productList.pno}">${productList.productName}</a></td>
 					<td align = "center">${productList.productPrice}</td>
 					<td align = "center">${productList.productStock}</td>
 					<td align = "center"><fmt:formatDate value = "${productList.productRegDate}" pattern = "yyyy-mm-dd"/></td>
@@ -56,6 +57,7 @@ request.setCharacterEncoding("UTF-8");
 				</c:forEach>
 			</tbody>
 		</table>
+		<button type = "button" onclick = "location.href = '/product/productWritePage'">상품 등록하기</button>
 	
 	</div>
 
