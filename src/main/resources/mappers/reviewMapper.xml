@@ -7,10 +7,8 @@
 	<!-- 리뷰 등록 -->
 	<insert id="reviewWrite" parameterType="com.project.review.domain.ReviewBoardDTO">
 
-
-INSERT INTO reviewboarddto (pno, rvTitle, rvContent, rvWriter, rvRegDate)
-VALUES (#{pno}, #{rvTitle}, #{rvContent}, #{rvWriter}, NOW())
-
+		INSERT INTO reviewboarddto (pno, rvTitle, rvContent, rvWriter, rvRegDate)
+		VALUES (#{pno}, #{rvTitle}, #{rvContent}, #{rvWriter}, NOW())
 
 	</insert>
 

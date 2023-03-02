@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.review.domain.ReviewBoardDTO;
 import com.project.review.service.ReviewService;
@@ -39,7 +40,7 @@ public class ReviewController {
 		reviewService.reviewWrite(reviewBoardDTO);
 		
 		
-		return "redirect:/product/productView";
+		return "redirect:/product/productView?pno=" + reviewBoardDTO.getPno();
 	}
 	//리뷰 조회
 	@RequestMapping(value = "/review/reviewView", method = RequestMethod.GET)
@@ -64,14 +65,13 @@ public class ReviewController {
 	}
 	
 	//리뷰 삭제
+	@ResponseBody
 	@RequestMapping(value = "/review/reviewDelete", method = RequestMethod.GET)
-	public String reviewDelete(int rvno) throws Exception {
+	public void reviewDelete(int rvno) throws Exception {
 		
 		logger.info("리뷰 삭제 reviewDelete - Controller");
 		
 		reviewService.reviewDelete(rvno);
-		
-		return "redirect:/review/reviewList";
 	}
 /*	
 	//리뷰 목록

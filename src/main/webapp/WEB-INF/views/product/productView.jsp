@@ -10,11 +10,11 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${productDTO.pno}번상품 상세정보 보기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<body>
-	<h1>${productDTO.pno}번상품 제품 상세정보 보기</h1>
+	<h1>${productDTO.pno}번상품 상세정보 보기</h1>
 	<div align="center">
 		<div>대충 상품 이미지</div>
 		<div>대충 상품 가격</div>
@@ -59,13 +59,13 @@ request.setCharacterEncoding("UTF-8");
 						<td align="center">${inquireList.pno}</td>
 						<td align="center" title="${inquireList.askContent}"><a href="${contextPath}/inquire/inquireView?askNum=${inquireList.askNum}">${inquireList.askTitle}</a></td>
 						<td><fmt:formatDate value="${inquireList.askRegDate}" pattern="yyyy-MM-dd" /></td>
-						<td align="center"><a class="btn btn-sm btn-warning" href="javascript:deleteInquireList(${inquireList.askNum})">삭제</a>
+						<td align="center"><a class="btn btn-sm btn-warning" href="javascript:deleteInquireList('${inquireList.askNum}','${productDTO.pno}')">삭제</a>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
-			<button type="button" onclick="location.href = '/inquire/inquireWritePage'">제품문의하기</button>
+			<button type="button" onclick="location.href = '/inquire/inquireWritePage?pno=${productDTO.pno}'">제품문의하기</button>
 		</div>
 	</div>
 	<div align="center">
@@ -98,7 +98,7 @@ request.setCharacterEncoding("UTF-8");
 					<td align = "center" title = "${reviewList.rvContent}"><a href = "${contextPath}/review/reviewView?rvno=${reviewList.rvno}">${reviewList.rvTitle}</a></td>
 					<td align = "center">${reviewList.rvWriter}</td>
 					<td><fmt:formatDate value = "${reviewList.rvRegDate}" pattern = "yyyy-MM-dd"/></td>
-					<td align="center"><a class="btn btn-sm btn-warning" href="javascript:deleteReviewList(${reviewList.rvno})">삭제</a>
+					<td align="center"><a class="btn btn-sm btn-warning" href="javascript:deleteReviewList('${reviewList.rvno}', '${productDTO.pno}')">삭제</a>
 				</tr>
 				</c:forEach>
 			</tbody>
@@ -113,23 +113,59 @@ request.setCharacterEncoding("UTF-8");
 
 </body>
 <script type="text/javascript">
-	function deleteInquireList(askNum) {
+	function deleteInquireList(askNum, pno) {
 		let deleteYN = confirm("삭제할까요?");
 
 		if (deleteYN == true) {
-			alert("내역이삭제되었습니다");
-			location.href = "/inquire/inquireDelete?askNum=" + askNum;
+			$.ajax({
+				url : '/inquire/inquireDelete',
+				type : 'GET',
+				data : {
+					askNum : askNum
+				},
+				success : function(data) {
+					alert("삭제되었습니다");
+					location.reload(true);
+					/* 
+						reload의 기본값은 false 
+						false : 쿠키값에 기반하여 새로고침 (웹브라우저 내 데이터기반)
+						true : 서버에서부터 새로고침 (db기반)
+					*/
+	
+				},
+				
+				error : function(error) {
+					alert("알수없는 오류가 발생하였습니다.\n잠시 후에 다시 시도해주세요");
+					
+				}
+				
+			});
+			
 		} else {
-			alert("삭제가 취소되었습니다");
+			alert("삭제가 취소되었습니다.");
+			
 		}
 	}
 	
-	function deleteReviewList(rvno) {
+	function deleteReviewList(rvno, pno) {
 		let deleteYN = confirm("삭제할까요?");
-
-		if (deleteYN == true) {
-			alert("삭제되었습니다.");
-			location.href = "/review/reviewDelete?rvno=" + rvno;
+		
+		if(deleteYN == true) {
+			$.ajax({
+				url : '/review/reviewDelete',
+				type : 'GET',
+				data : {
+					rvno : rvno
+				},
+				success : function(data) {
+					alert('삭제되었습니다.');
+					location.reload(true);
+				},
+				error : function(error) {
+					alert('알 수 없는 오류 발생하였습니다.\n잠시 후에 다시 시도해주세요.');
+				}
+				
+			});
 		} else {
 			alert("삭제가 취소되었습니다.");
 		}
