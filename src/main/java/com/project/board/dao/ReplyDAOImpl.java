@@ -29,4 +29,31 @@ public class ReplyDAOImpl implements ReplyDAO{
 		return sqlSession.selectList(NAME_SPACE + ".replyList", bno);
 	}
 	
+	// 댓글 작성하기
+	@Override
+	public void replyWrite(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글작성(ajax) replyWrite - DAO : {}", boardReplyDTO);
+		
+		sqlSession.insert(NAME_SPACE + ".replyWrite", boardReplyDTO);
+	}
+	
+	// 댓글 수정하기
+	@Override
+	public void replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글수정(ajax) replyModify - DAO : {}", boardReplyDTO);
+		
+		sqlSession.update(NAME_SPACE + ".replyModify", boardReplyDTO);
+	}
+	
+	// 댓글 삭제하기
+	@Override
+	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		logger.info("댓글삭제(ajax) replyDelete - DAO : {}", boardReplyDTO);
+		
+		sqlSession.update(NAME_SPACE + ".replyDelete", boardReplyDTO);
+		
+	}
 }
