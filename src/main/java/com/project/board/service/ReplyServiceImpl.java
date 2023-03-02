@@ -31,7 +31,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void replyWrite(BoardReplyDTO boardReplyDTO) throws Exception {
 		
-		logger.info("댓글 작성 시작 replyWrite - Service : {}", boardReplyDTO);
+		logger.info("댓글 작성(ajax) 시작 replyWrite - Service : {}", boardReplyDTO);
 		
 		replyDAO.replyWrite(boardReplyDTO);
 	}
@@ -40,7 +40,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
 		
-		logger.info("댓글 수정 시작 replyModify - Service: {}", boardReplyDTO);
+		logger.info("댓글 수정(ajax) 시작 replyModify - Service: {}", boardReplyDTO);
 		
 		replyDAO.replyModify(boardReplyDTO);
 	}
@@ -49,7 +49,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception {
 		
-		logger.info("댓글 삭제 시작 replyDelete - Service: {}", boardReplyDTO);
+		logger.info("댓글 삭제(ajax) 시작 replyDelete - Service: {}", boardReplyDTO);
 		
 		replyDAO.replyDelete(boardReplyDTO);
 	}
