@@ -20,7 +20,6 @@ request.setCharacterEncoding("UTF-8");
 			<thead>
 				<tr class = "warning">
 					<th class = "col-sm-2  text-center">주문번호</th>
-					<th class = "col-sm-2  text-center">회원번호</th>
 					<th class = "col-sm-2  text-center">회원아이디</th>
 					<th class = "col-sm-2  text-center">주문일자</th>
 					<th class = "col-sm-2  text-center">우편번호</th>
@@ -45,7 +44,6 @@ request.setCharacterEncoding("UTF-8");
 				<c:forEach var = "orderList" items = "${orderList}">
 				<tr>
 					<td align = "center">${orderList.orderNum}</td>
-					<td align = "center">${orderList.userNum}</td>
 					<td align = "center">${orderList.userId}</td>
 					<td><fmt:formatDate value = "${orderList.orderDate}" pattern = "yyyy-MM-dd"/></td>
 					<td align = "center">${orderList.postAddress}</td>
