@@ -203,8 +203,12 @@ td {
 		}
 		
 		if (replyPwd.length == 0 || replyPwd.length < 0) {
-			alert("비밀번호의 기본값은 0000입니다.\n원치 않으신다면 비밀번호를 입력 후 등록해주세요");
+			let reply-Pwd = confirm("비밀번호의 기본값은 0000입니다.\n원치 않으신다면 비밀번호를 입력 후 등록해주세요.\n계속 진행하시겠습니까?");
+			
 			document.querySelector(".reply-Pwd").focus();
+			
+			
+			
 			
 		}
 		
