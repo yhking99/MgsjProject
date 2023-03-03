@@ -15,7 +15,6 @@ request.setCharacterEncoding("UTF-8");
 <body>
 	<div class="container" align="center">
 		<form class="form-horizontal" action="/review/reviewWrite" method="post">
-			<!-- form-action은 타이틀 밑의 js파일에서 구현 예정 -->
 			<div class="form-group">
 				<div class="col-sm-12">
 					<h2 align="center">리뷰 작성하기</h2>

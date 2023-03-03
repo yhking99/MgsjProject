@@ -6,6 +6,8 @@ public class CategoryDetailDTO {
 	private int cno;
 	private String cdTitle;
 
+	
+
 	public int getCdno() {
 		return cdno;
 	}
@@ -35,4 +37,7 @@ public class CategoryDetailDTO {
 		return "CategoryDetailDTO [cdno=" + cdno + ", cno=" + cno + ", cdTitle=" + cdTitle + "]";
 	}
 
+	
 }
+
+	
