@@ -35,6 +35,11 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		logger.info("상품 게시글 삭제하기 productDelete - productDAO");
 		
+		// 리뷰테이블 먼저 삭제
+		// 장바구니 삭제 (쿠키면 생략해도됨 - 테이블일 경우에만)
+		// 주문 세부정보 삭제
+		// 제품 문의 글 삭제
+		
 		sqlSession.delete(NAME_SPACE + ".productDelete", pno);
 	}
 	

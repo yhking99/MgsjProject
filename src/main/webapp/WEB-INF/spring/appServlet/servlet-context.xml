@@ -28,6 +28,7 @@
 	<context:component-scan base-package="com.project"/>
 	<context:component-scan base-package="com.project.board"/>
 	<context:component-scan base-package="com.project.inquire"/>
+	<context:component-scan base-package="com.project.product"/>
 	
 	<!-- 인터셉터 경로 및 객체생성-->
 	<context:component-scan base-package="com.project.loginterceptor"></context:component-scan>

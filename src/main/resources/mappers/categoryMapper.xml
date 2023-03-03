@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.categoryMapper">
+
+	<!-- categorydto 테이블 categoryName varchar(20) cno int categoryLevel int -->
+
+	<!-- 카테고리 등록 -->
+	<insert id="categoryWrite" parameterType="com.project.product.domain.CategoryDTO">
+		INSERT INTO categorydto(categoryName, cno, categoryLevel)
+		VALUES (#{categoryName}, #{cno}, #{categoryLevel})
+	</insert>
+
+	<!-- 카테고리 조회 -->
+	<select id="categoryView" parameterType="int" resultType="com.project.product.domain.CategoryDTO">
+		SELECT categoryName, cno, categoryLevel
+		FROM categorydto
+		WHERE cno = #{cno}
+	</select>
+
+	<!-- 카테고리 수정 -->
+
+	<!-- 카테고리 삭제 -->
+	<delete id="categoryDelete" parameterType="int">
+		DELETE FROM categorydto
+		WHERE cno = #{cno}
+	</delete>
+
+	<!-- 카테고리 목록 -->
+	<select id="categoryList" resultType="com.project.product.domain.CategoryDTO">
+		WITH recursive cte AS (
+		SELECT categoryName, cno, categoryLevel, 1 AS level
+		FROM categorydto
+		WHERE categoryLevel IS null
+		UNION all
+		SELECT p.categoryName, p.cno, p.categoryLevel, 1 + LEVEL AS level
+		FROM categorydto p
+		INNER JOIN cte
+		ON p.categoryLevel = cte.cno
+		)
+		SELECT categoryName, cno, categoryLevel, level FROM cte;
+	</select>
+
+</mapper>
