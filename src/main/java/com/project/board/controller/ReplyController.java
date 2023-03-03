@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,22 +36,56 @@ public class ReplyController {
 	// 댓글 수정하기
 	@ResponseBody
 	@RequestMapping(value = "/reply/replyModify", method = RequestMethod.POST)
-	public void replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
+	public boolean replyModify(BoardReplyDTO boardReplyDTO) throws Exception {
 
-		logger.info("댓글 수정(ajax)시작 replyModify - controller");
-
-		replyService.replyModify(boardReplyDTO);
+		logger.info("댓글 수정(ajax) 전 외부 정보 replyModify - controller : {}", boardReplyDTO);
+		logger.info("db에 저장된 비밀번호 : {}", replyService.getReplyPwd(boardReplyDTO));
+		
+		int inputReplyPwd = boardReplyDTO.getReplyPwd();
+		int savedPwd = replyService.getReplyPwd(boardReplyDTO);
+		
+		if (inputReplyPwd == savedPwd) {
+			
+			logger.info("비밀번호가 일치합니다. 댓글 삭제를 시작합니다.");
+			
+			replyService.replyModify(boardReplyDTO);
+			
+			return true;
+			
+		} else {
+			
+			logger.info("사용자가 입력한 비밀번호가 틀립니다.");
+			
+			return false;
+		}
 
 	}
 
 	// 댓글 삭제하기
 	@ResponseBody
 	@RequestMapping(value = "/reply/replyDelete", method = RequestMethod.POST)
-	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception {
+	public boolean replyDelete(BoardReplyDTO boardReplyDTO , Model model) throws Exception {
 		
-		logger.info("댓글 수정(ajax)시작 replyModify - controller");
-
-		replyService.replyDelete(boardReplyDTO);
+		logger.info("댓글 삭제(ajax) 전 외부 정보 replyDelete - controller : {}", boardReplyDTO);
+		logger.info("db에 저장된 비밀번호 : {}", replyService.getReplyPwd(boardReplyDTO));
+		
+		int inputReplyPwd = boardReplyDTO.getReplyPwd();
+		int savedPwd = replyService.getReplyPwd(boardReplyDTO);
+		
+		if (inputReplyPwd == savedPwd) {
+			
+			logger.info("비밀번호가 일치합니다. 댓글 삭제를 시작합니다.");
+			
+			replyService.replyDelete(boardReplyDTO);
+			
+			return true;
+			
+		} else {
+			
+			logger.info("사용자가 입력한 비밀번호가 틀립니다.");
+			
+			return false;
+		}
 		
 	}
 
