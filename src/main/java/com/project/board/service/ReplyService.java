@@ -17,4 +17,7 @@ public interface ReplyService {
 	
 	// 댓글 삭제하기
 	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception;
+	
+	// 댓글 수정 삭제시 비밀번호 체크
+	public int getReplyPwd(BoardReplyDTO boardReplyDTO) throws Exception;
 }

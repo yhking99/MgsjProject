@@ -51,6 +51,16 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		logger.info("댓글 삭제(ajax) 시작 replyDelete - Service: {}", boardReplyDTO);
 		
+		// 댓글 삭제
 		replyDAO.replyDelete(boardReplyDTO);
+	
 	}
+	
+	// 비밀번호 가져오기
+	@Override
+	public int getReplyPwd(BoardReplyDTO boardReplyDTO) throws Exception {
+		
+		return replyDAO.getReplyPwd(boardReplyDTO);
+	}
+	
 }
