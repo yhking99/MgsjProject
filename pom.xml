@@ -82,6 +82,7 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

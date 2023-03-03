@@ -17,4 +17,7 @@ public interface ReplyDAO {
 	
 	// 댓글 삭제하기
 	public void replyDelete(BoardReplyDTO boardReplyDTO) throws Exception;
+	
+	// 댓글 삭제 및 수정시 비밀번호 가져오기
+	public int getReplyPwd(BoardReplyDTO boardReplyDTO) throws Exception;
 }
