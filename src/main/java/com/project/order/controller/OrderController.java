@@ -70,7 +70,7 @@ public class OrderController {
 		
 		logger.info("주문 조회 orderView - Controller");
 		
-		orderService.orderView(orderNum);
+		orderDTO = orderService.orderView(orderNum);
 		
 		model.addAttribute("orderDTO", orderDTO);
 	}

@@ -56,7 +56,6 @@ request.setCharacterEncoding("UTF-8");
 	<script>
 		function deleteReviewList(rvno) {
 			let deleteYN = confirm("삭제할까요?");
-
 			if (deleteYN == true) {
 				alert("삭제되었습니다.");
 				location.href = "/review/reviewDelete?rvno=" + rvno;
@@ -65,7 +64,5 @@ request.setCharacterEncoding("UTF-8");
 			}
 		}
 	</script>
-</body>
-</html>
 </body>
 </html>

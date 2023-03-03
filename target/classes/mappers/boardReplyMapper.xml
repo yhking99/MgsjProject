@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardReplyMapper">
-	<!-- 
-		rno	int	NO	PRI		auto_increment
-		bno	int	NO	PRI		
-		writer	varchar(20)	NO			
-		content	text	NO			
-		regDate	datetime	NO		CURRENT_TIMESTAMP	DEFAULT_GENERATED
-	 -->
-	 
-	 <!-- 댓글목록불러오기 -->
-	 <select id="replyList" parameterType="int" resultType="com.project.board.domain.BoardReplyDTO">
-	 	select rno, bno, writer, content, regDate
-	 		from boardreplydto
-	 	where rno = #{rno}
-	 	and bno = #{bno}
-	 </select>
+	<!-- rno int NO PRI auto_increment bno int NO PRI writer varchar(20) NO content text NO regDate datetime NO CURRENT_TIMESTAMP DEFAULT_GENERATED -->
+
+	<!-- 댓글목록불러오기 -->
+	<select id="replyList" parameterType="int" resultType="com.project.board.domain.BoardReplyDTO">
+		select rno, bno, writer, content, regDate
+		from boardreplydto
+		where bno = #{bno}
+		order by rno asc;
+	</select>
+
+	<!-- 댓글 작성하기 -->
+	<insert id="replyWrite">
+		insert into boardreplydto (bno, content, writer, replyPwd)
+		values (#{bno}, #{content}, #{writer}, #{replyPwd})
+	</insert>
 	
+	<!-- 댓글 수정하기 -->
+	<update id="replyModify" parameterType="com.project.board.domain.BoardReplyDTO">
+		update boardreplydto 
+			set
+			content = #{content}
+		where rno = #{rno}
+		and bno = #{bno}
+		and replyPwd = #{replyPwd}
+	</update>
+	
+	<!-- 댓글 삭제하기 -->
+	<delete id="replyDelete" parameterType="com.project.board.domain.BoardReplyDTO">
+		delete from boardreplydto
+		where rno = #{rno}
+		and bno = #{bno}
+		and replyPwd = #{replyPwd}
+	</delete>
+	
+	<!-- 댓글 삭제시 비밀번호 체크 로직 -->
+	<select id="checkPwd" parameterType="com.project.board.domain.BoardReplyDTO" resultType="int">
+		select replyPwd
+		from boardreplydto
+		where rno = #{rno}
+		and bno = #{bno}
+	</select>
+	
+	<!-- 게시글 삭제시 댓글도 날려버려야함 -->
+	<delete id="removeAllReply">
+		delete from boardreplydto
+		where bno = #{bno}
+	</delete>
 	
 </mapper>
