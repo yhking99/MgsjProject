@@ -14,7 +14,7 @@ public class BoardReplyDTO {
 	private String writer;
 	private String content;
 	private Date regDate;
-	private String replyPwd;
+	private int replyPwd;
 
 	public int getRno() {
 		return rno;
@@ -56,11 +56,11 @@ public class BoardReplyDTO {
 		this.regDate = regDate;
 	}
 
-	public String getReplyPwd() {
+	public int getReplyPwd() {
 		return replyPwd;
 	}
 
-	public void setReplyPwd(String replyPwd) {
+	public void setReplyPwd(int replyPwd) {
 		this.replyPwd = replyPwd;
 	}
 
