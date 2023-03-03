@@ -66,33 +66,33 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 		</form>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 		function deleteInquireList(askNum, pno) {
-	
-				let deleteYN = confirm("삭제할까요?");
 
-					if (deleteYN == true) {
-						$.ajax({
-							url : '/inquire/inquireDelete',
-							type : 'GET',
-							data : {
-								askNum : askNum
-							},
-							success : function(data) {
-								alert("삭제되었습니다");
-								location.href = '/product/productView?pno=' + pno;
-							},
-							
-							error : function(error) {
-								alert("알수없는 오류가 발생하였습니다.\n잠시 후에 다시 시도해주세요");
-								
-							}
-					});
-				} else {
-					alert("삭제가 취소되었습니다.");
-				}
+			let deleteYN = confirm("삭제할까요?");
+
+			if (deleteYN == true) {
+				$.ajax({
+					url : '/inquire/inquireDelete',
+					type : 'GET',
+					data : {
+						askNum : askNum
+					},
+					success : function(data) {
+						alert("삭제되었습니다");
+						location.href = '/product/productView?pno=' + pno;
+					},
+
+					error : function(error) {
+						alert("알수없는 오류가 발생하였습니다.\n잠시 후에 다시 시도해주세요");
+
+					}
+				});
+			} else {
+				alert("삭제가 취소되었습니다.");
 			}
-</script>
+		}
+	</script>
 
 </body>
 </html>
