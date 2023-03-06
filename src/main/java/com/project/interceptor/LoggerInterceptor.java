@@ -1,4 +1,4 @@
-package com.project.loginterceptor;
+package com.project.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
