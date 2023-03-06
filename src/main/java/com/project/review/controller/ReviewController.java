@@ -66,7 +66,7 @@ public class ReviewController {
 	
 	//리뷰 삭제
 	@ResponseBody
-	@RequestMapping(value = "/review/reviewDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/review/reviewDelete", method = RequestMethod.POST)
 	public void reviewDelete(int rvno) throws Exception {
 		
 		logger.info("리뷰 삭제 reviewDelete - Controller");

@@ -74,7 +74,7 @@ request.setCharacterEncoding("UTF-8");
 			if (deleteYN == true) {
 				$.ajax({
 					url : '/inquire/inquireDelete',
-					type : 'GET',
+					type : 'POST',
 					data : {
 						askNum : askNum
 					},
