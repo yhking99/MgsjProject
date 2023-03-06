@@ -43,7 +43,7 @@ request.setCharacterEncoding("UTF-8");
  			-->
 				<c:forEach var = "orderList" items = "${orderList}">
 				<tr>
-					<td align = "center">${orderList.orderNum}</td>
+					<td align = "center"><a href = "${contextPath}/order/orderView?orderNum=${orderList.orderNum}">${orderList.orderNum}</a></td>
 					<td align = "center">${orderList.userId}</td>
 					<td><fmt:formatDate value = "${orderList.orderDate}" pattern = "yyyy-MM-dd"/></td>
 					<td align = "center">${orderList.postAddress}</td>

@@ -50,7 +50,7 @@
 		if(logoutYN == true){
 			alert("로그아웃이 됫서용");
 			location.href = "/member/memberLogout"; 	/* 세션 invalidate */
-			location.href = "/"; 	/* 로그인페이지 */
+			
 		} else {
 			alert("로그아웃 취소댓서용");
 		}

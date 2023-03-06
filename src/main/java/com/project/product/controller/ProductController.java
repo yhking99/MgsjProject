@@ -12,10 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.inquire.domain.InquireDTO;
 import com.project.inquire.service.InquireService;
+import com.project.product.domain.CategoryDTO;
 import com.project.product.domain.ProductDTO;
+import com.project.product.service.CategoryService;
 import com.project.product.service.ProductService;
 import com.project.review.domain.ReviewBoardDTO;
 import com.project.review.service.ReviewService;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 
 @Controller
 public class ProductController {
@@ -31,13 +36,20 @@ public class ProductController {
 	@Autowired
 	private ReviewService reviewService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	// 수정 삭제는 상품등록자만 가능하게(비지니스 로직)
 	
 	// 상품 게시글 작성폼
 	@RequestMapping(value = "/product/productWritePage", method = RequestMethod.GET)
-	public String productWritePage() throws Exception {
+	public String productWritePage(Model model) throws Exception {
 		
 		logger.info("상품 게시글 등록 productWriteForm -  Controller");
+		
+		List<CategoryDTO> category = categoryService.categoryList();
+		
+		model.addAttribute("categoryList", JSONArray.fromObject(category));
 		
 		return "/product/productWritePage";
 	}
@@ -50,7 +62,7 @@ public class ProductController {
 		
 		productService.productWrite(productDTO);
 		
-		return "redirect:/product/main";
+		return "redirect:/product/productList";
 		
 	}
 	
@@ -110,6 +122,7 @@ public class ProductController {
 		
 		model.addAttribute("productList", productList);
 	}
+	
 	
 }
 

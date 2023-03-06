@@ -27,7 +27,8 @@ request.setCharacterEncoding("UTF-8");
 					<th class = "col-sm-2  text-center">제품가격</th>
 					<th class = "col-sm-2  text-center">제품재고</th>		
 					<th class = "col-sm-2  text-center">등록날짜</th>
-					<th class = "col-sm-2  text-center">제품조회수</th>			
+					<th class = "col-sm-2  text-center">제품조회수</th>	
+					<th class = "col-sm-2  text-center">관리</th>		
 				</tr>
 			</thead>
 			<tbody>
@@ -50,8 +51,9 @@ request.setCharacterEncoding("UTF-8");
 					<td align = "center" title = "${productList.productDescription}"><a href = "${contextPath}/product/productView?pno=${productList.pno}">${productList.productName}</a></td>
 					<td align = "center">${productList.productPrice}</td>
 					<td align = "center">${productList.productStock}</td>
-					<td align = "center"><fmt:formatDate value = "${productList.productRegDate}" pattern = "yyyy-mm-dd"/></td>
+					<td align = "center"><fmt:formatDate value = "${productList.productRegDate}" pattern = "yyyy-MM-dd"/></td>
 					<td align = "center">${productList.productReadCnt}</td>
+					<td align = "center"><a class="btn btn-sm btn-warning" href="javascript:deleteProductList('${productList.pno}')">삭제</a>
 					<!-- 나중 사용을 위해서 이미지 이름과 경로 히든 처리 -->
 				</tr>
 				</c:forEach>
@@ -60,6 +62,19 @@ request.setCharacterEncoding("UTF-8");
 		<button type = "button" onclick = "location.href = '/product/productWritePage'">상품 등록하기</button>
 	
 	</div>
+	<script type="text/javascript">
+		function deleteProductList(pno) {
+			let deleteYN = confirm("제품을 삭제할까요?");
+			
+			if(deleteYN == true) {
+				alert("제품이 삭제되었습니다.");
+				location.href = "/product/productDelete?pno=" + pno;
+			} else {
+				alert("제품 삭제를 취소하였습니다.");
+			}
+		}
+	
+	</script>
 
 </body>
 </html>
