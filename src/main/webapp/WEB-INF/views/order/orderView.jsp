@@ -11,6 +11,7 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>주문 조회</title>
 </head>
@@ -82,14 +83,42 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 			</div>
 			<div class = "form-group">
-				<button type="button" class="btn btn-primary" onclick="location.href = '${contextPath}/order/orderList?pno'">
+				<button type="button" class="btn btn-primary" onclick = "location.href = '${contextPath}/order/orderList'">
 				<span class="glyphicon glyphicon-list-alt">주문 조회 목록 이동</span></button>
-				<button type="submit" class="btn btn-primary">
+				<button type="button" class="btn btn-primary" onclick = "deleteOrder('${orderDTO.orderNum}')">
 				<span class="glyphicon glyphicon-list-alt">주문 취소</span></button>
 				
 			</div>
 	</form>
 </div>
+<script>
+	function deleteOrder(orderNum) {
+		var deleteYN = confirm("주문을 취소할까요?");
+		
+		if(deleteYN == true) {
+			$.ajax({
+				url : '/order/orderDelete',
+				type : 'POST',
+				data : {
+					orderNum : orderNum
+				},
+				success : function(data) {
+					alert("주문이 취소되었습니다.");
+					location.href = '/order/orderList'
+				},
+				
+				error : function(error) {
+					alert("알 수 없는 오류 발생하였습니다.\n 잠시 후에 다시 시도해주세요.");
+				}
+				
+			});
+		} else {
+			alert("주문 취소가 취소되었습니다.");
+		}
+	}
+
+
+</script>
 
 </body>
 </html>

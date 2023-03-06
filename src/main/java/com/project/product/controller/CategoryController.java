@@ -71,7 +71,7 @@ public class CategoryController {
 	
 	
 	//카테고리 삭제
-	@RequestMapping(value = "/category/categoryDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/categoryDelete", method = RequestMethod.POST)
 	public String categoryDelete(int cno) throws Exception {
 		
 		logger.info("카테고리 삭제 categoryDelete - Controller");
