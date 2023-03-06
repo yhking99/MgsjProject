@@ -201,7 +201,8 @@ button:hover {
 	<div class="delete-modal">
 		<h3>댓글 삭제</h3>
 		<div class="modal-content">
-			
+			<label>비밀번호 : </label>
+			<input type="password" name="replyModalDeletePwd">
 		</div>
 	</div>
 	<!-- 댓글 삭제 모달창 끝 -->

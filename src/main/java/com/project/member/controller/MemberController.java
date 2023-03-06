@@ -100,7 +100,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/board/boardMain";
+		return "redirect:/";
 	}
 	
 	// 회원정보수정 페이지 접속
