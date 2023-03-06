@@ -79,7 +79,7 @@ public class ProductController {
 	
 	
 	// 상품 게시글 삭제
-	@RequestMapping(value = "/product/productDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/productDelete", method = RequestMethod.POST)
 	public String productDelete(int pno) throws Exception {
 		
 		logger.info("상품 게시글 삭제 productDelete - Controller");
