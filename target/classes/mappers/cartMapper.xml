@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.cartMapper">
+
+	<!-- cartdto cartNum int NO PRI pno int NO PRI productCnt int NO -->
+	<!-- 장바구니 등록 -->
+	<insert id="cartWrite" parameterType="com.project.product.domain.CartDTO">
+		INSERT INTO cartdto(pno, productCnt, userId)
+		VALUES (#{pno}, #{productCnt}, #{userId})
+	</insert>
+
+
+	<!-- 장바구니 수정 -->
+
+
+	<!-- 장바구니 삭제 -->
+	<delete id="cartDelete" parameterType="int">
+		DELETE FROM cartdto
+		WHERE cartNum = #{cartNum}
+	</delete>
+
+	<!-- 장바구니 목록 -->
+	<select id="cartList" parameterType="com.project.product.domain.CartDTO" resultType="com.project.product.domain.CartDTO">
+		SELECT c.cartNum, c.pno, p.productName, p.productPrice, c.productCnt, member.userId
+			FROM cartdto as c
+				INNER JOIN productdto as p
+				ON c.pno = p.pno
+				join memberdto as member
+				on member.userId = c.userId
+			where member.userId = #{userId}
+			ORDER BY c.cartNum;
+	</select>
+
+</mapper>
