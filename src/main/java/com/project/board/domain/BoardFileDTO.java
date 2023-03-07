@@ -8,8 +8,8 @@ import java.util.Date;
  *
  */
 public class BoardFileDTO {
-	
-	private int fileNumber;
+
+	private int boardFileNumber;
 	private int bno;
 	private String originFileName;
 	private String storedFileName;
@@ -17,12 +17,12 @@ public class BoardFileDTO {
 	private int fileSize;
 	private Date fileRegDate;
 
-	public int getFileNumber() {
-		return fileNumber;
+	public int getBoardFileNumber() {
+		return boardFileNumber;
 	}
 
-	public void setFileNumber(int fileNumber) {
-		this.fileNumber = fileNumber;
+	public void setBoardFileNumber(int boardFileNumber) {
+		this.boardFileNumber = boardFileNumber;
 	}
 
 	public int getBno() {
@@ -75,8 +75,8 @@ public class BoardFileDTO {
 
 	@Override
 	public String toString() {
-		return "BoardFileDTO [fileNumber=" + fileNumber + ", bno=" + bno + ", originFileName=" + originFileName + ", storedFileName=" + storedFileName
-				+ ", storedThumbNail=" + storedThumbNail + ", fileSize=" + fileSize + ", fileRegDate=" + fileRegDate + "]";
+		return "BoardFileDTO [boardFileNumber=" + boardFileNumber + ", bno=" + bno + ", originFileName=" + originFileName + ", storedFileName="
+				+ storedFileName + ", storedThumbNail=" + storedThumbNail + ", fileSize=" + fileSize + ", fileRegDate=" + fileRegDate + "]";
 	}
-
+	
 }
