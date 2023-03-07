@@ -23,12 +23,48 @@ request.setCharacterEncoding("UTF-8");
 		<div>대충 상품 장바구니로</div>
 		<div>대충 상품 선물하기</div>
 	</div>
-	<div align="center">
-		<div style="width: 50%" align="right">
-			<button type="button">구매하기</button>
-			<button type="button">장바구니에 넣기</button>
+		<div class="container" align="center">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-12">
+						<h2 align="center">장바구니 등록</h2>
+					</div>
+				</div>
+			<!-- 숨겨놓은 장바구니 번호(프라이머리키, 오토인크리먼트) -->
+				<input type="hidden" class="form-control" name="cartNum" value = "장바구니 번호"/>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">제품 번호</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" value = "${productDTO.pno}" name="pno" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">제품 이름</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" value = "${productDTO.productName}" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">제품 가격</label>
+					<div class="col-sm-4">
+						<input type="number" class="form-control" value = "${productDTO.productPrice}" readonly="readonly"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">주문 수량</label>
+					<div class="col-sm-4">
+						<input type="number" class="productCnt" name = "productCnt" />
+					</div>
+				</div>
+
+				<div align="center">
+					<div style="width: 50%" align="right">
+						<button type="button">구매하기</button>
+						<button type="button" onclick = "goCartOn('${productDTO.pno}','${memberInfo.userId}')">장바구니에 넣기</button>
+					</div>
+				</div>
+			</form>
 		</div>
-	</div>
 	<br>
 	<hr>
 
@@ -107,9 +143,6 @@ request.setCharacterEncoding("UTF-8");
 			<button type="button" onclick="location.href = '/review/reviewWritePage?pno=${productDTO.pno}'">리뷰 작성</button>
 		</div>
 	</div>
-	
-
-	
 
 </body>
 <script type="text/javascript">
@@ -119,7 +152,7 @@ request.setCharacterEncoding("UTF-8");
 		if (deleteYN == true) {
 			$.ajax({
 				url : '/inquire/inquireDelete',
-				type : 'GET',
+				type : 'POST',
 				data : {
 					askNum : askNum
 				},
@@ -131,29 +164,23 @@ request.setCharacterEncoding("UTF-8");
 						false : 쿠키값에 기반하여 새로고침 (웹브라우저 내 데이터기반)
 						true : 서버에서부터 새로고침 (db기반)
 					*/
-	
-				},
-				
+				},	
 				error : function(error) {
 					alert("알수없는 오류가 발생하였습니다.\n잠시 후에 다시 시도해주세요");
-					
 				}
-				
 			});
-			
 		} else {
 			alert("삭제가 취소되었습니다.");
 			
 		}
 	}
-	
 	function deleteReviewList(rvno, pno) {
 		let deleteYN = confirm("삭제할까요?");
 		
 		if(deleteYN == true) {
 			$.ajax({
 				url : '/review/reviewDelete',
-				type : 'GET',
+				type : 'POST',
 				data : {
 					rvno : rvno
 				},
@@ -169,6 +196,52 @@ request.setCharacterEncoding("UTF-8");
 		} else {
 			alert("삭제가 취소되었습니다.");
 		}
+	}
+	
+	function goCartOn(pno, userId){
+		
+		let productCntVal = document.querySelector(".productCnt").value;
+		
+		if (productCntVal == 0 || productCntVal < 0 || productCntVal == "" || productCntVal == e) {
+			alert("제품 수량은 반드시 한개 이상 입력해주세요.");
+			
+			return false;
+		}
+		
+		$.ajax({
+			url : '/cart/cartWrite',
+			type : 'POST',
+			data : {
+				"pno" : pno,
+				"userId" : userId,
+				"productCnt" : productCntVal
+			},
+			dataType : 'json',
+			
+			success : function(data) {
+				
+				if(data == false){
+					
+					alert("로그인해주세요");
+					location.href = "/board/boardMain";
+					
+					return false;
+					
+				} else {
+					
+					alert("장바구니에 담겼습니다");
+					return true;
+					
+				}
+				
+			},
+			error : function(error) {
+				alert('알 수 없는 오류 발생하였습니다.\n잠시 후에 다시 시도해주세요.');
+				console.log(error);
+			}
+			
+		});
+			
 	}
 </script>
 </html>
