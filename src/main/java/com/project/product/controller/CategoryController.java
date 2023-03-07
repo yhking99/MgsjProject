@@ -40,14 +40,12 @@ public class CategoryController {
 		
 		categoryService.categoryWrite(categoryDTO);
 		
-		System.out.println(categoryDTO);
-		
 		return "redirect:/category/categoryList";
 		
 	}
 	//카테고리 조회
-		@RequestMapping(value = "/category/categoryView", method = RequestMethod.GET)
-		public void categoryView(Model model, CategoryDTO categorydto, int cno) throws Exception {
+	@RequestMapping(value = "/category/categoryView", method = RequestMethod.GET)
+	public void categoryView(Model model, CategoryDTO categorydto, int cno) throws Exception {
 			
 			logger.info("카테고리 조회 categoryView - Controller");
 			
