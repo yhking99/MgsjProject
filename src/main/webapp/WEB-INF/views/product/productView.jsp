@@ -53,7 +53,7 @@ request.setCharacterEncoding("UTF-8");
 				<div class="form-group">
 					<label class="col-sm-2 control-label">주문 수량</label>
 					<div class="col-sm-4">
-						<input type="number" class="productCnt" name = "productCnt" />
+						<input type="number" class="productCnt" name = "productCnt" onkeydown="javascript: return event.keyCode == 69 ? false : true"/>
 					</div>
 				</div>
 
