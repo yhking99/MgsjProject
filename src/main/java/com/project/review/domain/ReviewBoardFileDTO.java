@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class ReviewBoardFileDTO {
 
-	private int rvFileNumber;
+	private int reviewFileNumber;
 	private int rvno;
-	private String rvOriginFileName;
-	private String rvStoredFileName;
-	private String rvStoredThumbNail;
-	private int rvFileSIZE;
-	private Date rvFileRegDate;
+	private String originFileName;
+	private String storedFileName;
+	private String storedThumbNail;
+	private int fileSize;
+	private Date fileRegDate;
 
-	public int getRvFileNumber() {
-		return rvFileNumber;
+	public int getReviewFileNumber() {
+		return reviewFileNumber;
 	}
 
-	public void setRvFileNumber(int rvFileNumber) {
-		this.rvFileNumber = rvFileNumber;
+	public void setReviewFileNumber(int reviewFileNumber) {
+		this.reviewFileNumber = reviewFileNumber;
 	}
 
 	public int getRvno() {
@@ -28,51 +28,52 @@ public class ReviewBoardFileDTO {
 		this.rvno = rvno;
 	}
 
-	public String getRvOriginFileName() {
-		return rvOriginFileName;
+	public String getOriginFileName() {
+		return originFileName;
 	}
 
-	public void setRvOriginFileName(String rvOriginFileName) {
-		this.rvOriginFileName = rvOriginFileName;
+	public void setOriginFileName(String originFileName) {
+		this.originFileName = originFileName;
 	}
 
-	public String getRvStoredFileName() {
-		return rvStoredFileName;
+	public String getStoredFileName() {
+		return storedFileName;
 	}
 
-	public void setRvStoredFileName(String rvStoredFileName) {
-		this.rvStoredFileName = rvStoredFileName;
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
 	}
 
-	public String getRvStoredThumbNail() {
-		return rvStoredThumbNail;
+	public String getStoredThumbNail() {
+		return storedThumbNail;
 	}
 
-	public void setRvStoredThumbNail(String rvStoredThumbNail) {
-		this.rvStoredThumbNail = rvStoredThumbNail;
+	public void setStoredThumbNail(String storedThumbNail) {
+		this.storedThumbNail = storedThumbNail;
 	}
 
-	public int getRvFileSIZE() {
-		return rvFileSIZE;
+	public int getFileSize() {
+		return fileSize;
 	}
 
-	public void setRvFileSIZE(int rvFileSIZE) {
-		this.rvFileSIZE = rvFileSIZE;
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
 	}
 
-	public Date getRvFileRegDate() {
-		return rvFileRegDate;
+	public Date getFileRegDate() {
+		return fileRegDate;
 	}
 
-	public void setRvFileRegDate(Date rvFileRegDate) {
-		this.rvFileRegDate = rvFileRegDate;
+	public void setFileRegDate(Date fileRegDate) {
+		this.fileRegDate = fileRegDate;
 	}
 
 	@Override
 	public String toString() {
-		return "ReviewBoardFileDTO [rvFileNumber=" + rvFileNumber + ", rvno=" + rvno + ", rvOriginFileName=" + rvOriginFileName
-				+ ", rvStoredFileName=" + rvStoredFileName + ", rvStoredThumbNail=" + rvStoredThumbNail + ", rvFileSIZE=" + rvFileSIZE
-				+ ", rvFileRegDate=" + rvFileRegDate + "]";
+		return "ReviewBoardFileDTO [reviewFileNumber=" + reviewFileNumber + ", rvno=" + rvno + ", originFileName=" + originFileName
+				+ ", storedFileName=" + storedFileName + ", storedThumbNail=" + storedThumbNail + ", fileSize=" + fileSize + ", fileRegDate="
+				+ fileRegDate + "]";
 	}
-
+	
+	
 }
