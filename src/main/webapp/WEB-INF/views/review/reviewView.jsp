@@ -82,7 +82,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		$.ajax({
 			url : '/review/reviewDelete',
-			type : 'GET',
+			type : 'POST',
 			data : {
 				rvno : rvno
 			},

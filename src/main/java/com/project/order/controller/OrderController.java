@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.order.domain.OrderDTO;
 import com.project.order.service.OrderService;
@@ -54,6 +55,7 @@ public class OrderController {
 	}
 	
 	// 주문 삭제
+	@ResponseBody
 	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
 	public String orderDelete(int orderNum) throws Exception {
 		
@@ -61,7 +63,7 @@ public class OrderController {
 		
 		orderService.orderDelete(orderNum);
 		
-		return "redirect:/order/main";
+		return "redirect:/order/orderList";
 	}
 	
 	// 주문 조회
@@ -70,7 +72,7 @@ public class OrderController {
 		
 		logger.info("주문 조회 orderView - Controller");
 		
-		orderService.orderView(orderNum);
+		orderDTO = orderService.orderView(orderNum);
 		
 		model.addAttribute("orderDTO", orderDTO);
 	}

@@ -1,65 +1,79 @@
 package com.project.inquire.domain;
 
 import java.util.Date;
- 
+
 public class InquireFileDTO {
-	
+	/*
+	 * askFileNumber	int
+		askNum	int
+		originFileName	varchar(300)
+		storedFileName	varchar(300)
+		storedThumbNail	varchar(300)
+		fileSize	int
+		fileRegDate	datetime
+	*/
 	private int askFileNumber;
 	private int askNum;
-	private String askOriginFileName;
-	private String StoredFileName;
-	private String StoredThumbNail;
-	private int askFileSize;
-	private Date askFileRegDate;
+	private String originFileName;
+	private String storedFileName;
+	private String storedThumbNail;
+	private int fileSize;
+	private Date fileRegDate;
+
 	public int getAskFileNumber() {
 		return askFileNumber;
 	}
+
 	public void setAskFileNumber(int askFileNumber) {
 		this.askFileNumber = askFileNumber;
 	}
+
 	public int getAskNum() {
 		return askNum;
 	}
+
 	public void setAskNum(int askNum) {
 		this.askNum = askNum;
 	}
-	public String getAskOriginFileName() {
-		return askOriginFileName;
+
+	public String getOriginFileName() {
+		return originFileName;
 	}
-	public void setAskOriginFileName(String askOriginFileName) {
-		this.askOriginFileName = askOriginFileName;
+
+	public void setOriginFileName(String originFileName) {
+		this.originFileName = originFileName;
 	}
+
 	public String getStoredFileName() {
-		return StoredFileName;
+		return storedFileName;
 	}
+
 	public void setStoredFileName(String storedFileName) {
-		StoredFileName = storedFileName;
+		this.storedFileName = storedFileName;
 	}
+
 	public String getStoredThumbNail() {
-		return StoredThumbNail;
+		return storedThumbNail;
 	}
+
 	public void setStoredThumbNail(String storedThumbNail) {
-		StoredThumbNail = storedThumbNail;
+		this.storedThumbNail = storedThumbNail;
 	}
-	public int getAskFileSize() {
-		return askFileSize;
+
+	public int getFileSize() {
+		return fileSize;
 	}
-	public void setAskFileSize(int askFileSize) {
-		this.askFileSize = askFileSize;
+
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
 	}
-	public Date getAskFileRegDate() {
-		return askFileRegDate;
+
+	public Date getFileRegDate() {
+		return fileRegDate;
 	}
-	public void setAskFileRegDate(Date askFileRegDate) {
-		this.askFileRegDate = askFileRegDate;
+
+	public void setFileRegDate(Date fileRegDate) {
+		this.fileRegDate = fileRegDate;
 	}
-	@Override
-	public String toString() {
-		return "AskFileDTO [askFileNumber=" + askFileNumber + ", askNum=" + askNum + ", askOriginFileName="
-				+ askOriginFileName + ", StoredFileName=" + StoredFileName + ", StoredThumbNail=" + StoredThumbNail
-				+ ", askFileSize=" + askFileSize + ", askFileRegDate=" + askFileRegDate + "]";
-	}
-	
-	
-	
+
 }
