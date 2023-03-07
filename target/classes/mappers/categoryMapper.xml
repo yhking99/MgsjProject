@@ -27,17 +27,19 @@
 
 	<!-- 카테고리 목록 -->
 	<select id="categoryList" resultType="com.project.product.domain.CategoryDTO">
-		WITH recursive cte AS (
+		WITH recursive classifyCategory AS (
+		
 		SELECT categoryName, cno, categoryLevel, 1 AS level
 		FROM categorydto
 		WHERE categoryLevel IS null
 		UNION all
-		SELECT p.categoryName, p.cno, p.categoryLevel, 1 + LEVEL AS level
-		FROM categorydto p
-		INNER JOIN cte
-		ON p.categoryLevel = cte.cno
+		SELECT ano.categoryName, ano.cno, ano.categoryLevel, 1 + LEVEL AS level
+		FROM categorydto as ano
+		INNER JOIN classifyCategory
+		ON ano.categoryLevel = classifyCategory.cno
+		
 		)
-		SELECT categoryName, cno, categoryLevel, level FROM cte;
+		SELECT categoryName, cno, categoryLevel, level FROM classifyCategory;
 	</select>
 
 </mapper>
