@@ -1,39 +1,31 @@
-package com.project.inquire.domain;
+package com.project.product.domain;
 
 import java.util.Date;
 
-public class InquireFileDTO {
-	/*
-	 * askFileNumber	int
-		askNum	int
-		originFileName	varchar(300)
-		storedFileName	varchar(300)
-		storedThumbNail	varchar(300)
-		fileSize	int
-		fileRegDate	datetime
-	*/
-	private int askFileNumber;
-	private int askNum;
+public class ProductFileDTO {
+
+	private int productFileNumber;
+	private int pno;
 	private String originFileName;
 	private String storedFileName;
 	private String storedThumbNail;
 	private int fileSize;
 	private Date fileRegDate;
 
-	public int getAskFileNumber() {
-		return askFileNumber;
+	public int getProductFileNumber() {
+		return productFileNumber;
 	}
 
-	public void setAskFileNumber(int askFileNumber) {
-		this.askFileNumber = askFileNumber;
+	public void setProductFileNumber(int productFileNumber) {
+		this.productFileNumber = productFileNumber;
 	}
 
-	public int getAskNum() {
-		return askNum;
+	public int getPno() {
+		return pno;
 	}
 
-	public void setAskNum(int askNum) {
-		this.askNum = askNum;
+	public void setPno(int pno) {
+		this.pno = pno;
 	}
 
 	public String getOriginFileName() {
@@ -74,6 +66,12 @@ public class InquireFileDTO {
 
 	public void setFileRegDate(Date fileRegDate) {
 		this.fileRegDate = fileRegDate;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductFileDTO [productFileNumber=" + productFileNumber + ", pno=" + pno + ", originFileName=" + originFileName + ", storedFileName="
+				+ storedFileName + ", storedThumbNail=" + storedThumbNail + ", fileSize=" + fileSize + ", fileRegDate=" + fileRegDate + "]";
 	}
 
 }
