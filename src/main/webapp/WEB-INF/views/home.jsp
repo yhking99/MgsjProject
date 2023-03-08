@@ -17,6 +17,12 @@
 		<br>
 		<a href="/board/member/memberBoardList">게시판으로</a>
 	</div>
+	<div>
+		<h1>테스트 업무</h1>
+		<a href="/product/productWritePage">상품 등록</a>
+		<br>
+		<a href="/product/productList">판매 상품 목록</a>
+	</div>
 </body>
 </html>
 
