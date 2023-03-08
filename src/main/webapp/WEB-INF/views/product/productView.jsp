@@ -202,7 +202,7 @@ request.setCharacterEncoding("UTF-8");
 		
 		let productCntVal = document.querySelector(".productCnt").value;
 		
-		if (productCntVal == 0 || productCntVal < 0 || productCntVal == "" || productCntVal == e) {
+		if (productCntVal == 0 || productCntVal < 0 || productCntVal == "") {
 			alert("제품 수량은 반드시 한개 이상 입력해주세요.");
 			
 			return false;
