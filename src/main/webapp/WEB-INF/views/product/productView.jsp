@@ -346,6 +346,7 @@ div>input:active {
 		}
 	}
 
+
 	function goCartOn ( pno , userId ) {
 
 		let productCntVal = document.querySelector ( ".productCnt" ).value;
