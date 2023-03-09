@@ -8,6 +8,8 @@
 <body>
 	<h1>현재시간</h1>
 	<P>=> The time on the server is ${serverTime}. <=</P>
+	<a href="/mainPage/mainPage">쇼핑몰 메인페이지로 이동</a>
+	<br>
 	<a href="/member/memberSignUp">회원가입페이지</a>
 	<br>
 	<a href="/member/memberLoginPage">로그인페이지</a>
