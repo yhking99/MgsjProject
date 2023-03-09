@@ -12,8 +12,8 @@ import net.coobird.thumbnailator.Thumbnails;
 public class FileUploadUtils {
 	
 	// 썸네일 사이즈
-	static final int THUMB_WIDTH = 200;
-	static final int THUMB_HEIGHT = 200;
+	static final int THUMB_WIDTH = 250;
+	static final int THUMB_HEIGHT = 250;
 	
 	// 파일 업로드 메소드
 	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath) throws Exception {
