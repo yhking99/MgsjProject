@@ -64,7 +64,7 @@
 
 			</fieldset>
 			<!-- 회원가입 버튼은 그냥 링크버튼 폼값과 연관X -->
-			<a href="/SignUp/signup/sign-up.html" class="join_link">회원가입</a>
+			<a href="/member/memberSignUp" class="join_link">회원가입</a>
 			<!--회원정보 링크로 연결-->
 		</form>
 
