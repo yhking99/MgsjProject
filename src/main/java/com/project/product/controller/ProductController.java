@@ -134,7 +134,7 @@ public class ProductController {
 
 		logger.info("상품 게시글 상세 조회 productView - Controller");
 
-//--------------------------------- 로직 나중 구현 예정--------------------------------------------
+		//--------------------------------- 로직 나중 구현 예정--------------------------------------------
 
 		List<InquireDTO> inquireList = inquireService.inquireList();
 
