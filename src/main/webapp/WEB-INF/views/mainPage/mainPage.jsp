@@ -19,7 +19,7 @@
 				<div id="gnb">
 					<!--상단 로고-->
 					<h1>
-						<a href="/board/boardMain">MGSJ</a>
+						<a href="/mainPage/mainPage">MGSJ</a>
 					</h1>
 					<!--검색창-->
 					<div class="search">
@@ -29,17 +29,64 @@
 						<input class="search_box" type="text" />
 					</div>
 					<!--유틸메뉴-->
-					<div class="gnb-utilmenu">
-						<a href="/member/memberLoginPage">
-							<i class="bi bi-person-fill" style="font-size: 30px;"></i>
-						</a>
-						<a href="/cart.html">
-							<i class="bi bi-cart" style="font-size: 30px;"></i>
-						</a>
-						<a href="#">
-							<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-						</a>
-					</div>
+					<c:choose>
+						<c:when test="${(memberInfo.userVerify) == 128 && (memberInfo != null) }">
+							<!-- 관리자 -->
+							<div class="gnb-utilmenu">
+								<a href="/member/memberLoginPage" title="관리자 회원 관리 페이지">
+									<i class="bi bi-bookmark-star-fill" style="font-size: 30px;"></i>
+								</a>
+								<a href="/cart.html" title="관리자 상품 관리 페이지">
+									<i class="bi bi-box-seam-fill" style="font-size: 30px;"></i>
+								</a>
+								<a href="#" title="로그 기록 확인 페이지">
+									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
+								</a>
+							</div>
+						</c:when>
+						<c:when test="${(memberInfo.userVerify) == 0 && (memberInfo != null) }">
+							<!-- 회원 -->
+							<div class="gnb-utilmenu">
+								<a href="/member/memberModifyPage" title="회원정보수정">
+									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
+								</a>
+								<a href="/cart/cartList" title="주문내역">
+									<i class="bi bi-cart" style="font-size: 30px;"></i>
+								</a>
+								<a href="#" title="활동 기록">
+									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
+								</a>
+								<a href="javascript:memberLogout()" title="로그아웃">
+									<i class="bi bi-door-open" style="font-size: 30px;"></i>
+								</a>
+							</div>
+						</c:when>
+						<c:when test="${(memberInfo.userVerify) == 5 && (memberInfo != null) }">
+							<!-- 판매자 -->
+							<div class="gnb-utilmenu">
+								<a href="/member/memberModifyPage" title="판매자 정보 수정">
+									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
+								</a>
+								<a href="/cart/cartList" title="판매상품내역">
+									<i class="bi bi-cart" style="font-size: 30px;"></i>
+								</a>
+								<a href="#" title="활동 기록">
+									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
+								</a>
+								<a href="javascript:memberLogout()" title="로그아웃">
+									<i class="bi bi-door-open" style="font-size: 30px;"></i>
+								</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<!-- 비회원 -->
+							<div class="gnb-utilmenu">
+								<a href="/member/memberLoginPage" title="로그인">
+									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
+								</a>
+							</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<!--네비게이션토글-->
