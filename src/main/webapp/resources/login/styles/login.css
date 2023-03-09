@@ -12,9 +12,8 @@ h1 {
 }
 .login {
   width: 400px;
-    /* border: 1px solid #000; */
+  /* border: 1px solid #000; */
   margin: auto;
-  vertical-align : 50%;
   padding: 0 20px;
   margin-bottom: 20px;
 }
@@ -23,15 +22,15 @@ h1 {
   margin-bottom: 20px;
   padding-bottom: 20px;
 }
-#login-form > fieldset {
+#login-form > .login-box {
   border: 0;
 }
 
-fieldset ul {
+.login-box ul {
   padding: 0;
 }
 
-fieldset ul li {
+.login-box ul li {
   border: 1px solid #ccc;
   background: #fff;
   display: flex; flex-flow: row nowrap;
@@ -39,7 +38,8 @@ fieldset ul li {
   position: relative;
   bottom: -15px;
 }
-#login-form fieldset ul .error {
+
+.login-box ul .error {
   padding: 10px;
   display: none;
   border: 0;
@@ -82,7 +82,7 @@ fieldset ul li {
   left: 14px; top: 9px;
 }
 
-#login-form fieldset span input {
+.login-box span input {
   width: 130%;
   height: 40px;
   border: 0;
@@ -99,7 +99,7 @@ fieldset ul li {
   right: 12px;
   top: 10px;
 }
-main #login-form fieldset .btm {
+.login-box .btm {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -140,6 +140,7 @@ main #login-form fieldset .btm {
   margin-left: 5px;
 } 
 #login-btn {
+	border : none;
   background: #297eff;
   width: 100%;
   color: white;

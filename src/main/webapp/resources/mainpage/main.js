@@ -43,13 +43,13 @@ function currentSlide(n) {
 }
 
 function memberLogout() {
-	let logoutYN = confirm("로그아웃 하시게용?");
+	let logoutYN = confirm("로그아웃 하시겠습니까?");
 
 	if (logoutYN == true) {
-		alert("로그아웃이 됫서용");
+		alert("로그아웃 되었습니다");
 		location.href = "/member/memberLogout"; /* 세션 invalidate */
 
 	} else {
-		alert("로그아웃 취소댓서용");
+		alert("로그아웃을 취소하셨습니다.");
 	}
 }
