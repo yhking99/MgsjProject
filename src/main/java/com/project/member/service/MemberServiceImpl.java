@@ -43,5 +43,14 @@ public class MemberServiceImpl implements MemberService {
 		memberDAO.memberModify(memberDTO);
 		
 	}
+	
+	// 아이디 중복검사 로직
+	@Override
+	public int checkDuplicateId(String userId) throws Exception {
+		
+		logger.info("아이디 중복검사 수행 checkDuplicateId - service : {}", userId);
+		
+		return memberDAO.checkDuplicateId(userId);
+	}
 
 }
