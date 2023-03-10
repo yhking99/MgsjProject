@@ -12,4 +12,7 @@ public interface MemberDAO {
 	
 	// 회원정보 수정 DATO
 	public void memberModify(MemberDTO memberDTO) throws Exception;
+	
+	// 아이디 중복검사 로직
+	public int checkDuplicateId(String userId) throws Exception;
 }
