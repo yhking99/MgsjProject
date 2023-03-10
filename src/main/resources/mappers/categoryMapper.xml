@@ -39,7 +39,10 @@
 		ON ano.categoryLevel = classifyCategory.cno
 		
 		)
-		SELECT categoryName, cno, categoryLevel, level FROM classifyCategory;
+		SELECT categoryName, c.cno, categoryLevel, level, p.productName, p.productPrice, p.pno
+		FROM classifyCategory c
+		INNER JOIN productdto p
+		ON c.cno = p.cno
 	</select>
 
 </mapper>
