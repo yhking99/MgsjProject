@@ -13,6 +13,9 @@ public class ProductDTO {
 	private Date productRegDate;
 	private int productReadCnt;
 
+	//이너 조인
+	private String categoryName;
+	
 	public int getPno() {
 		return pno;
 	}
@@ -76,12 +79,23 @@ public class ProductDTO {
 	public void setProductReadCnt(int productReadCnt) {
 		this.productReadCnt = productReadCnt;
 	}
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 
 	@Override
 	public String toString() {
-		return "ProductDTO [pno=" + pno + ", cno=" + cno + ", productName=" + productName + ", productPrice=" + productPrice + ", productStock="
-				+ productStock + ", productDescription=" + productDescription + ", productRegDate=" + productRegDate + ", productReadCnt="
-				+ productReadCnt + "]";
+		return "ProductDTO [pno=" + pno + ", cno=" + cno + ", productName=" + productName + ", productPrice="
+				+ productPrice + ", productStock=" + productStock + ", productDescription=" + productDescription
+				+ ", productRegDate=" + productRegDate + ", productReadCnt=" + productReadCnt + ", categoryName="
+				+ categoryName + "]";
 	}
+
+	
 
 }
