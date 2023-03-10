@@ -35,12 +35,22 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(NAME_SPACE + ".memberLogin", memberDTO);
 	}
 	
+	// 정보수정 로직
 	@Override
 	public void memberModify(MemberDTO memberDTO) throws Exception {
 		
 		logger.info("회원정보 수정 memberModify - DAO");
 		
 		sqlSession.update(NAME_SPACE + ".memberModify", memberDTO);
+	}
+	
+	// 아이디 중복검사 로직
+	@Override
+	public int checkDuplicateId(String userId) throws Exception {
+		
+		logger.info("아이디 중복검사 수행 checkDuplicateId - DAO : {}", userId);
+		
+		return sqlSession.selectOne(NAME_SPACE + ".checkDuplicateId", userId);
 	}
 
 }
