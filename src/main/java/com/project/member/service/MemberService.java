@@ -11,5 +11,8 @@ public interface MemberService {
 	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception;
 	
 	// 회원정보 수정 로직
-	public void memberModify(MemberDTO memberDTO) throws Exception;	
+	public void memberModify(MemberDTO memberDTO) throws Exception;
+	
+	// 아이디 중복검사 로직
+	public int checkDuplicateId(String userId) throws Exception;
 }

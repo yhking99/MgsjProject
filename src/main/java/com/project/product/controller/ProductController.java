@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.inquire.domain.InquireDTO;
@@ -47,6 +48,7 @@ public class ProductController {
 	
 	@Autowired
 	private ProductFileService productFileService;
+	
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -130,15 +132,17 @@ public class ProductController {
 
 	// 상품 상세조회
 	@RequestMapping(value = "/product/productView", method = RequestMethod.GET)
-	public void productDetail(int pno, Model model, ProductDTO productDTO) throws Exception {
+	public void productDetail(@RequestParam("pno") int pno, Model model, CategoryDTO categoryDTO, ProductDTO productDTO) throws Exception {
 
 		logger.info("상품 게시글 상세 조회 productView - Controller");
 
 		//--------------------------------- 로직 나중 구현 예정--------------------------------------------
 
-		List<InquireDTO> inquireList = inquireService.inquireList();
+		List<InquireDTO> inquireList = inquireService.inquireList(pno);
 
-		List<ReviewBoardDTO> reviewList = reviewService.reviewList();
+		List<ReviewBoardDTO> reviewList = reviewService.reviewList(pno);
+		
+		List<CategoryDTO> categoryList = categoryService.categoryList();
 
 		productDTO = productService.productView(pno);
 
@@ -147,6 +151,10 @@ public class ProductController {
 		model.addAttribute("inquireList", inquireList);
 
 		model.addAttribute("reviewList", reviewList);
+		
+		model.addAttribute("categoryList", categoryList);
+		
+		
 
 	}
 
