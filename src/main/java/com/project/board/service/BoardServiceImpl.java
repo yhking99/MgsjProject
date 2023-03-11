@@ -20,20 +20,20 @@ public class BoardServiceImpl implements BoardService {
 
 	// 공지 게시글 목록보기
 	@Override
-	public List<BoardDTO> adminBoardList() throws Exception {
+	public List<BoardDTO> adminBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
 
 		logger.info("공지 게시글 목록 불러오기");
 
-		return boardDAO.adminBoardList();
+		return boardDAO.adminBoardList(displayTotalContent, pageContent, searchType, keyword);
 	}
 
 	// 일반 게시글 목록보기
 	@Override
-	public List<BoardDTO> memberBoardList() throws Exception {
+	public List<BoardDTO> memberBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
 
 		logger.info("일반 게시글 목록 불러오기");
 
-		return boardDAO.memberBoardList();
+		return boardDAO.memberBoardList(displayTotalContent, pageContent, searchType, keyword);
 	}
 
 	// 게시글 등록하기
@@ -70,6 +70,15 @@ public class BoardServiceImpl implements BoardService {
 		logger.info("공지 게시글 수정 boardModify - service");
 
 		boardDAO.boardModify(boardDTO);
+	}
+
+	// 게시글 레벨에 따른 총 갯수 가져오기
+	@Override
+	public int totalSearchContent(String searchType, String keyword) throws Exception {
+
+		logger.info("게시글 총 갯수 가져오기");
+
+		return boardDAO.totalSearchContent(searchType, keyword);
 	}
 
 }

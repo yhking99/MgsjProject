@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.board.domain.BoardDTO;
 import com.project.board.domain.BoardReplyDTO;
+import com.project.board.domain.PageIngredient;
 import com.project.board.service.BoardService;
 import com.project.board.service.ReplyService;
 import com.project.member.domain.MemberDTO;
@@ -29,33 +30,31 @@ public class BoardController {
 
 	@Autowired
 	private ReplyService replyService;
+	
+	// 페이징 + 검색기능의 페이지
+	@RequestMapping(value = "/board/adminBoardList", method = RequestMethod.GET)
+	public void adminBoardList(@RequestParam("pageNum") int pageNum,
+			@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType,
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+			PageIngredient page, Model model) throws Exception {
 
-	// 공지 게시글 목록보기
-	@RequestMapping(value = "/board/admin/adminBoardList", method = RequestMethod.GET)
-	public void adminBoardList(Model model) throws Exception {
+		logger.info("페이징 + 검색기능 시작 (Controller)\n검색타입 : {}\n검색어 : {}", searchType, keyword);
 
-		logger.info("BoardController에서 공지 게시글 목록보기 시작");
+		page.setPageNum(pageNum);
+		page.setSearchType(searchType);
+		page.setKeyword(keyword);
+		page.setSearchTypeAndKeyword(searchType, keyword);
 
-		List<BoardDTO> adminBoardList = boardService.adminBoardList();
+		// 게시글 총 갯수를 구한다. 단 검색타입과 키워드에 맞춘 결과에 대한 총 갯수를 출력해야한다.
+		page.setTotalContent(boardService.totalSearchContent(searchType, keyword));
 
-		logger.info("공지 게시글 목록 ==> " + adminBoardList);
-
+		List<BoardDTO> adminBoardList = null;
+		adminBoardList = boardService.adminBoardList(page.getSelectContent(), page.getContentNum(), searchType, keyword);
 		model.addAttribute("adminBoardList", adminBoardList);
+		model.addAttribute("page", page);
 
-	}
-
-	// 일반 게시글 목록보기
-	@RequestMapping(value = "/board/member/memberBoardList", method = RequestMethod.GET)
-	public void memberBoardList(Model model) throws Exception {
-
-		logger.info("BoardController에서 일반 게시글 목록보기 시작");
-
-		List<BoardDTO> memberBoardList = boardService.memberBoardList();
-
-		logger.info("일반 게시글 목록 ==> " + memberBoardList);
-
-		model.addAttribute("memberBoardList", memberBoardList);
-
+		// 현재 페이지가 몇페이지인지 쉽게 구분하기위한 구분자를 넘겨주자
+		model.addAttribute("selectedPageNum", pageNum);
 	}
 
 	// 작성 페이지 접속
@@ -71,30 +70,30 @@ public class BoardController {
 	public String boardWrite(BoardDTO boardDTO, HttpSession session) throws Exception {
 
 		logger.info("회원 게시글 작성 memberBoardWrite - controller");
-		
+
 		// 타입검사
-		logger.info("타입검사 결과 : {}" , session.getAttribute("memberInfo") instanceof Object);
-		
+		logger.info("타입검사 결과 : {}", session.getAttribute("memberInfo") instanceof Object);
+
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
-		
-		if(memberInfo != null) {
-			
+
+		if (memberInfo != null) {
+
 			if (memberInfo.getUserVerify() == 128) {
 				boardDTO.setBoardLevel(1);
 				boardService.boardWrite(boardDTO);
-				
+
 			} else {
 				boardDTO.setBoardLevel(0);
 				boardService.boardWrite(boardDTO);
-				
+
 			}
-			
+
 		} else {
 			boardDTO.setBoardLevel(-1);
 			boardService.boardWrite(boardDTO);
-			
+
 		}
-	
+
 		return "redirect:/board/member/memberBoardList";
 	}
 
@@ -109,9 +108,9 @@ public class BoardController {
 		return "redirect:/board/main";
 	}
 
-	// 게시글 조회하기 + 댓글도 가져오기
+	// 게시글 조회, 댓글보기
 	@RequestMapping(value = "/board/boardView", method = RequestMethod.GET)
-	public void boardView(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
+	public void boardView(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO, PageIngredient page) throws Exception {
 
 		logger.info("회원 게시글 조회 boardView - BoardController");
 
@@ -124,6 +123,7 @@ public class BoardController {
 		model.addAttribute("boardDTO", boardDTO);
 
 		model.addAttribute("replyDTO", boardReplyDTO);
+
 	}
 
 	// 게시글 수정하기 (의 개념으로 수정페이지 들어가기)

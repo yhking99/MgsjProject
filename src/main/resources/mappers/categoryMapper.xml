@@ -40,8 +40,8 @@
 		
 		)
 		SELECT categoryName, c.cno, categoryLevel, level, p.productName, p.productPrice, p.pno
-		FROM classifyCategory c
-		INNER JOIN productdto p
+		FROM classifyCategory as c
+		INNER JOIN productdto as p
 		ON c.cno = p.cno
 	</select>
 

@@ -16,11 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
 
-/**
- * 
- * @author 김재국
- *
- */
 
 @Controller
 public class MemberController {
@@ -144,7 +139,7 @@ public class MemberController {
 			return false;
 			
 		} else {
-			logger.info("일치하는 아이디가 존재하지 않습니다.");
+			logger.info("회원가입 가능한 아이디입니다.");
 			
 			return true;
 			

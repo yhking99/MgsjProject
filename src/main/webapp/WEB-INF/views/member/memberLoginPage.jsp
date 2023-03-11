@@ -13,7 +13,7 @@
 <body>
 	<div class="login">
 		<h1>
-			<a href="/common/common.html">
+			<a href="/mainPage/mainPage" title="메인페이지로 이동">
 				<span class="login-logo">Ezen</span>
 			</a>
 		</h1>
