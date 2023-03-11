@@ -9,16 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
 
-/**
- * 
- * @author 김재국
- *
- */
 
 @Controller
 public class MemberController {
@@ -125,4 +122,28 @@ public class MemberController {
 		
 		return "redirect:/mainPage/mainPage";
 	}
+	
+	// 아이디 중복검사 로직
+	@ResponseBody
+	@RequestMapping(value = "/member/checkDuplicateId", method = RequestMethod.POST)
+	public boolean checkDuplicateId(@RequestParam("userId") String userId) throws Exception{
+		
+		logger.info("아이디 중복검사 실행 checkDuplicateId - controller : {}", userId);
+		
+		int inputUserId = memberService.checkDuplicateId(userId);
+		
+		if (inputUserId == 1) {
+			
+			logger.info("아이디 중복입니다.");
+			
+			return false;
+			
+		} else {
+			logger.info("회원가입 가능한 아이디입니다.");
+			
+			return true;
+			
+		}
+	}
+	
 }

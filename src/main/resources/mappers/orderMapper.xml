@@ -35,7 +35,7 @@ WHERE orderNum = #{orderNum}
 
 <!-- 주문 목록 -->
 <select id = "orderList" parameterType = "com.project.order.domain.OrderDTO" resultType = "com.project.order.domain.OrderDTO">
-SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone, p.productName, p.productPrice, c.productCnt 
+SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone, p.productName, p.productPrice, c.productCnt, p.pno 
 	FROM orderdto as o
 	INNER JOIN cartdto as c
     ON o.userId = c.userId

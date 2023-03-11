@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.project.member.domain.MemberDTO"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -106,15 +105,6 @@
 								<a href="#">스포츠</a>
 							</div>
 						</li>
-						<li>
-							<a href="pickup.html#pickup-01">현재 픽업 가능</a>
-						</li>
-						<li>
-							<a href="pickup.html#pickup-02">1시간 내 픽업 가능</a>
-						</li>
-						<li>
-							<a href="pickup.html#pickup-03">3시간 내 픽업 가능</a>
-						</li>
 					</ul>
 				</div>
 			</header>
@@ -163,7 +153,7 @@
 				<div class="notice-box">
 					<div class="notice">
 						<p>NOTICE</p>
-						<a href="notice.html">+더보기</a>
+						<a href="/board/adminBoardList?pageNum=1">+더보기</a>
 						<ul>
 							<li>
 								<a href="#" class="noticeopen">1. 텍스트입니다텍스트입니다텍스트입니다</a>

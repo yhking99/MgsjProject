@@ -35,6 +35,13 @@
 				userPwd = #{userPwd},
 				userEmail = #{userEmail}
 			where userId = #{userId}
-		
 	</update>
+	
+	<!-- 아이디 중복검사 로직 -->
+	<select id="checkDuplicateId" parameterType="String" resultType="int">
+		select count(*)
+			from memberdto
+		where userId = #{userId}
+	</select>
+	
 </mapper>
