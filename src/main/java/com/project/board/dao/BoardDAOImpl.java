@@ -1,5 +1,6 @@
 package com.project.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,20 +23,49 @@ public class BoardDAOImpl implements BoardDAO {
 
 	// 공지 게시글 목록
 	@Override
-	public List<BoardDTO> adminBoardList() throws Exception {
+	public List<BoardDTO> adminBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
 
 		logger.info("공지 게시글 목록 불러오기 adminBoardList - DAO");
 
-		return sqlSession.selectList(NAME_SPACE + ".adminBoardList");
+		HashMap<String, Object> pageData = new HashMap<>();
+		pageData.put("displayTotalContent", displayTotalContent);
+		pageData.put("pageContent", pageContent);
+		pageData.put("searchType", searchType);
+		pageData.put("keyword", keyword);
+
+		return sqlSession.selectList(NAME_SPACE + ".adminBoardList", pageData);
+
 	}
 
 	// 일반 게시글 목록
 	@Override
-	public List<BoardDTO> memberBoardList() throws Exception {
+	public List<BoardDTO> memberBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
 
 		logger.info("일반 게시글 목록 불러오기 memberBoardList - DAO");
 
-		return sqlSession.selectList(NAME_SPACE + ".memberBoardList");
+		HashMap<String, Object> pageData = new HashMap<>();
+		pageData.put("displayTotalContent", displayTotalContent);
+		pageData.put("pageContent", pageContent);
+		pageData.put("searchType", searchType);
+		pageData.put("keyword", keyword);
+
+		return sqlSession.selectList(NAME_SPACE + ".memberBoardList", pageData);
+
+	}
+
+	// 게시글 레벨에 따른 총 갯수. (관리자, 회원, 비회원)
+	@Override
+	public int totalSearchContent(String searchType, String keyword) throws Exception {
+
+		logger.info("게시글 총 갯수 가져오기");
+
+		// 게시판 레벨에 따른 검색어 결과
+		HashMap<String, String> searchData = new HashMap<>();
+		
+		searchData.put("searchType", searchType);
+		searchData.put("keyword", keyword);
+
+		return sqlSession.selectOne(NAME_SPACE + ".totalSearchContent", searchData);
 	}
 
 	// 게시글 등록
@@ -56,7 +86,6 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.delete(NAME_SPACE + ".boardDelete", bno);
 	}
 
-
 	// 게시글 조회
 	@Override
 	public BoardDTO boardView(int bno) throws Exception {
@@ -66,13 +95,13 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(NAME_SPACE + ".boardView", bno);
 
 	}
-	
+
 	// 게시글 수정 로직
 	@Override
 	public void boardModify(BoardDTO boardDTO) throws Exception {
-		
+
 		logger.info("게시글 수정 로직 실행 boardModify - DAO");
-		
+
 		sqlSession.update(NAME_SPACE + ".boardModify", boardDTO);
 	}
 
