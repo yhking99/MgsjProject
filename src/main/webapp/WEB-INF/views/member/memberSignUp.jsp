@@ -14,7 +14,7 @@
 		<form id="sign-up" name="sign-up" action="/member/memberSignUp" method="post">
 			<div class="member">
 				<!-- 로고 -->
-				<span class="main-logo">Ezen</span>
+				<span class="main-logo"><a href="/mainPage/mainPage">Ezen</a></span>
 				<!-- 필드 -->
 				<div class="field">
 					<b>아이디</b>
@@ -71,7 +71,7 @@
 				</div>
 				<div class="signUp">
 					<!-- 실전에서 button type submit으로 변경 -->
-					<button type="button" onclick="signUpCheck()">회원가입</button>
+					<button type="submit" onclick="signUpCheck()" disabled>회원가입</button>
 				</div>
 			</div>
 		</form>
