@@ -123,7 +123,7 @@ request.setCharacterEncoding("UTF-8");
                 <div class="contents_simple">
                     <div class="location">
                         <div class="location_label">
-                            <label><a href="/mainPage/mainPage">Shoppingmall</a></label> &nbsp;/ 
+                            <label><a href="/mainPage/mainPage">Shoppingmall</a></label> &nbsp;  &gt;
                             <label><a href = "#">${productDTO.categoryName}</a></label>
                         </div>
                     </div>

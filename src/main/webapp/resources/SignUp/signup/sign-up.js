@@ -1,5 +1,55 @@
+// [1] 아이디 중복검사
+let joinButton = document.querySelector(".signUp button");
 
-// 가입부분 체크
+let dupCheckId = 0;
+
+function checkDuplicateId() {
+
+	let id = document.getElementById("userId").value;
+	
+	if (id.length < 4 || id == "") {
+		alert("아이디를 4자 이상 입력해주세요");
+
+		return false;
+	}
+
+	$.ajax({
+		url: '/member/checkDuplicateId',
+		type: 'post',
+		data:
+		{
+			'userId': id
+		},
+		dataType: 'json',
+
+		success: function(returnDupIdResult) {
+
+			if (returnDupIdResult == true) {
+
+				alert('사용 가능한 아이디 입니다.');
+
+				dupCheckId = 1;
+
+				joinButton.style.background = '#297eff';
+				joinButton.style.cursor = 'pointer';
+
+				joinButton.disabled = false;
+			
+
+			} else {
+
+				alert('중복된 아이디입니다.');
+
+				dupCheckId = 0;
+
+			}
+
+		}
+	})
+}
+
+
+// [2] 가입 양식 확인.
 function signUpCheck() {
 
 	let id = document.getElementById("userId").value
@@ -68,19 +118,37 @@ function signUpCheck() {
 		document.getElementById("genderError").innerHTML = ""
 	}
 
+	// 전체가 빈칸이 아닐때 회원가입을 가능하게 만든다.
 	if (check) {
-		location.href = "/member/memberSignUp";
+		
+		if(dupCheckId == 1){
 
 		//비동기 처리이벤트
 		setTimeout(function() {
-			alert("가입이 완료되었습니다.")
+			alert("가입이 완료되었습니다.");
 		}, 0);
+			
+		} else {
+			
+			alert("아이디 중복확인을 확인 해 주십시오.");
+			
+			return false;
+			
+		}
+		
 	} else {
+		
+		alert("필수 입력 사항을 확인 해 주세요.");
+		
+		event.preventDefault();
 		
 		return false;
 	}
+
 }
 
+
+/*
 // 약관동의 모두선택
 function selectAll(selectAll) {
 	let checkboxes
@@ -90,40 +158,4 @@ function selectAll(selectAll) {
 		checkbox.checked = selectAll.checked;
 	})
 
-}
-
-// 아이디 중복검사
-function checkDuplicateId() {
-	
-	let id = document.getElementById("userId").value;
-	
-	if(id.length < 4 || id == ""){
-		alert("아이디를 4자 이상 입력해주세요");
-		
-		return false;
-	}
-	
-	$.ajax({
-		url: '/member/checkDuplicateId',
-		type: 'post',
-		data:
-		{
-			'userId': id
-		},
-		dataType: 'json',
-
-		success: function(returnDupIdResult) {
-
-			if (returnDupIdResult == true) {
-
-				alert('사용 가능한 아이디 입니다.');
-
-			} else {
-
-				alert('중복된 아이디입니다.');
-
-			}
-
-		}
-	})
-}
+}*/
