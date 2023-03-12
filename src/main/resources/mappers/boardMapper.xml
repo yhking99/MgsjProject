@@ -6,7 +6,7 @@
 	<!-- 공지글 -->
 	<select id="adminBoardList" resultType="com.project.board.domain.BoardDTO" parameterType="hashMap">
 		
-		select bno, title, content, writer, regDate, readCount, boardLevel
+		select bno, title, content, writer, regDate, readCount
 			from boarddto
 		
 		<if test="searchType.equals('title')">
@@ -32,8 +32,7 @@
 	<select id="totalSearchContent" resultType="Int" parameterType="hashmap">
 		
 		select count(bno)
-		from
-		boarddto
+			from boarddto
 		
 		<if test="searchType.equals('title')">
 			where title like concat('%', #{keyword}, '%')

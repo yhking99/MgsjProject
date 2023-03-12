@@ -20,8 +20,10 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;
 
 	private static final String NAME_SPACE = "mappers.boardMapper";
+	
+	private static final String NAME_SPACE_REPLY = "mappers.boardReplyMapper";
 
-	// 공지 게시글 목록
+	// 공지사항 목록
 	@Override
 	public List<BoardDTO> adminBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
 
@@ -34,22 +36,6 @@ public class BoardDAOImpl implements BoardDAO {
 		pageData.put("keyword", keyword);
 
 		return sqlSession.selectList(NAME_SPACE + ".adminBoardList", pageData);
-
-	}
-
-	// 일반 게시글 목록
-	@Override
-	public List<BoardDTO> memberBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
-
-		logger.info("일반 게시글 목록 불러오기 memberBoardList - DAO");
-
-		HashMap<String, Object> pageData = new HashMap<>();
-		pageData.put("displayTotalContent", displayTotalContent);
-		pageData.put("pageContent", pageContent);
-		pageData.put("searchType", searchType);
-		pageData.put("keyword", keyword);
-
-		return sqlSession.selectList(NAME_SPACE + ".memberBoardList", pageData);
 
 	}
 
@@ -82,7 +68,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public void boardDelete(int bno) throws Exception {
 
 		logger.info("BoardDAOImpl에서 게시글 삭제하기 시작");
-
+		
+		// 게시글 삭제시 댓글을 수정 한 뒤 게시글을 삭제해야 한다.
+		
 		sqlSession.delete(NAME_SPACE + ".boardDelete", bno);
 	}
 

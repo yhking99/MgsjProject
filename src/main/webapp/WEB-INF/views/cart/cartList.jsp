@@ -47,6 +47,7 @@ request.setCharacterEncoding("UTF-8");
 								</a>
 							</div>
 						</c:when>
+						
 						<c:when test="${(memberInfo.userVerify) == 0 && (memberInfo != null) }">
 							<!-- 회원 -->
 							<div class="gnb-utilmenu">

@@ -20,6 +20,13 @@
 		values (#{userId} , #{userPwd} , #{userName} , #{userPhoneNumber} , #{userEmail} , #{userGender})
 	</insert>
 	
+	<!-- 회원가입 + 주소넣기 -->
+	<insert id="signUpAddress" parameterType="com.project.member.domain.MemberAddressDTO">
+		insert into
+			memberaddressdto (userId , postAddress, address, detailAddress)
+		values (#{userId} , #{postAddress} , #{address} , #{detailAddress})
+	</insert>
+	
 	<!-- 로그인 -->
 	<select id="memberLogin" parameterType="com.project.member.domain.MemberDTO" resultType="com.project.member.domain.MemberDTO">
 		select userNum, userId, userPwd, userName, userPhoneNumber, userEmail , userJoinDate , userVerify
