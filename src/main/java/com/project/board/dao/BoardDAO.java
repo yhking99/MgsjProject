@@ -9,9 +9,6 @@ public interface BoardDAO {
 	// 공지 게시글 목록보기
 	public List<BoardDTO> adminBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception;
 
-	// 일반 게시글 목록보기
-	public List<BoardDTO> memberBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception;
-
 	// 게시글 총 갯수 가져오기
 	public int totalSearchContent(String searchType, String keyword) throws Exception;
 

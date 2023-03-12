@@ -41,6 +41,9 @@
 								<a href="#" title="로그 기록 확인 페이지">
 									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
 								</a>
+								<a href="javascript:memberLogout()" title="로그아웃">
+									<i class="bi bi-door-open" style="font-size: 30px;"></i>
+								</a>
 							</div>
 						</c:when>
 						<c:when test="${(memberInfo.userVerify) == 0 && (memberInfo != null) }">
@@ -68,6 +71,9 @@
 								</a>
 								<a href="/cart/cartList" title="판매상품내역">
 									<i class="bi bi-cart" style="font-size: 30px;"></i>
+								</a>
+								<a href="/product/productWritePage" title="판매상품등록 및 관리하기">
+									<i class="bi bi-check-all" style="font-size: 30px;"></i>
 								</a>
 								<a href="#" title="활동 기록">
 									<i class="bi bi-clock-history" style="font-size: 30px;"></i>

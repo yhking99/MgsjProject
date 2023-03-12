@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.board.domain.BoardDTO;
 import com.project.board.domain.BoardReplyDTO;
@@ -31,7 +32,7 @@ public class BoardController {
 	@Autowired
 	private ReplyService replyService;
 	
-	// 페이징 + 검색기능의 페이지
+	// 공지사항 출력 + 페이징 + 검색
 	@RequestMapping(value = "/board/adminBoardList", method = RequestMethod.GET)
 	public void adminBoardList(@RequestParam("pageNum") int pageNum,
 			@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType,
@@ -97,15 +98,15 @@ public class BoardController {
 		return "redirect:/board/member/memberBoardList";
 	}
 
-	// 게시글 삭제하기
-	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.GET)
-	public String boardDelete(@RequestParam("bno") int bno) throws Exception {
+	// 공지 삭제하기
+	@ResponseBody
+	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.POST)
+	public void boardDelete(@RequestParam("bno") int bno) throws Exception {
 
 		logger.info("회원 게시글 삭제 memberBoardDelete - BoardController");
 
 		boardService.boardDelete(bno);
 
-		return "redirect:/board/main";
 	}
 
 	// 게시글 조회, 댓글보기

@@ -14,7 +14,9 @@
 		<form id="sign-up" name="sign-up" action="/member/memberSignUp" method="post">
 			<div class="member">
 				<!-- 로고 -->
-				<span class="main-logo"><a href="/mainPage/mainPage">Ezen</a></span>
+				<span class="main-logo">
+					<a href="/mainPage/mainPage">Ezen</a>
+				</span>
 				<!-- 필드 -->
 				<div class="field">
 					<b>아이디</b>
@@ -42,6 +44,21 @@
 					<input id="userEmail" name="userEmail" type="email" placeholder="이메일을 입력하세요" maxlength="30" />
 					<div id="emailError" class="error"></div>
 				</div>
+				<div class="field">
+					<b>주소</b>
+					<!-- 
+						private String postAddress;
+						private String address;
+						private String detailAddress;
+					 -->
+					<input id="postAddress" name="postAddress" type="text" placeholder="우편번호" readonly />
+					<button type="button" onclick="findAddr()">우편번호 검색</button>
+					<input id="address" name="address" type="text" placeholder="주소" readonly />
+					<br />
+					<div id="addressError" class="error"></div>
+					<input id="detailAddress" name="detailAddress" type="text" placeholder="상세주소 입력" />
+					<div id="detailAddError" class="error"></div>
+				</div>
 				<div class="field gender">
 					<b>성별</b>
 					<div>
@@ -59,8 +76,7 @@
 
 
 				<div class="field tel-number">
-					<b>휴대전화</b> 
-					<select>
+					<b>휴대전화</b> <select>
 						<option>대한민국 +82</option>
 					</select>
 					<div>
@@ -79,4 +95,5 @@
 	</div>
 </body>
 <script type="text/javascript" src="/resources/SignUp/signup/sign-up.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
