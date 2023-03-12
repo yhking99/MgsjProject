@@ -19,9 +19,7 @@ import com.project.inquire.domain.InquireDTO;
 import com.project.inquire.service.InquireService;
 import com.project.product.domain.CategoryDTO;
 import com.project.product.domain.ProductDTO;
-import com.project.product.domain.ProductFileDTO;
 import com.project.product.service.CategoryService;
-import com.project.product.service.ProductFileService;
 import com.project.product.service.ProductService;
 import com.project.review.domain.ReviewBoardDTO;
 import com.project.review.service.ReviewService;
@@ -46,10 +44,6 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@Autowired
-	private ProductFileService productFileService;
-	
-	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
@@ -70,15 +64,13 @@ public class ProductController {
 
 	// 상품 게시글 등록하기
 	@RequestMapping(value = "/product/productWrite", method = RequestMethod.POST)
-	public String productWrite(ProductDTO productDTO , ProductFileDTO productFileDTO , MultipartFile file) throws Exception {
+	public String productWrite(ProductDTO productDTO , MultipartFile file) throws Exception {
 
 		logger.info("상품 게시글 등록하기 productWrite - Controller : {}", productDTO);
 		
 		productService.productWrite(productDTO);
 		
 		logger.info("상품 등록 완료. 사진 등록 시작");
-		
-		logger.info("상품번호 : {}", productDTO.getPno());
 		
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = FileUploadUtils.calcPath(imgUploadPath);
@@ -98,11 +90,9 @@ public class ProductController {
 		String storedFileName = File.separator + "imgUpload" + ymdPath + File.separator + fileName;
 		String storedThumbNail = File.separator + "imgUpload" + ymdPath + File.separator + "thumbs" + File.separator + "thumbnail_" + fileName;
 		
-		productFileDTO = new ProductFileDTO(file.getOriginalFilename(), storedFileName, storedThumbNail);
+		productDTO = new ProductDTO(file.getOriginalFilename(), storedFileName, storedThumbNail);
 		
-		logger.info("제품 파일 업로드 productWrite - controller : {}", productFileDTO);
-		
-		productFileService.productFileUpload(productFileDTO);
+		logger.info("제품 등록 및 파일 업로드 productWrite - controller : {}", productDTO);
 
 		return "redirect:/product/productList";
 
