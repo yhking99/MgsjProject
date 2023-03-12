@@ -1,11 +1,16 @@
 package com.project.board.domain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 public class PageIngredient {
 	// BoardController 부분의 페이징이 매우 복잡하다. 그냥 클래스로 하나 만들어서 관리하자.
 
+	private static final Logger logger = LoggerFactory.getLogger(PageIngredient.class);
+	
 	private int pageNum; 			// 현재 페이지 번호
 	private int totalContent; 		// 전체 게시글의 갯수
 	private int contentNum; 		// 출력할 게시글의 갯수
@@ -44,7 +49,7 @@ public class PageIngredient {
 
 	public void setTotalContent(int totalContent) {
 		this.totalContent = totalContent;
-		log.info("페이지 관련 객체 호출 및 페이징 시작");
+		logger.info("페이지 관련 객체 호출 및 페이징 시작");
 
 		calculatePage();
 	}
@@ -178,11 +183,11 @@ public class PageIngredient {
 		
 		if (searchType.equals("") || keyword.equals("")) {
 			searchTypeAndKeyword = "";
-			log.info("검색타입과 검색어를 쿼리파라미터로 전달(-아무것도 입력하지 않음-)");
+			logger.info("검색타입과 검색어를 쿼리파라미터로 전달(-아무것도 입력하지 않음-)");
 		} else {
 			// &searchType=writer&keyword=33
 			searchTypeAndKeyword =  "&searchType=" + searchType + "&keyword=" + keyword;
-			log.info("검색타입과 검색어를 쿼리파라미터로 전달(-검색타입과 검색어가 들어옴-)");
+			logger.info("검색타입과 검색어를 쿼리파라미터로 전달(-검색타입과 검색어가 들어옴-)");
 		}
 		
 	}
