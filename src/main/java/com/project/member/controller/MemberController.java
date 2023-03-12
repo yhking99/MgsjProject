@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
 
@@ -40,11 +41,14 @@ public class MemberController {
 
 	// 회원가입 로직
 	@RequestMapping(value = "/member/memberSignUp", method = RequestMethod.POST)
-	public String signUpMember(MemberDTO memberDTO) throws Exception {
+	public String signUpMember(MemberDTO memberDTO, MemberAddressDTO memberAddressDTO) throws Exception {
 
 		logger.info("회원가입 실행 signUpMember - (controller)");
 		
-		memberService.signUpMember(memberDTO);
+		/*String userId = memberDTO.getUserId();
+		memberAddressDTO.setUserId(userId);*/
+		
+		memberService.signUpMember(memberDTO, memberAddressDTO);
 		
 		logger.info("회원가입 정보 : {}", memberDTO);
 
