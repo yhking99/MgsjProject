@@ -27,15 +27,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.adminBoardList(displayTotalContent, pageContent, searchType, keyword);
 	}
 
-	// 일반 게시글 목록보기
-	@Override
-	public List<BoardDTO> memberBoardList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
-
-		logger.info("일반 게시글 목록 불러오기");
-
-		return boardDAO.memberBoardList(displayTotalContent, pageContent, searchType, keyword);
-	}
-
 	// 게시글 등록하기
 	@Override
 	public void boardWrite(BoardDTO boardDTO) throws Exception {

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.member.domain.MemberDTO;
 
 @Repository
@@ -20,9 +21,11 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// 회원가입 로직 구현
 	@Override
-	public void signUpMember(MemberDTO memberDTO) throws Exception {
+	public void signUpMember(MemberDTO memberDTO, MemberAddressDTO memberAddressDTO) throws Exception {
 		logger.info("회원가입 실행 signUpMember - (DAO)");
-
+		
+		sqlSession.insert(NAME_SPACE + ".signUpAddress", memberAddressDTO);
+		
 		sqlSession.insert(NAME_SPACE + ".signUpMember", memberDTO);
 	}
 
