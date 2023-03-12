@@ -9,7 +9,7 @@
 	<title>공지사항</title>
 </head>
 
-<link rel="stylesheet" type="text/css" href="/resources/board/pageListAndSearch.css">
+<link rel="stylesheet" type="text/css" href="/resources/board/boardList/boardList.css">
 
 <body>
 	<div id="boardGroup">
@@ -103,5 +103,5 @@
 		<!-- 페이징 끝 -->
 	</div>
 </body>
-<script type="text/javascript" src="/resources/board/board.js"></script>
+<script type="text/javascript" src="/resources/board/boardList/board.js"></script>
 </html>

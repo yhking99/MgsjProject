@@ -57,12 +57,15 @@ function signUpCheck() {
 	let pwd = document.getElementById("userPwd").value
 	let rePwd = document.getElementById("rePwd").value
 	let email = document.getElementById("userEmail").value
+	let address = document.getElementById("address").value
+	let detailAddress = document.getElementById("detailAddress").value
 	let check = true;
 
 	// 아이디확인
-	if (id === "") {
-		document.getElementById("idError").innerHTML = "아이디는 필수입력 항목입니다"
+	if (id === "" || id.length < 6 ) {
+		document.getElementById("idError").innerHTML = "아이디는 필수입력 항목입니다.\n6자 이상 입력해주세요."
 		check = false
+		
 	} else {
 		document.getElementById("idError").innerHTML = ""
 	}
@@ -86,7 +89,7 @@ function signUpCheck() {
 
 
 	// 이름확인
-	if (name === "") {
+	if (name === "" || name.length < 2) {
 		document.getElementById("nameError").innerHTML = "이름은 필수입력 항목입니다"
 		check = false
 	} else {
@@ -109,13 +112,27 @@ function signUpCheck() {
 		document.getElementById("re-pwdError").innerHTML = ""
 	}
 
-
 	// 성별체크확인
 	if (!gender_man && !gender_woman) {
 		document.getElementById("genderError").innerHTML = "성별을 선택해주세요."
 		check = false
 	} else {
 		document.getElementById("genderError").innerHTML = ""
+	}
+	
+	// 주소체크
+	if (address === "") {
+		document.getElementById("addressError").innerHTML = "주소를 검색해주세요."
+		check = false
+	} else {
+		document.getElementById("addressError").innerHTML = ""
+	}
+
+	if (detailAddress === "") {
+		document.getElementById("detailAddError").innerHTML = "상세주소를 입력해주세요."
+		check = false
+	} else {
+		document.getElementById("detailAddError").innerHTML = ""
 	}
 
 	// 전체가 빈칸이 아닐때 회원가입을 가능하게 만든다.
@@ -147,15 +164,23 @@ function signUpCheck() {
 
 }
 
+// 다음 주소 api
+function findAddr() {
+	new daum.Postcode({
+		oncomplete: function(data) {
+			console.log(data);
 
-/*
-// 약관동의 모두선택
-function selectAll(selectAll) {
-	let checkboxes
-		= document.getElementsByName('agree');
-
-	checkboxes.forEach((checkbox) => {
-		checkbox.checked = selectAll.checked;
-	})
-
-}*/
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			let roadAddr = data.roadAddress; // 도로명 주소 변수
+			let jibunAddr = data.jibunAddress; // 지번 주소 변수
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('postAddress').value = data.zonecode;
+			if (roadAddr !== '') {
+				document.getElementById("address").value = roadAddr;
+			}
+			else if (jibunAddr !== '') {
+				document.getElementById("address").value = jibunAddr;
+			}
+		}
+	}).open();
+}
