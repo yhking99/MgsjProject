@@ -125,18 +125,18 @@ request.setCharacterEncoding("UTF-8");
                         <ul class="checkbtn1">
                             <li>
                                 <span class="checkall">
-                                    <input type="checkbox" id="allchk" name="btncheckall">
-                                    <label>전체선택</label>
+                                    <input type="checkbox" id="allchk" name="allchk"/>                                    
+                                	<label>전체선택</label>
                                 </span>
-                            </li>
+                            </li> 
                         </ul>
                         <ul class="checkbtn2">
                             <li>
-                                <button type="button" id="chkdlt"><span>선택삭제</span></button>
+                                <button type="button" class = "chkdlt"><span>선택삭제</span></button>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button type="button" id="alldlt"><span>전체삭제</span></button>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="itemview">
@@ -151,9 +151,9 @@ request.setCharacterEncoding("UTF-8");
                             <tbody>
                             	<c:set var = "total" value = "0" />
                             	<c:forEach var="cartList" items="${cartList}">
-                                <tr>
+                              	<tr>	
                                     <td class="itemview_chk">
-                                        <input type="checkbox">
+                                        <input type="checkbox" id = "chkbox" name = "chkbox" data-cartNum = "${cartList.cartNum}">
                                     </td>
                                     <td class="itemview_thum">
                                         <a href="/product.html"><img src="/resources/product/images/product_sample.png"></a>
@@ -185,14 +185,14 @@ request.setCharacterEncoding("UTF-8");
                                         </div>
 					
                                     </td>
-                                    <td class="itemview_pay">
+                                   <!--  <td class="itemview_pay">
                                         <button class="btn_paynow">
                                             <span>바로 구매</span>
                                         </button>
-                                    </td>
-                                </tr>
+                                    </td> -->	
+                                </tr> 
                                 	<c:set var= "total" value="${total + (cartList.productPrice * cartList.productCnt)}"/>
-                                </c:forEach>
+                               </c:forEach>	
                             </tbody>
                         </table>
                     </div>
@@ -215,7 +215,7 @@ request.setCharacterEncoding("UTF-8");
                             <span>결제예정금액</span>
                             <span>${total + 3000}원</span>
                     </div>
-                    <a href="/order/orderList">
+                    <a href="/order/orderWritePage">
 	                    <button type="button" class="btn_pay">
 	                        <span>주문하기</span>
 	                    </button>
@@ -244,11 +244,23 @@ request.setCharacterEncoding("UTF-8");
         </footer>
 
     <script>
+		$("#allchk").click(function(){
+			var chk = $("#allchk").prop("checked");
+		
+			if(chk) {
+				$(".chkbox").prop("chekced", true);
+			} else {
+				$(".chkbox").prop("checed", false);
+			}
+		
+		});
+    
+    
         /*수량 증가, 감소*/
         function count(type){
             const resultElement = document.getElementById('result');
 
-            let number = resultElement.;
+            let number = resultElement;
 
             if(type == 'plus'){
                 number = parseInt(number) + 1;

@@ -138,34 +138,38 @@ request.setCharacterEncoding("UTF-8");
                                 <button id="thumbnail_3" ><img src="${contextPath}/resources/product/images/product_sample3.png"></button>
                                 <button id="thumbnail_4" ><img src="${contextPath}/resources/product/images/product_sample4.png"></button>
                             </div>
-                        </div>
+                          </div>
+                       
                         <div class="product_rgt">
+                        	<form id = "form-cart" action = "/cart/cartWrite" method = "post">
+                        		<!-- cart에 필요한 데이터 -->
+                        		<input type = "hidden" name = "userId" value = "${memberInfo.userId}"/>
                             <div class="product_info">
-                                <div class="product_num">제품번호 : ${productDTO.pno }</div>
-                                <div class="product_name">${productDTO.productName }</div>
+                                <div class="product_num">
+                                	<input type = "hidden" name = "pno" value = "${productDTO.pno}"/>
+                                	제품번호 : ${productDTO.pno}
+                                </div>
+                                <div class="product_name">${productDTO.productName}</div>
                                 <hr>
-                                <div class="product_price"><fmt:formatNumber value="${productDTO.productPrice}" pattern="###,###,###"/>원</div>
+                                <div class="product_price"><fmt:formatNumber value = "${productDTO.productPrice}" pattern="###,###,###"/>원</div>
                                 <hr>
                                 <div class="product_delivery">배송 정보 : 3일 내 도착예정 <br> 배송비 : 무료</div>
                             </div>
                             <div class="product_option">
                                 <div class="product_amount">
-                                    <dl>
-                                        <dt>농구공</dt>
-                                        <dd>
-                                            <div class="amount_pm">
-                                                <input type="button" onclick="count('minus')" value="-"/>
-                                               		<input type = "number" id = "result" min = "1" max = "100" value = "1" maxlength = "3"/>
-                                                <input type="button" onclick="count('plus')" value="+"/>
-                                            </div>
-                                        </dd>
-                                    </dl>
+                                        <span>구매수량</span>
+                                            <p class="amount_pm">
+                                               <button type="button" class="plus">+&nbsp;</button>
+													<input type="number" class="numbox" min= "1" max= "${productDTO.productStock}" value="1" name = "productCnt" readonly="readonly"/>&nbsp;
+												<button type="button" class="minus">-</button>
+                                            </p>
                                 </div>
                                 <div class="nextbtn">
-                                    <div class="cart"><a href="/cart/cartList">장바구니</a></div>
+                                    <div class="cart"><a><button type = "submit" class = "cart">장바구니</button></a></div>
                                     <div class="buy"><a href="/order/orderList">바로구매</a></div>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -278,26 +282,34 @@ request.setCharacterEncoding("UTF-8");
 
 
         <script>
-       /* <input type="button" onclick="count('minus')" value="-"/>
-       		<input type="text" id = "result" min="1" max="100" value = "1" readonly="readonly"/>
-        <input type="button" onclick="count('plus')" value="+"/>*/
-            /*수량 증가, 감소*/
-            function count(type){
-                const resultElement = document.getElementById('result');
 
-                let number = resultElement.val(resultElement);
-
-                if(type == 'plus'){
-                    number = number + 1;
-                }else if(type == 'minus'){
-                    number = number - 1;
-                }
-               
-                if(number < 1){
-                    number = 1;
-                }
-                resultElement.val(resultElement) = number;
-            }
+            /*
+            div class="amount_pm">
+                  <button type="button" class="plus">+&nbsp;</button>
+								<input type="number" class="numbox" min="1" max="${productDTO.productStock}" value="1" readonly="readonly"/>&nbsp;
+					<button type="button" class="minus">-</button>
+                                            </div> */
+         $(".plus").click(function(){
+   			var num = $(".numBox").val();
+		  	var plusNum = Number(num) + 1;
+		   
+		   if(plusNum >= ${productDTO.productStock}) {
+		    $(".numBox").val(num);
+		   } else {
+		    $(".numBox").val(plusNum);          
+		   }
+		  });
+		  
+		  $(".minus").click(function(){
+		   var num = $(".numBox").val();
+		   var minusNum = Number(num) - 1;
+		   
+		   if(minusNum <= 0) {
+		    $(".numBox").val(num);
+		   } else {
+		    $(".numBox").val(minusNum);          
+		   }
+  });
 
             /*썸네일 변경*/
             $(document).ready(function(){
