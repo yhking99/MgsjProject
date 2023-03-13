@@ -27,8 +27,9 @@
 				ON c.pno = p.pno
 				join memberdto as member
 				on member.userId = c.userId
-			where member.userId = #{userId}
-			ORDER BY c.pno;
+
+			where member.userId = #{userId};
+
 	</select>
 
 </mapper>
