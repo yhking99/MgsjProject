@@ -162,10 +162,14 @@ request.setCharacterEncoding("UTF-8");
 									<c:set var="total" value="0" />
 									<c:forEach var="cartList" items="${cartList}">
 										<tr>
-											<td class="itemview_chk"><input type="checkbox"></td>
-											<td class="itemview_thum"><a href="/product.html">
+											<td class="itemview_chk">
+												<input type="checkbox">
+											</td>
+											<td class="itemview_thum">
+												<a href="/product.html">
 													<img src="/resources/product/images/product_sample.png">
-												</a></td>
+												</a>
+											</td>
 											<td class="itemview_info">
 
 												<div>
@@ -204,7 +208,7 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 
 					<form class="userInfoBox" id="frm" action="/order/orderWrite" method="post">
-						<div class = "userInfo">
+						<div class="userInfo">
 							<div class="form-group">
 								<div>
 									<h2 align="center">주소 확인</h2>
@@ -221,39 +225,40 @@ request.setCharacterEncoding("UTF-8");
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id="postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소1</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id ="detailAddress"  name="detailAddress" value="${memberAddress.address}" maxlength="200" />
+									<input type="text" class="checkDel" id="detailAddress" name="detailAddress" value="${memberAddress.address}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소2</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id="detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
+									<input type="text" class="checkDel" id="recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인 전화번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "recipientPhone" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
+									<input type="text" class="checkDel" id="recipientPhone" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
 								</div>
 							</div>
 							<br>
-							<input type='checkbox' id='my_checkbox' onclick = 'toggleTextbox(this)'/>배송지 정보 직접입력		
+							<input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)' />
+							배송지 정보 직접입력
 						</div>
-						
+
 						<!-- 유저 정보 저장 박스 끝 -->
-						
+
 
 						<div class="order_rgt">
 							<div class="order_price">
@@ -308,29 +313,28 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 
 		</footer>
+	</div>
 
-		<script>
-		
-		function toggleTextbox(checkbox) {
-			 
-			var userInfoText = document.querySelectorAll('.checkDel');
-			
-			
-			for (let i = 0; i < userInfoText.length; i++) {
-					/* userInfoText[i].textContent = ""; */
-					if(userInfoText[i].id == "postAddress") {
-						userInfoText[i].value = checkbox.checked ? "" : '123';
-					} else if(userInfoText[i].id == "detailAddress") {
-						userInfoText[i].value = checkbox.checked ? "" : '123';
-					} else if(userInfoText[i].id == "detailAddress2") {
-						userInfoText[i].value = checkbox.checked ? "" : '123';
-					} else if(userInfoText[i].id == "recipient") {
-						userInfoText[i].value = checkbox.checked ? "" : '123';
-					} else if(userInfoText[i].id == "recipientPhone") {
-						userInfoText[i].value = checkbox.checked ? "" : '123';
-					}
+	<script>
+		function toggleTextbox ( checkbox ) {
+
+			var userInfoText = document.querySelectorAll ( '.checkDel' );
+
+			for ( let i = 0; i < userInfoText.length; i++ ) {
+				/* userInfoText[i].textContent = ""; */
+				if ( userInfoText[i].id == "postAddress" ) {
+					userInfoText[i].value = checkbox.checked ? "" : '123';
+				} else if ( userInfoText[i].id == "detailAddress" ) {
+					userInfoText[i].value = checkbox.checked ? "" : '123';
+				} else if ( userInfoText[i].id == "detailAddress2" ) {
+					userInfoText[i].value = checkbox.checked ? "" : '123';
+				} else if ( userInfoText[i].id == "recipient" ) {
+					userInfoText[i].value = checkbox.checked ? "" : '123';
+				} else if ( userInfoText[i].id == "recipientPhone" ) {
+					userInfoText[i].value = checkbox.checked ? "" : '123';
 				}
 			}
-		</script>
+		}
+	</script>
 </body>
 </html>
