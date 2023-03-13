@@ -48,7 +48,7 @@
 		</form>
 		
 		<div align="right" class="modifyAndDelete">
-			<a href="/board/boardModifyPage?bno=${boardDTO.bno }">
+			<a href="/admin/boardModifyPage?bno=${boardDTO.bno }">
 				<button type="button" class="boardUpdate">게시글 수정하기</button>
 			</a>
 			<a onclick="javascript:removeContent('${boardDTO.bno}');">

@@ -14,8 +14,10 @@ recipientPhone varchar(15)
  -->
 <!-- 주문 등록 -->
 <insert id = "orderWrite" parameterType = "com.project.order.domain.OrderDTO">
+
 INSERT INTO orderdto(orderNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone)
 VALUES (#{orderNum}, #{userId}, NOW(), #{postAddress}, #{detailAddress}, #{detailAdderess2}, #{recipient}, #{recipientPhone})
+
 </insert>
 
 <!-- 주문 조회 -->

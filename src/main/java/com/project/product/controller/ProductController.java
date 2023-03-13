@@ -144,8 +144,6 @@ public class ProductController {
 		
 		model.addAttribute("categoryList", categoryList);
 		
-		
-
 	}
 
 	// 상품 게시글 목록
@@ -157,6 +155,7 @@ public class ProductController {
 		List<ProductDTO> productList = productService.productList();
 
 		model.addAttribute("productList", productList);
+		
 	}
 
 }

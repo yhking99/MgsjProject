@@ -33,14 +33,17 @@ public class BoardController {
 	private ReplyService replyService;
 	
 	// 공지사항 출력 + 페이징 + 검색
-	@RequestMapping(value = "/board/adminBoardList", method = RequestMethod.GET)
+	@RequestMapping(value = "/announcement/announcement", method = RequestMethod.GET)
 	public void adminBoardList(@RequestParam("pageNum") int pageNum,
 			@RequestParam(value = "searchType", required = false, defaultValue = "title") String searchType,
 			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
 			PageIngredient page, Model model) throws Exception {
 
 		logger.info("페이징 + 검색기능 시작 (Controller)\n검색타입 : {}\n검색어 : {}", searchType, keyword);
-
+		
+		// 파라미터 순서 int contentNum , int maxPageNum, int selectContent
+		page = new PageIngredient(10,10,10);
+		
 		page.setPageNum(pageNum);
 		page.setSearchType(searchType);
 		page.setKeyword(keyword);
@@ -59,7 +62,7 @@ public class BoardController {
 	}
 
 	// 작성 페이지 접속
-	@RequestMapping(value = "/board/boardWritePage", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/boardWritePage", method = RequestMethod.GET)
 	public void connectMemberBoardWrite() throws Exception {
 
 		logger.info("회원 게시글 작성 페이지 접속 memberBoardWrite - controller");
@@ -67,7 +70,7 @@ public class BoardController {
 	}
 
 	// 게시글 등록하기
-	@RequestMapping(value = "/board/boardWrite", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/boardWrite", method = RequestMethod.POST)
 	public String boardWrite(BoardDTO boardDTO, HttpSession session) throws Exception {
 
 		logger.info("회원 게시글 작성 memberBoardWrite - controller");
@@ -95,12 +98,12 @@ public class BoardController {
 
 		}
 
-		return "redirect:/board/member/memberBoardList";
+		return "redirect:/admin/announcement";
 	}
 
 	// 공지 삭제하기
 	@ResponseBody
-	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/boardDelete", method = RequestMethod.POST)
 	public void boardDelete(@RequestParam("bno") int bno) throws Exception {
 
 		logger.info("회원 게시글 삭제 memberBoardDelete - BoardController");
@@ -110,7 +113,7 @@ public class BoardController {
 	}
 
 	// 게시글 조회, 댓글보기
-	@RequestMapping(value = "/board/boardView", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/boardView", method = RequestMethod.GET)
 	public void boardView(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO, PageIngredient page) throws Exception {
 
 		logger.info("회원 게시글 조회 boardView - BoardController");
@@ -128,7 +131,7 @@ public class BoardController {
 	}
 
 	// 게시글 수정하기 (의 개념으로 수정페이지 들어가기)
-	@RequestMapping(value = "/board/boardModifyPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/boardModifyPage", method = RequestMethod.GET)
 	public void connectBoardModify(@RequestParam("bno") int bno, Model model, BoardDTO boardDTO) throws Exception {
 
 		logger.info("게시글 수정 페이지 접속 connectBoardModify - controller");
@@ -139,14 +142,14 @@ public class BoardController {
 	}
 
 	// 게시글 수정하기 로직
-	@RequestMapping(value = "/board/boardModify", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/boardModify", method = RequestMethod.POST)
 	public String boardModify(BoardDTO boardDTO) throws Exception {
 
 		logger.info("게시글 수정 로직 실행 boardModify - controller");
 
 		boardService.boardModify(boardDTO);
 
-		return "redirect:/board/boardView?bno=" + boardDTO.getBno();
+		return "redirect:/admin/boardView?bno=" + boardDTO.getBno();
 	}
 
 }
