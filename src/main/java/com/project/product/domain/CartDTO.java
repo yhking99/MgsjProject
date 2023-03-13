@@ -1,14 +1,13 @@
 package com.project.product.domain;
 
 public class CartDTO {
-	
+
 	private int pno;
 	private int productCnt;
 	private String userId;
 
 	private String productName;
 	private int productPrice;
-	
 
 	public int getPno() {
 		return pno;
@@ -52,8 +51,10 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return "CartDTO [pno=" + pno + ", productCnt=" + productCnt + ", userId=" + userId + ", productName=" + productName + ", productPrice="
-				+ productPrice + "]";
+		return "CartDTO [pno=" + pno + ", productCnt=" + productCnt + ", userId=" + userId + ", productName="
+				+ productName + ", productPrice=" + productPrice + "]";
 	}
+
+	
 	
 }

@@ -214,7 +214,7 @@ request.setCharacterEncoding("UTF-8");
 									<h2 align="center">주소 확인</h2>
 								</div>
 							</div>
-							<!-- SELECT c.cartNum, c.pno, p.productName, p.productPrice, c.productCnt, member.userId -->
+							<!-- SELECT  c.pno, p.productName, p.productPrice, c.productCnt, member.userId -->
 							<div class="form-group">
 								<label for="subject" class="col-sm-2 control-label">회원아이디</label>
 								<div class="col-sm-10">

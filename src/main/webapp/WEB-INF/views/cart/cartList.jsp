@@ -149,6 +149,7 @@ request.setCharacterEncoding("UTF-8");
 						<!-- <li>
                                 <button type="button" id="alldlt"><span>전체삭제</span></button>
                             </li> -->
+
 					</ul>
 				</div>
 				<div class="itemview">
@@ -199,6 +200,7 @@ request.setCharacterEncoding("UTF-8");
 
 									</td>
 									<!--  <td class="itemview_pay">
+
                                         <button class="btn_paynow">
                                             <span>바로 구매</span>
                                         </button>

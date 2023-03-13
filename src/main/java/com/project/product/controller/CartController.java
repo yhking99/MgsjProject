@@ -113,26 +113,27 @@ public class CartController {
 
 	// 장바구니 수정(비동기)
 	// 앞단에서 장바구니 번호 받아오자
+	// pno에 빗대서 업데이트
 	@RequestMapping(value = "/cart/cartUpdate", method = RequestMethod.POST)
-	public String cartUpdate(@RequestParam("cartNum") int cartNum, CartDTO cartDTO) throws Exception {
+	public String cartUpdate(@RequestParam("pno") int pno, CartDTO cartDTO) throws Exception {
 
 		logger.info("장바구니 수정 cartUpdate - Controller");
 
 		cartService.cartUpdate(cartDTO);
 
-		return "redirect:/cart/cartList?cartNum=" + cartNum;
+		return "redirect:";
 	}
 
 	// 장바구니 삭제
 	// 장바구니 안의 항목 삭제
 	@RequestMapping(value = "/cart/cartDelete", method = RequestMethod.POST)
-	public String cartDelete(@RequestParam("cartNum") int cartNum) throws Exception {
+	public String cartDelete(@RequestParam("pno") int pno) throws Exception {
 
 		logger.info("장바구니 삭제 cartDelete - Controller");
 
-		cartService.cartDelete(cartNum);
+		cartService.cartDelete(pno);
 
-		return "redirect:/cart/cartList?cartNum=" + cartNum;
+		return "redirect:/cart/cartList";
 	}
 
 	// 장바구니 목록
