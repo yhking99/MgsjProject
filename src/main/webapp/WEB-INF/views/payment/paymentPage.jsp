@@ -81,15 +81,16 @@ request.setCharacterEncoding("UTF-8");
           <br>
           <!-- 주문시 주문정보  -->
           <div class="pay-product">
-            <b class="pro-title product-name">상품명</b> <input type="text" id="product_name" name="product_name" value="${product_name}" readonly/>
+            <b class="pro-title product-name">상품명</b> <input type="text" id="product_name" name="product_name" value="${orderDetailDTO.productName}" readonly/>
             <br>
-            <b class="pro-title">결제일자</b> <input type="text" id="order_date" name="order_date" value="${order_date}" readonly/>
+            <b class="pro-title">결제일자</b> <input type="text" id="order_date" name="order_date" value="${orderDetailDTO.orderDate}" readonly/>
             <br>
-            <b class="pro-title">상품금액</b> <input type="text" id="product_name" name="product_name" value="${product_price}" readonly/>
+            <b class="pro-title">상품금액</b> <input type="text" id="product_name" name="product_name" value="${orderDetailDTO.productPrice * orderDetailDTO.productCnt}" readonly/>
           </div>
           <div class="pay-method">
             <b class="pro-title">결제수단</b> 
             <div class="pay-radio">
+            <!-- 자바스크립트로 라디오타입의 value값을 따와서 text할 예정 -->
               <label><input id="pay-card" type="radio" name="paymethod" value="card">카드</label>
               <label><input id="pay-cash" type="radio" name="paymethod" value="cash">계좌이체</label>
             </div>
