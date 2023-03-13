@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="com.project.board.domain.PageIngredient" %>
+<%@ page import="com.project.board.domain.PageIngredient"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>공지사항</title>
+<meta charset="UTF-8">
+<title>공지사항</title>
 </head>
 
 <link rel="stylesheet" type="text/css" href="/resources/board/boardList/boardList.css">
@@ -29,7 +29,7 @@
 					<tr>
 						<td>${adminBoardList.bno }</td>
 						<td>
-							<a href="/board/boardView?bno=${adminBoardList.bno }">${adminBoardList.title }</a>
+							<a href="/admin/boardView?bno=${adminBoardList.bno }">${adminBoardList.title }</a>
 						</td>
 						<td>${adminBoardList.writer }</td>
 						<td>
@@ -40,9 +40,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<div class="board_write">
-			<button class="boardWriteButtonDiv" onclick="location.href='/board/write'">게시글 작성</button>
-		</div>
+		<c:if test="${memberInfo.userVerify == 128 }">
+			<div class="board_write">
+				<button class="boardWriteButtonDiv" onclick="location.href='/admin/boardWritePage'">게시글 작성</button>
+			</div>
+		</c:if>
 
 		<!-- 게시글 검색기능 -->
 		<%
@@ -68,7 +70,7 @@
 		if (pageIngredient.isPrevPage() == true) {
 		%>
 		<span>
-			<a href="/board/adminBoardList?pageNum=<%=pageIngredient.getStartPage() - 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">◀이전</a>
+			<a href="/announcement/announcement?pageNum=<%=pageIngredient.getStartPage() - 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">◀이전</a>
 		</span>
 		<%
 		}
@@ -79,7 +81,7 @@
 		if (selectedPageNum != i) {
 		%>
 		<span>
-			<a id="notSelectedPage" href="/board/adminBoardList?pageNum=<%=i%><%=pageIngredient.getSearchTypeAndKeyword()%>"><%=i%></a>
+			<a id="notSelectedPage" href="/announcement/announcement?pageNum=<%=i%><%=pageIngredient.getSearchTypeAndKeyword()%>"><%=i%></a>
 		</span>
 		<%
 		} else if (selectedPageNum == i) {
@@ -95,7 +97,7 @@
 		if (pageIngredient.isNextPage() == true) {
 		%>
 		<span>
-			<a href="/board/adminBoardList?pageNum=<%=pageIngredient.getEndPage() + 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">다음▶</a>
+			<a href="/announcement/announcement?pageNum=<%=pageIngredient.getEndPage() + 1%><%=pageIngredient.getSearchTypeAndKeyword()%>">다음▶</a>
 		</span>
 		<%
 		}

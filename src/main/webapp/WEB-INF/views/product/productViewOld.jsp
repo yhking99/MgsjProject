@@ -374,7 +374,7 @@ div>input:active {
 					if ( data == false ) {
 
 						alert ( "로그인해주세요" );
-						location.href = "/board/boardMain";
+						location.href = "/member/memberLoginPage";
 
 						return false;
 
