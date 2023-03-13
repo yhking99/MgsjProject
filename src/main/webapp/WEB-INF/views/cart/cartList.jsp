@@ -153,7 +153,7 @@ request.setCharacterEncoding("UTF-8");
                             <c:forEach var="cartList" items="${cartList}">
                               	<tr>	
                                     <td class="itemview_chk">
-                                        <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-cartNum = "${cartList.cartNum}">
+                                        <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-pno = "${cartList.pno}">
                                     </td>
                                     <td class="itemview_thum">
                                         <a href="/product.html"><img src="/resources/product/images/product_sample.png"></a>
