@@ -36,4 +36,15 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentDAO.paymentList(paymentDTO);
 	}
 	
+	//결제 상세내역
+	@Override
+	public PaymentDTO paymentView(String userId) throws Exception {
+		
+		logger.info("결제 상세내역 paymentView - Service");
+		
+		
+		
+		return paymentDAO.paymentView(userId);
+	}
+	
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 public class PaymentDTO {
 
 	private int orderNum;
-	private String paymentSet;
+	private String paymentKind;
 	private String paymentCard;
 	private int paymentMoney;
 	private Date paymentRegDate;
@@ -21,11 +21,11 @@ public class PaymentDTO {
 	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
-	public String getPaymentSet() {
-		return paymentSet;
+	public String getpaymentKind() {
+		return paymentKind;
 	}
-	public void setPaymentSet(String paymentSet) {
-		this.paymentSet = paymentSet;
+	public void setpaymentKind(String paymentSet) {
+		this.paymentKind = paymentSet;
 	}
 	public String getPaymentCard() {
 		return paymentCard;
@@ -54,7 +54,7 @@ public class PaymentDTO {
 	}
 	@Override
 	public String toString() {
-		return "PaymentDTO [orderNum=" + orderNum + ", paymentSet=" + paymentSet + ", paymentCard=" + paymentCard
+		return "PaymentDTO [orderNum=" + orderNum + ", paymentKind=" + paymentKind + ", paymentCard=" + paymentCard
 				+ ", paymentMoney=" + paymentMoney + ", paymentRegDate=" + paymentRegDate + ", userId=" + userId + "]";
 	}
 	
