@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.order.dao.OrderDAO;
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -29,11 +30,11 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 주문 조회
 	@Override
-	public OrderDTO orderView(int orderNum) throws Exception {
+	public OrderDetailDTO orderView(String userId) throws Exception {
 	
 		logger.info("주문 조회 orderView - Service");
 		
-		return orderDAO.orderView(orderNum);
+		return orderDAO.orderView(userId);
 	}
 	
 	// 주문 수정

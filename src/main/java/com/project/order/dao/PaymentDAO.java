@@ -10,7 +10,10 @@ public interface PaymentDAO {
 	public void paymentWrite(PaymentDTO paymentDTO) throws Exception;
 	
 	
-	
 	//결제 내역 목록
 	public List<PaymentDTO> paymentList(PaymentDTO paymentDTO) throws Exception;
+
+	
+	//결제 상세 내역
+	public PaymentDTO paymentView(String userId) throws Exception;
 }

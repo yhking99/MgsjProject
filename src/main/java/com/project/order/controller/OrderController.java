@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.member.domain.MemberDTO;
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 import com.project.order.service.OrderService;
 import com.project.product.domain.CartDTO;
 import com.project.product.service.CartService;
@@ -38,8 +39,7 @@ public class OrderController {
 			  String userId,
 			  CartDTO cartDTO, 
 			  Model model,
-			  HttpServletRequest req,
-			  HttpServletResponse resp) throws Exception {
+			  HttpServletRequest req) throws Exception {
 		  
 		  	logger.info("주문 작성 페이지 orderWirtePage - Controller");
 		  		
@@ -92,13 +92,23 @@ public class OrderController {
 
 	// 주문 내역 상세 조회 ( ajax 할거다)
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void orderView(Model model, OrderDTO orderDTO, int orderNum) throws Exception {
+	public void orderView(
+			HttpServletRequest req,
+			Model model, 
+			OrderDetailDTO orderdetailDTO, 
+			String userId) throws Exception {
 
 		logger.info("주문 조회 orderView - Controller");
 
-		orderDTO = orderService.orderView(orderNum);
+		HttpSession session = req.getSession();
 
-		model.addAttribute("orderDTO", orderDTO);
+		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
+
+		orderdetailDTO.setUserId(memberLoginSession.getUserId());
+
+		OrderDetailDTO orderdetail = orderService.orderView(userId);
+
+		model.addAttribute("orderDetailDTO", orderdetail);
 	}
 
 	// 주문 목록

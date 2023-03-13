@@ -3,6 +3,7 @@ package com.project.order.dao;
 import java.util.List;
 
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 
 public interface OrderDAO {
 	
@@ -10,7 +11,7 @@ public interface OrderDAO {
 	public void orderWrite(OrderDTO orderDTO) throws Exception;
 	
 	//주문 조회
-	public OrderDTO orderView(int orderNum) throws Exception;
+	public OrderDetailDTO orderView(String userId) throws Exception;
 	
 	//주문 수정
 	public void orderUpdate(OrderDTO orderDTO) throws Exception;
