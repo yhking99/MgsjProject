@@ -19,10 +19,9 @@
 					<!--상단 로고-->
 					<div class="mgsjlogo" align="center">
 						<a href="/mainPage/mainPage">
-							<img src="/resources/mainpage/MGSJlogo.png" width = "125px" height = "125px">
+							<img src="/resources/mainpage/MGSJlogo.png" width="125px" height="125px">
 						</a>
 					</div>
-
 					<!--검색창-->
 					<div class="search" align="center">
 						<div>
@@ -32,8 +31,8 @@
 					</div>
 					<!--유틸메뉴-->
 					<c:choose>
+						<%-- 관리자 --%>
 						<c:when test="${(memberInfo.userVerify) == 128}">
-							<!-- 관리자 -->
 							<div class="gnb-utilmenu">
 								<a href="/member/memberLoginPage" title="관리자 회원 관리 페이지">
 									<i class="bi bi-bookmark-star-fill" style="font-size: 30px;"></i>
@@ -49,8 +48,8 @@
 								</a>
 							</div>
 						</c:when>
+						<%-- 회원 --%>
 						<c:when test="${(memberInfo.userVerify) == 0 }">
-							<!-- 회원 -->
 							<div class="gnb-utilmenu">
 								<a href="/member/memberModifyPage" title="회원정보수정">
 									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
@@ -66,8 +65,8 @@
 								</a>
 							</div>
 						</c:when>
+						<%-- 판매자 --%>
 						<c:when test="${(memberInfo.userVerify) == 5 }">
-							<!-- 판매자 -->
 							<div class="gnb-utilmenu">
 								<a href="/member/memberModifyPage" title="판매자 정보 수정">
 									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
@@ -86,8 +85,8 @@
 								</a>
 							</div>
 						</c:when>
+						<%-- 비회원 --%>
 						<c:otherwise>
-							<!-- 비회원 -->
 							<div class="gnb-utilmenu">
 								<a href="/member/memberLoginPage" title="로그인">
 									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
@@ -158,7 +157,7 @@
 					</div>
 				</div>
 
-				<!--공지사항-->
+				<!--공지사항 막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정-->
 				<div class="notice-box">
 					<div class="notice">
 						<p>NOTICE</p>
@@ -177,7 +176,7 @@
 					</div>
 				</div>
 
-				<!--리뷰-->
+				<!--리뷰 막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정-->
 				<div class="review-box">
 					<div class="review">
 						<p>REVIEW</p>
@@ -207,20 +206,11 @@
 			<!--상품-->
 			<div class="item">
 				<p>ITEM</p>
-				<!-- 
-					private int pno;
-					private int cno;
-					private String productName;
-					private int productPrice;
-					private int productStock;
-					private String productDescription;
-					private Date productRegDate;
-				 -->
 				<div class="product_list_box">
 					<c:forEach var="mainPageProductList" items="${mainPageProductList }">
 						<div class="product">
 							<div>
-								<img src="${pageContext.request.contextPath}/resources/mgsjimages/mainimages/huskyAnimal.jpg" alt="상품이미지로딩실패">
+								<img src="${mainPageProductList.storedFileName }" alt="상품이미지로딩실패">
 								<br>
 								<a href="/product/productView?pno=${mainPageProductList.pno }" class="product_name">${mainPageProductList.productName }</a>
 								<br>
@@ -229,31 +219,28 @@
 						</div>
 					</c:forEach>
 				</div>
+			</div>
 
+		</div>
+	</div>
+	<!--푸터 영역-->
+	<footer>
+		<div class="company">
+			<div class="corporate">
+				<span>고객센터</span>
+				<i class="bi bi-headset"></i> <i>1234-5678</i>
+			</div>
+			<div class="corporate-txt">
+				<p>대표자 : 이젠3조 | 서울특별시 종로구 | 사업자등록번호 : 000-00-00000</p>
+				<br>
+				<p>
+					<a href="mailto:3teamproject@example.com">3teamproject@example.com</a>
+					&nbsp;&nbsp;| FAX : 02-0000-0000
+				</p>
+				<address>&copy;Copyright 2023. ezen3projectteam. All rights reserved.</address>
 			</div>
 		</div>
-
-		<!--푸터 영역-->
-		<footer>
-			<div class="company">
-				<div class="corporate">
-					<span>고객센터</span>
-					<i class="bi bi-headset"></i> <i>1234-5678</i>
-				</div>
-				<div class="corporate-txt">
-					<p>대표자 : 이젠3조 | 서울특별시 종로구 | 사업자등록번호 : 000-00-00000</p>
-					<br>
-					<p>
-						<a href="mailto:3teamproject@example.com">3teamproject@example.com</a>
-						&nbsp;&nbsp;| FAX : 02-0000-0000
-					</p>
-					<address>&copy;Copyright 2023. ezen3projectteam. All rights reserved.</address>
-				</div>
-			</div>
-
-		</footer>
-
-	</div>
+	</footer>
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/mainpage/main.js"></script>
 </html>
