@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.member.domain.MemberDTO;
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 import com.project.order.domain.PaymentDTO;
+import com.project.order.service.OrderService;
 import com.project.order.service.PaymentService;
 
 @Controller
@@ -27,19 +29,29 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 	
+	@Autowired
+	private OrderService orderService;
+	
 	//결제 페이지
 	@RequestMapping(value = "/payment/paymentPage", method = RequestMethod.GET)
 	public String paymentPage(
 			String userId,
-			PaymentDTO paymentDTO,	
+			OrderDetailDTO OrderdetailDTO,	
 			Model model,
-			HttpServletRequest req,
-			HttpServletResponse resp) throws Exception {
+			HttpServletRequest req) throws Exception {
 		
 		logger.info("결제 페이지 paymentPage - Controller");
 		
+		HttpSession session = req.getSession();
+
+		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 		
+		OrderdetailDTO.setUserId(memberLoginSession.getUserId());
 		
+		OrderDetailDTO Orderdetail = orderService.orderView(userId);
+		
+		model.addAttribute("OrderdetailDTO", Orderdetail);
+
 		return "/payment/paymentPage";
 	}
 	
@@ -56,13 +68,25 @@ public class PaymentController {
 	
 	//결제 내역 조회
 	@RequestMapping(value = "/payment/paymentView", method = RequestMethod.GET)
-	public String paymentView(Model model, PaymentDTO paymentDTO, int orderNum) throws Exception {
+	public void paymentView(
+			HttpServletRequest req,
+			Model model,
+			PaymentDTO paymentDTO, 
+			String userId) throws Exception {
 		
 		logger.info("결제 상세 내역 paymentView - Controller");
 		
-		// paymentService.paymentView(orderNum);
+		HttpSession session = req.getSession();
+
+		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 		
-		return "/payment/paymendPage";
+		paymentDTO.setUserId(memberLoginSession.getUserId());
+		
+		paymentDTO = paymentService.paymentView(userId);
+		
+		model.addAttribute("paymentDTO", paymentDTO);
+		// 에러나면 redirect:/
+		//return "/payment/paymendPage";
 	}
 	
 	//결제 내역 목록

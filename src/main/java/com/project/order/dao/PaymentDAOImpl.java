@@ -38,4 +38,13 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 		return sqlSession.selectList(NAME_SPACE + ".paymentList", paymentDTO);
 	}
+	
+	//결제 상세 내역
+	@Override
+	public PaymentDTO paymentView(String userId) throws Exception {
+		
+		logger.info("결제 상세 내역 paymentView - DAO");
+		
+		return sqlSession.selectOne(NAME_SPACE + ".paymentView", userId);
+	}
 }
