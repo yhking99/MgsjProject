@@ -149,11 +149,11 @@ request.setCharacterEncoding("UTF-8");
                                 <col style="width:140px">
                             </colgroup>
                             <tbody>
-                            	<c:set var = "total" value = "0" />
-                            	<c:forEach var="cartList" items="${cartList}">
+                            <c:set var = "total" value = "0" />
+                            <c:forEach var="cartList" items="${cartList}">
                               	<tr>	
                                     <td class="itemview_chk">
-                                        <input type="checkbox" id = "chkbox" name = "chkbox" data-cartNum = "${cartList.cartNum}">
+                                        <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-cartNum = "${cartList.cartNum}">
                                     </td>
                                     <td class="itemview_thum">
                                         <a href="/product.html"><img src="/resources/product/images/product_sample.png"></a>
@@ -244,17 +244,27 @@ request.setCharacterEncoding("UTF-8");
         </footer>
 
     <script>
-		$("#allchk").click(function(){
+		 $("#allchk").click(function(){
 			var chk = $("#allchk").prop("checked");
 		
 			if(chk) {
-				$(".chkbox").prop("chekced", true);
+				$(".test").prop("checked", true);
 			} else {
-				$(".chkbox").prop("checed", false);
+				$(".test").prop("checked", false);
 			}
 		
-		});
+		}); 
     
+	/* 	$(document).on('click', "#allchk", function() {
+			var chk = $("#allchk").prop("checked");
+			
+			if(chk) {
+				$(".test").prop("checked", true);
+			} else {
+				$(".test").prop("checked", false);
+			}
+		
+		}); */
     
         /*수량 증가, 감소*/
         function count(type){
