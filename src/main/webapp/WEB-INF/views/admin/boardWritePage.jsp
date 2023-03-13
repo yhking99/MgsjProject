@@ -23,7 +23,7 @@
 			<h1>게시글 작성하기</h1>
 		</c:otherwise>
 	</c:choose>
-	<form method="post" action="/board/boardWrite" autocomplete="off" role="form">
+	<form method="post" action="/admin/boardWrite" autocomplete="off" role="form">
 
 		<div>
 			<label>게시글 제목 : </label>

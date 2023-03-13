@@ -3,8 +3,6 @@ package com.project.board.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import lombok.extern.slf4j.Slf4j;
-
 
 public class PageIngredient {
 	// BoardController 부분의 페이징이 매우 복잡하다. 그냥 클래스로 하나 만들어서 관리하자.
@@ -26,12 +24,16 @@ public class PageIngredient {
 	private String searchType;
 	private String keyword;
 	private String searchTypeAndKeyword;
-
+	
 	// 생성자를 이용하여 기본값을 설정해준다.
 	public PageIngredient() {
-		this.contentNum = 10;
-		this.maxPageNum = 10;
-		this.selectContent = 10;
+		
+	}
+	
+	public PageIngredient(int contentNum , int maxPageNum, int selectContent) {
+		this.contentNum = contentNum;
+		this.maxPageNum = maxPageNum;
+		this.selectContent = selectContent;
 	}
 
 	// 페이징 getter, setter

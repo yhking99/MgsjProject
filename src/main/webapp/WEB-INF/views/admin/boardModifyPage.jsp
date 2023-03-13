@@ -39,7 +39,7 @@ input[name=userId]:hover {
 	<%
 	}
 	%>
-	<form action="/board/boardModify" method="post">
+	<form action="/admin/boardModify" method="post">
 		<div style="display: none;">
 			<label>게시글 번호 : </label>
 			<input type="text" name="bno" value="${boardDTO.bno }">
