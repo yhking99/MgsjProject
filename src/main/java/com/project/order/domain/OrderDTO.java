@@ -3,7 +3,7 @@ package com.project.order.domain;
 import java.util.Date;
 
 public class OrderDTO {
-	
+
 	private int orderNum;
 	private String userId;
 	private Date orderDate;
@@ -12,18 +12,12 @@ public class OrderDTO {
 	private String detailAddress2;
 	private String recipient;
 	private String recipientPhone;
-	
-	
-	 //조인용 변수 private String productName; private int productPrice; private int
+
+	// 조인용 변수 private String productName; private int productPrice; private int
 	private String productName;
 	private int productPrice;
 	private int productCnt;
 	private int pno;
-	 
-	/* alt + shift + a로 지우기
-	 * private int totalPrice; public OrderDTO() { this.totalPrice = this.productCnt
-	 * * this.productPrice; }
-	 */
 
 	public int getOrderNum() {
 		return orderNum;
@@ -88,8 +82,7 @@ public class OrderDTO {
 	public void setRecipientPhone(String recipientPhone) {
 		this.recipientPhone = recipientPhone;
 	}
-	
-	//조인용
+
 	public String getProductName() {
 		return productName;
 	}
@@ -113,12 +106,6 @@ public class OrderDTO {
 	public void setProductCnt(int productCnt) {
 		this.productCnt = productCnt;
 	}
-	
-	/*
-	 * public int getTotalPrice() { return totalPrice; }
-	 * 
-	 * public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
-	 */
 
 	public int getPno() {
 		return pno;
@@ -130,9 +117,10 @@ public class OrderDTO {
 
 	@Override
 	public String toString() {
-		return "OrderDTO [orderNum=" + orderNum + ", userId=" + userId + ", orderDate=" + orderDate + ", postAddress="
-				+ postAddress + ", detailAddress=" + detailAddress + ", detailAddress2=" + detailAddress2
-				+ ", recipient=" + recipient + ", recipientPhone=" + recipientPhone + ", productName=" + productName
-				+ ", productPrice=" + productPrice + ", productCnt=" + productCnt + ", pno=" + pno + "]";
+		return "OrderDTO [orderNum=" + orderNum + ", userId=" + userId + ", orderDate=" + orderDate + ", postAddress=" + postAddress
+				+ ", detailAddress=" + detailAddress + ", detailAddress2=" + detailAddress2 + ", recipient=" + recipient + ", recipientPhone="
+				+ recipientPhone + ", productName=" + productName + ", productPrice=" + productPrice + ", productCnt=" + productCnt + ", pno=" + pno
+				+ "]";
 	}
+
 }
