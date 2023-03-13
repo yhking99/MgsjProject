@@ -221,35 +221,35 @@ request.setCharacterEncoding("UTF-8");
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id = "postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소1</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" name="detailAddress" value="${memberAddress.address}" maxlength="200" />
+									<input type="text" class="checkDel" id ="detailAddress"  name="detailAddress" value="${memberAddress.address}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소2</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id = "detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" name="recipient" value="${memberInfo.userId}" maxlength="200" />
+									<input type="text" class="checkDel" id = "recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인 전화번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
+									<input type="text" class="checkDel" id = "recipientPhone" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
 								</div>
 							</div>
 							<br>
-							<input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)'/>배송지 정보 직접입력		
+							<input type='checkbox' id='my_checkbox' onclick = 'toggleTextbox(this)'/>배송지 정보 직접입력		
 						</div>
 						
 						<!-- 유저 정보 저장 박스 끝 -->
@@ -274,14 +274,14 @@ request.setCharacterEncoding("UTF-8");
 								<span>결제예정금액</span>
 								<span>${total + 3000}원</span>
 							</div>
-							<a href="/order/orderWritePage">
-								<button type="button" class="btn_pay">
+							<a href="/payment/paymentPage">
+								<button type="submit" class="btn_pay">
 									<span>주문하기</span>
 								</button>
 							</a>
 							<a href="/cart/cartList">
 								<button type="button" class="btn_cart">
-									<span>장바구니</span>
+									<span>장바구니로 이동</span>
 								</button>
 							</a>
 						</div>
@@ -313,11 +313,23 @@ request.setCharacterEncoding("UTF-8");
 		
 		function toggleTextbox(checkbox) {
 			 
-			var userInfoText = document.querySelector('.checkDel');
+			var userInfoText = document.querySelectorAll('.checkDel');
 			
 			
-			userInfoText.value = checkbox.checked ? "" : "";
-
+			for (let i = 0; i < userInfoText.length; i++) {
+					/* userInfoText[i].textContent = ""; */
+					if(userInfoText[i].id == "postAddress") {
+						userInfoText[i].value = checkbox.checked ? "" : '123';
+					} else if(userInfoText[i].id == "detailAddress") {
+						userInfoText[i].value = checkbox.checked ? "" : '123';
+					} else if(userInfoText[i].id == "detailAddress2") {
+						userInfoText[i].value = checkbox.checked ? "" : '123';
+					} else if(userInfoText[i].id == "recipient") {
+						userInfoText[i].value = checkbox.checked ? "" : '123';
+					} else if(userInfoText[i].id == "recipientPhone") {
+						userInfoText[i].value = checkbox.checked ? "" : '123';
+					}
+				}
 			}
 		</script>
 </body>
