@@ -14,7 +14,7 @@ request.setCharacterEncoding("UTF-8");
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>결제</title>
 
-  <link rel="stylesheet" href="/common/common.css">
+  <link rel="stylesheet" href="${contextPath}/resources/mainpage/main.css">
   <link rel="stylesheet" href="${contextPath}/resources/payment/payment.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -26,9 +26,11 @@ request.setCharacterEncoding("UTF-8");
       <header>
         <div id="gnb">
           <!--상단 로고-->
-          <a href="#">
-            <h1>MGSJ</h1>
-          </a>
+         
+           <h1>
+             <a href="/mainPage/mainPage">MGSJ</a>
+           </h1>
+
           <!--검색창-->
           <div class="search">
             <button type="submit"><i class="bi bi-search" style="font-size: 25px;"></i></button>
@@ -77,6 +79,7 @@ request.setCharacterEncoding("UTF-8");
           </div>
           
           <br>
+          <!-- 주문시 주문정보  -->
           <div class="pay-product">
             <b class="pro-title product-name">상품명</b> <input type="text" id="product_name" name="product_name" value="${product_name}" readonly/>
             <br>
