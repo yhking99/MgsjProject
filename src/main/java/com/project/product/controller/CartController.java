@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.member.domain.MemberDTO;
 import com.project.product.domain.CartDTO;
-import com.project.product.domain.ProductDTO;
 import com.project.product.service.CartService;
 import com.project.product.service.ProductService;
 
@@ -87,9 +86,6 @@ public class CartController {
 		HttpSession session = req.getSession();
 		
 		MemberDTO memberLoginSession = (MemberDTO)session.getAttribute("memberInfo");
-		
-		System.out.println("memberInfo의 값 ======" + memberLoginSession.getUserId());
-		
 		
 		if (memberLoginSession == null || !memberLoginSession.getUserId().equals(userId)) {
 			// 세션값이 없을때, 세션아이디값과 db에 있는 아이디값이 다를경우
