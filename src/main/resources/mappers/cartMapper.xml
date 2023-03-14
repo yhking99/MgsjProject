@@ -5,8 +5,8 @@
 	<!-- cartdto cartNum int NO PRI pno int NO PRI productCnt int NO -->
 	<!-- 장바구니 등록 -->
 	<insert id="cartWrite" parameterType="com.project.product.domain.CartDTO">
-		INSERT INTO cartdto (pno, productCnt, userId) VALUES (#{pno}, #{productCnt}, #{userId})
-		ON DUPLICATE KEY UPDATE productCnt = productCnt + ${productCnt}
+		INSERT INTO cartdto (pno, productCnt, userId)
+		VALUES (#{pno}, #{productCnt}, #{userId})
 	</insert>
 
 
