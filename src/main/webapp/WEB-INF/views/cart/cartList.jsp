@@ -22,9 +22,9 @@ request.setCharacterEncoding("UTF-8");
         <header>
             <div id="gnb">
                 <!--상단 로고-->
-               	<h1>
-					<a href="/mainPage/mainPage">MGSJ</a>
-				</h1>
+                  <h1>
+               <a href="/mainPage/mainPage">MGSJ</a>
+            </h1>
                 <!--검색창-->
                 <div class="search">
                     <button type="submit"><i class="bi bi-search" style="font-size: 25px;"></i></button>
@@ -33,64 +33,64 @@ request.setCharacterEncoding("UTF-8");
                 <!--유틸메뉴-->
                 <div class="gnb-utilmenu">
                     <c:choose>
-						<c:when test="${(memberInfo.userVerify) == 128 && (memberInfo != null) }">
-							<!-- 관리자 -->
-							<div class="gnb-utilmenu">
-								<a href="/member/memberLoginPage" title="관리자 회원 관리 페이지">
-									<i class="bi bi-bookmark-star-fill" style="font-size: 30px;"></i>
-								</a>
-								<a href="/cart.html" title="관리자 상품 관리 페이지">
-									<i class="bi bi-box-seam-fill" style="font-size: 30px;"></i>
-								</a>
-								<a href="#" title="로그 기록 확인 페이지">
-									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-								</a>
-							</div>
-						</c:when>
-						
-						<c:when test="${(memberInfo.userVerify) == 0 && (memberInfo != null) }">
-							<!-- 회원 -->
-							<div class="gnb-utilmenu">
-								<a href="/member/memberModifyPage" title="회원정보수정">
-									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
-								</a>
-								<a href="/cart/cartList" title="주문내역">
-									<i class="bi bi-cart" style="font-size: 30px;"></i>
-								</a>
-								<a href="#" title="활동 기록">
-									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-								</a>
-								<a href="javascript:memberLogout()" title="로그아웃">
-									<i class="bi bi-door-open" style="font-size: 30px;"></i>
-								</a>
-							</div>
-						</c:when>
-						<c:when test="${(memberInfo.userVerify) == 5 && (memberInfo != null) }">
-							<!-- 판매자 -->
-							<div class="gnb-utilmenu">
-								<a href="/member/memberModifyPage" title="판매자 정보 수정">
-									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
-								</a>
-								<a href="/cart/cartList" title="판매상품내역">
-									<i class="bi bi-cart" style="font-size: 30px;"></i>
-								</a>
-								<a href="#" title="활동 기록">
-									<i class="bi bi-clock-history" style="font-size: 30px;"></i>
-								</a>
-								<a href="javascript:memberLogout()" title="로그아웃">
-									<i class="bi bi-door-open" style="font-size: 30px;"></i>
-								</a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<!-- 비회원 -->
-							<div class="gnb-utilmenu">
-								<a href="/member/memberLoginPage" title="로그인">
-									<i class="bi bi-person-fill" style="font-size: 30px;"></i>
-								</a>
-							</div>
-						</c:otherwise>
-					</c:choose>
+                  <c:when test="${(memberInfo.userVerify) == 128 && (memberInfo != null) }">
+                     <!-- 관리자 -->
+                     <div class="gnb-utilmenu">
+                        <a href="/member/memberLoginPage" title="관리자 회원 관리 페이지">
+                           <i class="bi bi-bookmark-star-fill" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="/cart.html" title="관리자 상품 관리 페이지">
+                           <i class="bi bi-box-seam-fill" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="#" title="로그 기록 확인 페이지">
+                           <i class="bi bi-clock-history" style="font-size: 30px;"></i>
+                        </a>
+                     </div>
+                  </c:when>
+                  
+                  <c:when test="${(memberInfo.userVerify) == 0 && (memberInfo != null) }">
+                     <!-- 회원 -->
+                     <div class="gnb-utilmenu">
+                        <a href="/member/memberModifyPage" title="회원정보수정">
+                           <i class="bi bi-person-fill" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="/cart/cartList" title="주문내역">
+                           <i class="bi bi-cart" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="#" title="활동 기록">
+                           <i class="bi bi-clock-history" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="javascript:memberLogout()" title="로그아웃">
+                           <i class="bi bi-door-open" style="font-size: 30px;"></i>
+                        </a>
+                     </div>
+                  </c:when>
+                  <c:when test="${(memberInfo.userVerify) == 5 && (memberInfo != null) }">
+                     <!-- 판매자 -->
+                     <div class="gnb-utilmenu">
+                        <a href="/member/memberModifyPage" title="판매자 정보 수정">
+                           <i class="bi bi-person-fill" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="/cart/cartList" title="판매상품내역">
+                           <i class="bi bi-cart" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="#" title="활동 기록">
+                           <i class="bi bi-clock-history" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="javascript:memberLogout()" title="로그아웃">
+                           <i class="bi bi-door-open" style="font-size: 30px;"></i>
+                        </a>
+                     </div>
+                  </c:when>
+                  <c:otherwise>
+                     <!-- 비회원 -->
+                     <div class="gnb-utilmenu">
+                        <a href="/member/memberLoginPage" title="로그인">
+                           <i class="bi bi-person-fill" style="font-size: 30px;"></i>
+                        </a>
+                     </div>
+                  </c:otherwise>
+               </c:choose>
                 </div>
             </div>
 
@@ -100,10 +100,10 @@ request.setCharacterEncoding("UTF-8");
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropbtn"><i class="bi bi-list"></i></a>
                         <div class="dropdown-content">
-							<c:forEach var = "categoryList" items = "${categoryList}">
-								<a href="#" id = "cateName">${categoryList.categoryName}</a>
-							</c:forEach>
-						</div>
+                     <c:forEach var = "categoryList" items = "${categoryList}">
+                        <a href="#" id = "cateName">${categoryList.categoryName}</a>
+                     </c:forEach>
+                  </div>
                     </li>
                     <li><a href="pickup.html#pickup-01">현재 픽업 가능</a></li>
                     <li><a href="pickup.html#pickup-02">1시간 내 픽업 가능</a></li>
@@ -126,7 +126,7 @@ request.setCharacterEncoding("UTF-8");
                             <li>
                                 <span class="checkall">
                                     <input type="checkbox" id="allchk" name="allchk"/>                                    
-                                	<label>전체선택</label>
+                                   <label>전체선택</label>
                                 </span>
                             </li> 
                         </ul>
@@ -151,7 +151,7 @@ request.setCharacterEncoding("UTF-8");
                             <tbody>
                             <c:set var = "total" value = "0" />
                             <c:forEach var="cartList" items="${cartList}">
-                              	<tr>	
+                                 <tr>   
                                     <td class="itemview_chk">
                                         <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-pno = "${cartList.pno}">
                                     </td>
@@ -167,7 +167,7 @@ request.setCharacterEncoding("UTF-8");
                                          
                                     </td>
                                     <td class="itemview_price">
-                                    	
+                                       
                                         <div>
                                             <span>${cartList.productPrice}</span>
                                             <span>원</span>
@@ -175,32 +175,32 @@ request.setCharacterEncoding("UTF-8");
                                         
                                         <div class="product_amount">
                                             <div class="amount_pm">
- 		 
-                                                	<%-- 	<button onclick="decrease()">-</button>
-	                                                		 <div class = "input-group">
-																<input type = "number" name = "productCnt" value = "${cartList.productCnt}">
-															</div>     
-														<button onclick="increase()">+</button> --%>
-														
-											<div class="input-group">
-											  <button class="btn-decrease">-</button>
-											  		<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" onkeydown= "javascript: return event.keyCode == 69 ? false : true">
-											  <button class="btn-increase">+</button>
-											</div>
+        
+                                                   <%--    <button onclick="decrease()">-</button>
+                                                          <div class = "input-group">
+                                                <input type = "number" name = "productCnt" value = "${cartList.productCnt}">
+                                             </div>     
+                                          <button onclick="increase()">+</button> --%>
+                                          
+                                 <div class="input-group">
+                                   <button class="btn-decrease">-</button>
+                                         <input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" onkeydown= "javascript: return event.keyCode == 69 ? false : true">
+                                   <button class="btn-increase">+</button>
+                                 </div>
                                              
                                                 
                                             </div>
                                         </div>
-					
+               
                                     </td>
                                    <!--  <td class="itemview_pay">
                                         <button class="btn_paynow">
                                             <span>바로 구매</span>
                                         </button>
-                                    </td> -->	
+                                    </td> -->   
                                 </tr> 
-                                	<c:set var= "total" value="${total + (cartList.productPrice * cartList.totalCnt)}"/>
-                               </c:forEach>	
+                                   <c:set var= "total" value="${total + (cartList.productPrice * cartList.totalCnt)}"/>
+                               </c:forEach>   
                             </tbody>
                         </table>
                     </div>
@@ -224,9 +224,9 @@ request.setCharacterEncoding("UTF-8");
                             <span>${total + 3000}원</span>
                     </div>
                     <a href="/order/orderPage">
-	                    <button type="button" class="btn_pay">
-	                        <span>주문하기</span>
-	                    </button>
+                       <button type="button" class="btn_pay">
+                           <span>주문하기</span>
+                       </button>
                     </a>
                 </div>
             </div>
@@ -252,32 +252,32 @@ request.setCharacterEncoding("UTF-8");
         </footer>
 
     <script>
-		 $("#allchk").click(function(){
-			var chk = $("#allchk").prop("checked");
-		
-			if(chk) {
-				$(".test").prop("checked", true);
-			} else {
-				$(".test").prop("checked", false);
-			}
-		
-		}); 
+       $("#allchk").click(function(){
+         var chk = $("#allchk").prop("checked");
+      
+         if(chk) {
+            $(".test").prop("checked", true);
+         } else {
+            $(".test").prop("checked", false);
+         }
+      
+      }); 
     
-	/* 	$(document).on('click', "#allchk", function() {
-			var chk = $("#allchk").prop("checked");
-			
-			if(chk) {
-				$(".test").prop("checked", true);
-			} else {
-				$(".test").prop("checked", false);
-			}
-		
-		}); */
+   /*    $(document).on('click', "#allchk", function() {
+         var chk = $("#allchk").prop("checked");
+         
+         if(chk) {
+            $(".test").prop("checked", true);
+         } else {
+            $(".test").prop("checked", false);
+         }
+      
+      }); */
     
         /*수량 증가, 감소*/
       /*   function count(type){
             
-			const resultElement = document.getElementById('result');
+         const resultElement = document.getElementById('result');
 
             let number = resultElement;
 
