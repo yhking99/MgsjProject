@@ -53,7 +53,7 @@ public class OrderController {
 		  		MemberAddressDTO memadd =  orderService.memAddress(userId);
 		  	
 				List<CartDTO> cartList = cartService.cartList(cartDTO);
-				  
+				
 				model.addAttribute("cartList", cartList);
 				
 				model.addAttribute("memberAddress", memadd);
@@ -61,6 +61,8 @@ public class OrderController {
 				return "/order/orderPage";
 	  }
 	
+	  
+	  
 	// 주문 등록
 	@RequestMapping(value = "/order/orderWrite", method = RequestMethod.POST)
 	public String orderWrite(OrderDTO orderDTO) throws Exception {
