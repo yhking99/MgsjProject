@@ -173,7 +173,6 @@ request.setCharacterEncoding("UTF-8");
 									<td class="itemview_info">
 
 										<div>
-											<!--  <span>제품번호 : </span><span class="product_num">00000</span><br> -->
 											<span class="product_name">
 												<a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a>
 											</span>

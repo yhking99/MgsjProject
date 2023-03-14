@@ -34,10 +34,10 @@
 						<%-- 관리자 --%>
 						<c:when test="${(memberInfo.userVerify) == 128}">
 							<div class="gnb-utilmenu">
-								<a href="/member/memberLoginPage" title="관리자 회원 관리 페이지">
+								<a href="/admin/memberManagement?pageNum=1" title="관리자 회원 관리 페이지">
 									<i class="bi bi-bookmark-star-fill" style="font-size: 30px;"></i>
 								</a>
-								<a href="/cart.html" title="관리자 상품 관리 페이지">
+								<a href="/admin/productManagement?pageNum=1" title="관리자 상품 관리 페이지">
 									<i class="bi bi-box-seam-fill" style="font-size: 30px;"></i>
 								</a>
 								<a href="#" title="로그 기록 확인 페이지">
@@ -154,44 +154,6 @@
 							<span class="dot" onclick="currentSlide(6)"></span>
 						</div>
 
-					</div>
-				</div>
-
-				<!--공지사항 막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정-->
-				<div class="notice-box">
-					<div class="notice">
-						<p>NOTICE</p>
-						<a href="/announcement/announcement?pageNum=1">+더보기</a>
-						<ul>
-							<li>
-								<a href="#" class="noticeopen">1. 텍스트입니다텍스트입니다텍스트입니다</a>
-							</li>
-							<li>
-								<a href="#" class="noticeopen">2. 텍스트입니다텍스트입니다</a>
-							</li>
-							<li>
-								<a href="#" class="noticeopen">3. 텍스트입니다텍스트입니다</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<!--리뷰 막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정막을예정-->
-				<div class="review-box">
-					<div class="review">
-						<p>REVIEW</p>
-						<a href="review.html">+더보기</a>
-						<ul>
-							<li>
-								<a href="#" class="reviewopen">리뷰제목1</a>
-							</li>
-							<li>
-								<a href="#" class="reviewopen">리뷰제목2</a>
-							</li>
-							<li>
-								<a href="#" class="reviewopen">리뷰제목3</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 
