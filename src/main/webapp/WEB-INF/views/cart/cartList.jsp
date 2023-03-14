@@ -162,7 +162,7 @@ request.setCharacterEncoding("UTF-8");
                                         
                                         <div>
                                            <!--  <span>제품번호 : </span><span class="product_num">00000</span><br> -->
-                                            <span class="product_name"><a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a></span>
+                                            <span class="product_name" name = "pno"><a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a></span>
                                         </div>
                                          
                                     </td>
@@ -175,11 +175,19 @@ request.setCharacterEncoding("UTF-8");
                                         
                                         <div class="product_amount">
                                             <div class="amount_pm">
-             									<input type="button" onclick="count('minus')" value="-"/>
-                                                		 <div id = "result">
-															<input type = "number" id ="result" name = "productCnt" value = "${cartList.productCnt}">
-														</div>                   
-                                                <input type="button" onclick="count('plus')" value="+"/>
+ 		 
+                                                	<%-- 	<button onclick="decrease()">-</button>
+	                                                		 <div class = "input-group">
+																<input type = "number" name = "productCnt" value = "${cartList.productCnt}">
+															</div>     
+														<button onclick="increase()">+</button> --%>
+														
+											<div class="input-group">
+											  <button class="btn-decrease">-</button>
+											  		<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" onkeydown= "javascript: return event.keyCode == 69 ? false : true">
+											  <button class="btn-increase">+</button>
+											</div>
+                                             
                                                 
                                             </div>
                                         </div>
@@ -191,7 +199,7 @@ request.setCharacterEncoding("UTF-8");
                                         </button>
                                     </td> -->	
                                 </tr> 
-                                	<c:set var= "total" value="${total + (cartList.productPrice * cartList.productCnt)}"/>
+                                	<c:set var= "total" value="${total + (cartList.productPrice * cartList.totalCnt)}"/>
                                </c:forEach>	
                             </tbody>
                         </table>
@@ -215,7 +223,7 @@ request.setCharacterEncoding("UTF-8");
                             <span>결제예정금액</span>
                             <span>${total + 3000}원</span>
                     </div>
-                    <a href="/order/orderWritePage">
+                    <a href="/order/orderPage">
 	                    <button type="button" class="btn_pay">
 	                        <span>주문하기</span>
 	                    </button>
@@ -267,8 +275,9 @@ request.setCharacterEncoding("UTF-8");
 		}); */
     
         /*수량 증가, 감소*/
-        function count(type){
-            const resultElement = document.getElementById('result');
+      /*   function count(type){
+            
+			const resultElement = document.getElementById('result');
 
             let number = resultElement;
 
@@ -280,8 +289,27 @@ request.setCharacterEncoding("UTF-8");
             if(number < 1){
                 number = 1;
             }
-            resultElement.innerText = number;
-        }
+            resultElement.innerText = number;   
+        } */
+        
+      
+        const groups = document.querySelectorAll('.input-group');
+
+        groups.forEach(group => {
+          const input = group.querySelector('.input-number');
+          const increaseBtn = group.querySelector('.btn-increase');
+          const decreaseBtn = group.querySelector('.btn-decrease');
+
+          increaseBtn.addEventListener('click', () => {
+            input.value = parseInt(input.value) + 1;
+          });
+
+          decreaseBtn.addEventListener('click', () => {
+            input.value = parseInt(input.value) - 1;
+          });
+        });
+        
+        
         </script>
 
 </body>
