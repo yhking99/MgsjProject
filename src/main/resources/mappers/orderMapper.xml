@@ -21,13 +21,13 @@ VALUES (#{orderNum}, #{userId}, NOW(), #{postAddress}, #{detailAddress}, #{detai
 </insert>
 
 <!-- 주문 상세 등록 -->
-<!-- <insert id = "orderDetailWrite" parameterType = "com.project.order.domain.OrderDetailDTO">
+<insert id = "orderDetailWrite" parameterType = "com.project.order.domain.OrderDetailDTO">
 
 INSERT INTO orderdetaildto
 VALUES(#{orderNum}, #{pno}, #{productPrice}, #{productCnt}, #{orderStatus}, #{userId})
 
 
-</insert> -->
+</insert>
 
 <!-- 주문 상세 조회 -->
 <!-- orderdetailDTO -->
@@ -69,7 +69,16 @@ SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2
 
 </select>
 
+<!-- 회원 주소 조회 -->
+<select id = "memAddress" parameterType = "String" resultType = "com.project.member.domain.MemberAddressDTO">
 
+select m.userId, postAddress, address, detailAddress, m.userPhoneNumber
+from memberaddressdto as ma
+INNER JOIN memberdto as m
+ON ma.userId = m.userId
+where m.userId = '1111';
+
+</select>
 
 
 
