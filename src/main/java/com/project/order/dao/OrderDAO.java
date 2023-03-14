@@ -2,6 +2,7 @@ package com.project.order.dao;
 
 import java.util.List;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.order.domain.OrderDTO;
 import com.project.order.domain.OrderDetailDTO;
 
@@ -22,6 +23,7 @@ public interface OrderDAO {
 	//주문 목록
 	public List<OrderDTO> orderList(OrderDTO orderDTO) throws Exception;
 	
-
+	//회원 주소 조회
+	public MemberAddressDTO memAddress(String userId) throws Exception;
 
 }
