@@ -48,7 +48,6 @@
 			where writer like concat('%', #{keyword}, '%')
 		</if>
 		
-		
 	</select>
 
 	<!-- 게시글 작성 -->
