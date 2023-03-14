@@ -3,7 +3,6 @@ package com.project.order.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.member.domain.MemberDTO;
 import com.project.order.domain.OrderDTO;
 import com.project.order.domain.OrderDetailDTO;
@@ -37,7 +37,8 @@ public class OrderController {
 	  @RequestMapping(value = "/order/orderPage", method = RequestMethod.GET)
 	  public String orderWritePage(
 			  String userId,
-			  CartDTO cartDTO, 
+			  CartDTO cartDTO,
+			  MemberAddressDTO memberAddressDTO,
 			  Model model,
 			  HttpServletRequest req) throws Exception {
 		  
@@ -48,10 +49,14 @@ public class OrderController {
 		  		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 
 		  		cartDTO.setUserId(memberLoginSession.getUserId());
+		  		
+		  		MemberAddressDTO memadd =  orderService.memAddress(userId);
 		  	
 				List<CartDTO> cartList = cartService.cartList(cartDTO);
 				  
 				model.addAttribute("cartList", cartList);
+				
+				model.addAttribute("memberAddress", memadd);
 				
 				return "/order/orderPage";
 	  }

@@ -1,5 +1,7 @@
 package com.project.member.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,23 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDAO.checkDuplicateId(userId);
 	}
+	
+	// ---------------관리자---------------
+	// 회원 관리를 위한 회원 리스트 가져오기
+	@Override
+	public List<MemberDTO> getMemberList(int displayTotalContent, int pageContent, String searchType, String keyword) throws Exception {
+		
+		logger.info("회원 리스트 가져오기(관리자) getMemberList - service");
+		
+		return memberDAO.getMemberList(displayTotalContent, pageContent, searchType, keyword);
+	}
 
+	// 회원 검색 기능
+	@Override
+	public int totalSearchMember(String searchType, String keyword) throws Exception {
+		
+		logger.info("회원 검색 시작 (관리자) totalSearchMember - service");
+		
+		return memberDAO.totalSearchMember(searchType, keyword);
+	}
 }

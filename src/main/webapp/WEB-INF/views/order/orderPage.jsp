@@ -135,9 +135,9 @@ request.setCharacterEncoding("UTF-8");
 							<ul class="checkbtn1">
 								<li>
 									<span class="checkall">
-										<input type="checkbox" id="allchk" name="btncheckall">
-										<label>전체선택</label>
-									</span>
+                                    	<input type="checkbox" id="allchk" name="allchk"/>                                    
+                                	<label>전체선택</label>
+                                </span>
 								</li>
 							</ul>
 							<!-- <ul class="checkbtn2">
@@ -160,17 +160,15 @@ request.setCharacterEncoding("UTF-8");
 								</colgroup>
 								<tbody>
 									<c:set var="total" value="0" />
-									<c:forEach var="cartList" items="${cartList}">
-										<tr>
-											<td class="itemview_chk">
-												<input type="checkbox">
-											</td>
-											<td class="itemview_thum">
-												<a href="/product.html">
-													<img src="/resources/product/images/product_sample.png">
-												</a>
-											</td>
-											<td class="itemview_info">
+										<c:forEach var="cartList" items="${cartList}">
+											<tr>	
+	                                    <td class="itemview_chk">
+	                                        <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-pno = "${cartList.pno}">
+	                                    </td>
+	                                    <td class="itemview_thum">
+	                                        <a href="/product.html"><img src="/resources/product/images/product_sample.png"></a>
+	                                    </td>
+	                                    <td class="itemview_info">
 
 												<div>
 													<!--  <span>제품번호 : </span><span class="product_num">00000</span><br> -->
@@ -186,21 +184,14 @@ request.setCharacterEncoding("UTF-8");
 													<span>${cartList.productPrice}</span>
 													<span>원</span>
 												</div>
-
-												<div class="product_amount">
-													<div class="amount_pm">
-														<input type="button" onclick="count('minus')" value="-" />
-														<div id="result">
-															<input type="number" id="result" name="productCnt" value="${cartList.productCnt}">
-														</div>
-														<input type="button" onclick="count('plus')" value="+" />
-
-													</div>
+												<div class="input-group">
+													<button class="btn-decrease">-</button>
+														<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" onkeydown= "javascript: return event.keyCode == 69 ? false : true">
+													<button class="btn-increase">+</button>
 												</div>
-
 											</td>
 										</tr>
-										<c:set var="total" value="${total + (cartList.productPrice * cartList.productCnt)}" />
+										<c:set var="total" value="${total + (cartList.productPrice * cartList.totalCnt)}" />
 									</c:forEach>
 								</tbody>
 							</table>
@@ -208,7 +199,7 @@ request.setCharacterEncoding("UTF-8");
 					</div>
 
 					<form class="userInfoBox" id="frm" action="/order/orderWrite" method="post">
-						<div class="userInfo">
+						<div class = "userInfo">
 							<div class="form-group">
 								<div>
 									<h2 align="center">주소 확인</h2>
@@ -225,40 +216,39 @@ request.setCharacterEncoding("UTF-8");
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id="postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
+									<input type="Number" class="checkDel" id = "postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소1</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id="detailAddress" name="detailAddress" value="${memberAddress.address}" maxlength="200" />
+									<input type="text" class="checkDel" id ="detailAddress"  name="detailAddress" value="${memberAddress.address}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소2</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id="detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id = "detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id="recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
+									<input type="text" class="checkDel" id = "recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인 전화번호</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id="recipientPhone" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
+									<input type="Number" class="checkDel" id = "recipientPhone" name="recipientPhone" value="+82 ${memberAddress.userPhoneNumber}" maxlength="200" />
 								</div>
 							</div>
 							<br>
-							<input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)' />
-							배송지 정보 직접입력
+							<input type='checkbox' id='my_checkbox' onclick = 'toggleTextbox(this)'/>배송지 정보 직접입력		
 						</div>
-
+						
 						<!-- 유저 정보 저장 박스 끝 -->
-
+						
 
 						<div class="order_rgt">
 							<div class="order_price">
@@ -313,28 +303,58 @@ request.setCharacterEncoding("UTF-8");
 			</div>
 
 		</footer>
-	</div>
 
-	<script>
-		function toggleTextbox ( checkbox ) {
-
-			var userInfoText = document.querySelectorAll ( '.checkDel' );
-
-			for ( let i = 0; i < userInfoText.length; i++ ) {
-				/* userInfoText[i].textContent = ""; */
-				if ( userInfoText[i].id == "postAddress" ) {
-					userInfoText[i].value = checkbox.checked ? "" : '123';
-				} else if ( userInfoText[i].id == "detailAddress" ) {
-					userInfoText[i].value = checkbox.checked ? "" : '123';
-				} else if ( userInfoText[i].id == "detailAddress2" ) {
-					userInfoText[i].value = checkbox.checked ? "" : '123';
-				} else if ( userInfoText[i].id == "recipient" ) {
-					userInfoText[i].value = checkbox.checked ? "" : '123';
-				} else if ( userInfoText[i].id == "recipientPhone" ) {
-					userInfoText[i].value = checkbox.checked ? "" : '123';
+		<script>
+		 $("#allchk").click(function(){
+				var chk = $("#allchk").prop("checked");
+			
+				if(chk) {
+					$(".test").prop("checked", true);
+				} else {
+					$(".test").prop("checked", false);
+				}
+			
+			}); 
+		
+		
+		function toggleTextbox(checkbox) {
+			 
+			var userInfoText = document.querySelectorAll('.checkDel');
+			
+			
+			for (let i = 0; i < userInfoText.length; i++) {
+					/* userInfoText[i].textContent = ""; */
+					if(userInfoText[i].id == "postAddress") {
+						userInfoText[i].value = checkbox.checked ? "" : '${memberAddress.postAddress}';
+					} else if(userInfoText[i].id == "detailAddress") {
+						userInfoText[i].value = checkbox.checked ? "" : '${memberAddress.address}';
+					} else if(userInfoText[i].id == "detailAddress2") {
+						userInfoText[i].value = checkbox.checked ? "" : '${memberAddress.detailAddress}';
+					} else if(userInfoText[i].id == "recipient") {
+						userInfoText[i].value = checkbox.checked ? "" : '${memberInfo.userId}';
+					} else if(userInfoText[i].id == "recipientPhone") {
+						userInfoText[i].value = checkbox.checked ? "" : '${memberAddress.userPhoneNumber}';
+					}
 				}
 			}
-		}
-	</script>
+			
+		const groups = document.querySelectorAll('.input-group');
+
+		        groups.forEach(group => {
+		          const input = group.querySelector('.input-number');
+		          const increaseBtn = group.querySelector('.btn-increase');
+		          const decreaseBtn = group.querySelector('.btn-decrease');
+
+		          increaseBtn.addEventListener('click', () => {
+		            input.value = parseInt(input.value) + 1;
+		          });
+
+		          decreaseBtn.addEventListener('click', () => {
+		            input.value = parseInt(input.value) - 1;
+		          });
+		        });
+		        
+		
+		</script>
 </body>
 </html>
