@@ -185,9 +185,8 @@ request.setCharacterEncoding("UTF-8");
 													<span>원</span>
 												</div>
 												<div class="input-group">
-													<button class="btn-decrease">-</button>
-														<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" onkeydown= "javascript: return event.keyCode == 69 ? false : true">
-													<button class="btn-increase">+</button>
+													<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" 
+													onkeydown= "javascript: return event.keyCode == 69 ? false : true" readonly="readonly">
 												</div>
 											</td>
 										</tr>
