@@ -3,7 +3,6 @@ package com.project.order.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.member.domain.MemberDTO;
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 import com.project.order.service.OrderService;
 import com.project.product.domain.CartDTO;
 import com.project.product.service.CartService;
@@ -36,10 +37,10 @@ public class OrderController {
 	  @RequestMapping(value = "/order/orderPage", method = RequestMethod.GET)
 	  public String orderWritePage(
 			  String userId,
-			  CartDTO cartDTO, 
+			  CartDTO cartDTO,
+			  MemberAddressDTO memberAddressDTO,
 			  Model model,
-			  HttpServletRequest req,
-			  HttpServletResponse resp) throws Exception {
+			  HttpServletRequest req) throws Exception {
 		  
 		  	logger.info("주문 작성 페이지 orderWirtePage - Controller");
 		  		
@@ -48,10 +49,14 @@ public class OrderController {
 		  		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 
 		  		cartDTO.setUserId(memberLoginSession.getUserId());
+		  		
+		  		MemberAddressDTO memadd =  orderService.memAddress(userId);
 		  	
 				List<CartDTO> cartList = cartService.cartList(cartDTO);
 				  
 				model.addAttribute("cartList", cartList);
+				
+				model.addAttribute("memberAddress", memadd);
 				
 				return "/order/orderPage";
 	  }
@@ -92,13 +97,23 @@ public class OrderController {
 
 	// 주문 내역 상세 조회 ( ajax 할거다)
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void orderView(Model model, OrderDTO orderDTO, int orderNum) throws Exception {
+	public void orderView(
+			HttpServletRequest req,
+			Model model, 
+			OrderDetailDTO orderdetailDTO, 
+			String userId) throws Exception {
 
 		logger.info("주문 조회 orderView - Controller");
 
-		orderDTO = orderService.orderView(orderNum);
+		HttpSession session = req.getSession();
 
-		model.addAttribute("orderDTO", orderDTO);
+		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
+
+		orderdetailDTO.setUserId(memberLoginSession.getUserId());
+
+		OrderDetailDTO orderdetail = orderService.orderView(userId);
+
+		model.addAttribute("orderDetailDTO", orderdetail);
 	}
 
 	// 주문 목록
