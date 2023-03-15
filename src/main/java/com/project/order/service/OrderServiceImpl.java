@@ -64,6 +64,15 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.orderList(orderDTO);
 	}
 	
+	//주문 상세 목록
+	@Override
+	public List<OrderDetailDTO> orderDetailList(OrderDetailDTO orderDetailDTO) throws Exception {
+		
+		logger.info("주문 상세 목록 cartDetailList - Service");
+		
+		return orderDAO.orderDetailList(orderDetailDTO);
+	}
+	
 	//회원 주소 조회
 	@Override
 	public MemberAddressDTO memAddress(String userId) throws Exception {
@@ -72,5 +81,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		return orderDAO.memAddress(userId);
 	}
+	
+	
 	
 }
