@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%-- 액션(코어)태그 --%>
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -125,6 +127,7 @@ request.setCharacterEncoding("UTF-8");
 
 
 		<div class="container" align="center">
+			<form action = "/payment/paymentWrite" method = "post"></form>
 			<div class="main">
 				<div class="titlearea">
 					<p>주문하기</p>
@@ -135,9 +138,9 @@ request.setCharacterEncoding("UTF-8");
 							<ul class="checkbtn1">
 								<li>
 									<span class="checkall">
-                                    	<input type="checkbox" id="allchk" name="allchk"/>                                    
-                                	<label>전체선택</label>
-                                </span>
+										<input type="checkbox" id="allchk" name="allchk" />
+										<label>전체선택</label>
+									</span>
 								</li>
 							</ul>
 							<!-- <ul class="checkbtn2">
@@ -160,20 +163,18 @@ request.setCharacterEncoding("UTF-8");
 								</colgroup>
 								<tbody>
 									<c:set var="total" value="0" />
-										<c:forEach var="cartList" items="${cartList}">
-											<tr>	
-	                                    <td class="itemview_chk">
-	                                        <input type="checkbox" id = "chkbox" name = "chkbox" class = "test" data-pno = "${cartList.pno}">
-	                                    </td>
-	                                    <td class="itemview_thum">
-	                                        <a href="/product.html"><img src="/resources/product/images/product_sample.png"></a>
-	                                    </td>
-	                                    <td class="itemview_info">
+									<c:forEach var="cartList" items="${cartList}">
+										<tr>
+											<td class="itemview_chk"><input type="checkbox" id="chkbox" name="chkbox" class="test" data-pno="${cartList.pno}"></td>
+											<td class="itemview_thum"><a href="/product.html">
+													<img src="/resources/product/images/product_sample.png">
+												</a></td>
+											<td class="itemview_info">
 
 												<div>
 													<!--  <span>제품번호 : </span><span class="product_num">00000</span><br> -->
 													<span class="product_name">
-														<a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a>
+														<a href="${contextPath}/product/productView?pno=${orderDetailList.pno}">${cartList.productName}</a>
 													</span>
 												</div>
 
@@ -181,12 +182,12 @@ request.setCharacterEncoding("UTF-8");
 											<td class="itemview_price">
 
 												<div>
-													<span>${cartList.productPrice}</span>
+													<span>금액 : ${cartList.productPrice}</span>
 													<span>원</span>
 												</div>
 												<div class="input-group">
-													<input type="number" class="input-number" min = "1" name = "productCnt" value="${cartList.totalCnt}" 
-													onkeydown= "javascript: return event.keyCode == 69 ? false : true" readonly="readonly">
+													<span>주문개수 :</span>
+													<input type="number" class="input-number" min="1" name="productCnt" value="${cartList.totalCnt}" onkeydown="javascript: return event.keyCode == 69 ? false : true" readonly="readonly">
 												</div>
 											</td>
 										</tr>
@@ -194,11 +195,65 @@ request.setCharacterEncoding("UTF-8");
 									</c:forEach>
 								</tbody>
 							</table>
+							<div class="payment-wrap">
+								<form action="서버url" method="post" id="payment-form" name="payment-form">
+
+								<br>
+								<br>
+									<div class="pay-title">
+										<b>Payment</b>
+									</div>
+									<%
+									// order_date : value 출력용
+									SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+									Calendar payCal = Calendar.getInstance();
+									String paymentDate = date.format(payCal.getTime());
+									%>
+									<br>
+									<!-- 주문시 주문정보  -->
+									<div class="pay-product">
+										<b class="pro-title">결제일자</b> <input type="text" id="order_date" value="<%=paymentDate.toString() %>" readonly /> <br>
+										<div class="pay-method">
+											<b class="pro-title">결제수단</b>
+											<div class="pay-radio">
+												<!-- 자바스크립트로 라디오타입의 value값을 따와서 text할 예정 -->
+												<label>
+													<input id="pay-card" type="radio" name="card">카드
+												</label>
+												<label>
+													<input id="pay-cash" type="radio" name="bankAccount" >계좌이체
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="card-container">
+										<div class="card-sel">
+											<b class="pro-title">카드선택</b>
+											<select>
+												<option value="hyundai">현대카드</option>
+												<option value="lotte">롯데카드</option>
+												<option value="ezen">이젠카드</option>
+											</select>
+											<b class="pro-title">유효기간</b> <input type="date" id="card_date" name="card_date" />
+										</div>
+										<br>
+										<div class="card-info">
+											<b class="pro-title">카드번호</b> <input type="text" id="card_num" name="card_num" /> <b class="cd-pw">비밀번호</b><input type="number" id="card_pwd" name="card_pwd" placeholder="카드 비밀번호" />
+										</div>
+									</div>
+
+									<div class="payment-btn">
+										<button type="button" onclick="payment()">결제하기</button>
+									</div>
+
+								</form>
+							</div>
 						</div>
 					</div>
 
 					<form class="userInfoBox" id="frm" action="/order/orderWrite" method="post">
-						<div class = "userInfo">
+						<div class="userInfo">
 							<div class="form-group">
 								<div>
 									<h2 align="center">주소 확인</h2>
@@ -215,39 +270,38 @@ request.setCharacterEncoding("UTF-8");
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-2">
-									<input type="Number" class="checkDel" id = "postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
+									<input type="Number" class="checkDel" id="postAddress" name="postAddress" value="${memberAddress.postAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소1</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id ="detailAddress"  name="detailAddress" value="${memberAddress.address}" maxlength="200" />
+									<input type="text" class="checkDel" id="detailAddress" name="detailAddress" value="${memberAddress.address}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">상세주소2</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
+									<input type="text" class="checkDel" id="detailAddress2" name="detailAddress2" value="${memberAddress.detailAddress}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인</label>
 								<div class="col-sm-2">
-									<input type="text" class="checkDel" id = "recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
+									<input type="text" class="checkDel" id="recipient" name="recipient" value="${memberInfo.userId}" maxlength="200" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="writer" class="col-sm-2 control-label">수령인 전화번호</label>
 								<div class="col-sm-2">
-									<input type="Number" class="checkDel" id = "recipientPhone" name="recipientPhone" value="+82 ${memberAddress.userPhoneNumber}" maxlength="200" />
+									<input type="Number" class="checkDel" id="recipientPhone" name="recipientPhone" value="${memberAddress.userPhoneNumber}" maxlength="200" />
 								</div>
 							</div>
-							<br>
-							<input type='checkbox' id='my_checkbox' onclick = 'toggleTextbox(this)'/>배송지 정보 직접입력		
+							<br> <input type='checkbox' id='my_checkbox' onclick='toggleTextbox(this)' />배송지 정보 직접입력
 						</div>
-						
+
 						<!-- 유저 정보 저장 박스 끝 -->
-						
+
 
 						<div class="order_rgt">
 							<div class="order_price">
@@ -270,7 +324,7 @@ request.setCharacterEncoding("UTF-8");
 							</div>
 							<a href="/payment/paymentPage">
 								<button type="submit" class="btn_pay">
-									<span>주문하기</span>
+									<span>결제하기</span>
 								</button>
 							</a>
 							<a href="/cart/cartList">
