@@ -35,7 +35,10 @@ public class OrderController {
 
 	// 주문 작성 페이지
 	@RequestMapping(value = "/order/orderPage", method = RequestMethod.GET)
-	public String orderWritePage(String userId, CartDTO cartDTO, MemberAddressDTO memberAddressDTO, Model model, HttpServletRequest req)
+	public String orderWritePage(String userId, 
+			CartDTO cartDTO, 
+			MemberAddressDTO memberAddressDTO, 
+			Model model, HttpServletRequest req)
 			throws Exception {
 
 		logger.info("주문 작성 페이지 orderWirtePage - Controller");
@@ -56,40 +59,9 @@ public class OrderController {
 
 		return "/order/orderPage";
 	}
+	
 
-	// 주문 등록
-	@RequestMapping(value = "/order/orderWrite", method = RequestMethod.POST)
-	public String orderWrite(OrderDTO orderDTO) throws Exception {
-
-		logger.info("주문 작성 orderWrite - Controller");
-
-		orderService.orderWrite(orderDTO);
-
-		return "redirect:/";
-	}
-
-	// 주문 수정
-	@RequestMapping(value = "/order/orderUpdate", method = RequestMethod.POST)
-	public String orderUpdate(OrderDTO orderDTO) throws Exception {
-
-		logger.info("주문 수정 orderUpdate - Controller");
-
-		orderService.orderUpdate(orderDTO);
-
-		return "redirect:/order/main";
-	}
-
-	// 주문 삭제
-	@ResponseBody
-	@RequestMapping(value = "/order/orderDelete", method = RequestMethod.POST)
-	public String orderDelete(int orderNum) throws Exception {
-
-		logger.info("주문 삭제 orderDelete - Controller");
-
-		orderService.orderDelete(orderNum);
-
-		return "redirect:/order/orderList";
-	}
+	
 
 	// 주문 내역 상세 조회
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
@@ -107,8 +79,9 @@ public class OrderController {
 
 		model.addAttribute("orderDetailDTO", orderdetail);
 	}
+	
 
-	// 주문 목록
+	// 주문 목록(orderdetailDTO(주문내역), orderDTO(주문주소내역))
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.GET)
 	public void orderList(HttpServletRequest req, OrderDTO orderDTO, Model model) throws Exception {
 

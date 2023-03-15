@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.member.domain.MemberDTO;
+import com.project.order.domain.OrderDetailDTO;
 import com.project.product.domain.CartDTO;
 import com.project.product.service.CartService;
 import com.project.product.service.ProductService;
@@ -90,8 +91,7 @@ public class CartController {
 		if (memberLoginSession == null || !memberLoginSession.getUserId().equals(userId)) {
 			// 세션값이 없을때, 세션아이디값과 db에 있는 아이디값이 다를경우
 			
-			
-			
+
 			return false;
 			
 		} else {
@@ -104,7 +104,29 @@ public class CartController {
 		}
 		
 	}
+	// 장바구니 목록 주문목록으로 넘기기
+	@RequestMapping(value = "/cart/cartOrder", method = RequestMethod.POST)
+	public String cartOrder(
+			HttpServletRequest req,
+			OrderDetailDTO orderdetailDTO,
+			String userId
+			) throws Exception {
+		
+		logger.info("장바구니 주문목록으로 넘기기 cartOrder - Controller");
 
+		HttpSession session = req.getSession();
+		
+		MemberDTO memberLoginSession = (MemberDTO)session.getAttribute("memberInfo");
+		
+		orderdetailDTO.setUserId(memberLoginSession.getUserId());
+		
+		cartService.cartOrder(orderdetailDTO);
+
+		return "redirect:/order/orderPage";
+	}
+	
+	
+	
 	// 장바구니 수정(비동기)
 	// 앞단에서 장바구니 번호 받아오자
 	// pno에 빗대서 업데이트
