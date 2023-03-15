@@ -23,6 +23,10 @@ public interface OrderService {
 	// 주문 목록
 	public List<OrderDTO> orderList(OrderDTO orderDTO) throws Exception;
 	
+	// 주문 상세 목록
+	public List<OrderDetailDTO> orderDetailList(OrderDetailDTO orderDetailDTO) throws Exception;
+	
 	//회원 주소 조회
 	public MemberAddressDTO memAddress(String userId) throws Exception;
+	
 }

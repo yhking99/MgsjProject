@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.order.domain.OrderDetailDTO;
 import com.project.product.dao.CartDAO;
 import com.project.product.domain.CartDTO;
 
@@ -27,6 +28,16 @@ public class CartServiceImpl implements CartService {
 		cartDAO.cartWrite(cartDTO);
 		
 	}
+	
+	// 장바구니 목록 주문목록으로 넘기기
+	@Override
+	public void cartOrder(OrderDetailDTO orderdetailDTO) throws Exception {
+		
+		logger.info("장바구니 목록 주문목록으로 넘기기 cartOrder - Service");
+		
+		cartDAO.cartOrder(orderdetailDTO);
+	}
+	
 	
 	//장바구니 수정
 	@Override
@@ -57,4 +68,6 @@ public class CartServiceImpl implements CartService {
 		
 		return cartDAO.cartList(cartDTO);
 	}
+	
+
 }

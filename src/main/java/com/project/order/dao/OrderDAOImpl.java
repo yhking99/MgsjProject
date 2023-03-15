@@ -64,6 +64,15 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(NAME_SPACE + ".orderList", orderDTO);
 	}
 	
+	//주문 상세 목록
+	@Override
+	public List<OrderDetailDTO> orderDetailList(OrderDetailDTO orderDetailDTO) throws Exception {
+		
+		logger.info("주문 상세 목록 cartDetailList - DAO");
+		
+		return sqlSession.selectList(NAME_SPACE + ".orderDetailList", orderDetailDTO);
+	}
+	
 	//회원 주소 조회
 	@Override
 	public MemberAddressDTO memAddress(String userId) throws Exception {
@@ -73,4 +82,6 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		return sqlSession.selectOne(NAME_SPACE + ".memAddress", userId);
 	}
+	
+	
 }
