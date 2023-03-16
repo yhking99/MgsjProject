@@ -41,8 +41,6 @@ INNER JOIN memberdto as m
 ON m.userId = o.userId
 WHERE m.userid = #{userId};
 
-
-
 </insert>
 
 <!-- 주문 상세 조회 -->
