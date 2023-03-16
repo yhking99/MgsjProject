@@ -67,7 +67,7 @@ public class OrderController {
 
 	// 주문 내역 상세 조회
 	@RequestMapping(value = "/order/orderView", method = RequestMethod.GET)
-	public void orderView(HttpServletRequest req, Model model, OrderDetailDTO orderdetailDTO, String userId) throws Exception {
+	public String orderView(@RequestParam("orderNum") int orderNum, HttpServletRequest req, Model model, OrderDTO orderDTO, String userId) throws Exception {
 
 		logger.info("주문 조회 orderView - Controller");
 
@@ -75,15 +75,18 @@ public class OrderController {
 
 		MemberDTO memberLoginSession = (MemberDTO) session.getAttribute("memberInfo");
 
-		orderdetailDTO.setUserId(memberLoginSession.getUserId());
-
-		OrderDetailDTO orderdetail = orderService.orderView(userId);
-
+		orderDTO.setUserId(memberLoginSession.getUserId());
+		
+		OrderDTO orderdetail = orderService.orderView(orderNum, userId);
+		
 		model.addAttribute("orderDetailDTO", orderdetail);
+		
+		return "/order/orderFinish";
 	}
 	
 
 	// 주문 목록(orderdetailDTO(주문내역), orderDTO(주문주소내역))
+	// 결제 완료후 주문 내역창에서 나오는 리스트
 	@RequestMapping(value = "/order/orderList", method = RequestMethod.GET)
 	public void orderList(HttpServletRequest req, OrderDTO orderDTO, Model model) throws Exception {
 
@@ -100,5 +103,6 @@ public class OrderController {
 		model.addAttribute("orderList", orderList);
 
 	}
+	
 
 }
