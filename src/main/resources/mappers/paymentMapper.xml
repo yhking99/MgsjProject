@@ -15,7 +15,6 @@ paymentRegDate	datetime	NO
  -->
 
 <!--  결제 등록 -->
-
 <insert id = "paymentWrite" parameterType = "com.project.order.domain.PaymentDTO">
 
 INSERT INTO paymentdto(orderNum, paymentKind, paymentCard, paymentMoney, paymentRegDate)
