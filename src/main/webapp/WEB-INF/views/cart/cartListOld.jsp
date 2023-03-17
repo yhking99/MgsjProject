@@ -23,7 +23,6 @@ request.setCharacterEncoding("UTF-8");
 		<table border="1">
 			<thead>
 				<tr class="warning">
-					<th class="col-sm-1 text-center cartNum" style = "display:none;">장바구니 등록 번호</th>
 					<th class="col-sm-1 text-center productName">제품 이름</th>
 					<th class="col-sm-1 text-center productPrice">제품 가격</th>
 					<th class="col-sm-1 text-center productCnt">장바구니에 담은 제품 수량</th>
@@ -42,7 +41,6 @@ request.setCharacterEncoding("UTF-8");
  				-->
 				<c:forEach var="cartList" items="${cartList}">
 					<tr>
-						<td align="center" style = "display:none;">${cartList.cartNum}</td>
 						<td align="center" style = "display:none;">${cartList.pno}</td>
 						<td align="center"><a href="${contextPath}/product/productView?pno=${cartList.pno}">${cartList.productName}</a></td>
 						<td align="center">${cartList.productPrice}</td>
@@ -62,7 +60,7 @@ request.setCharacterEncoding("UTF-8");
 		<button type="button" onclick = "location.href = '/order/orderList'">주문하기</button>
 	</div>
 	<script type="text/javascript">
-		function deleteCartList(cartNum, productName){
+		function deleteCartList(pno, productName){
 			var deleteYN = confirm(productName + "을 삭제하시겠습니까?");
 			
 			if(deleteYN == true) {
@@ -71,7 +69,7 @@ request.setCharacterEncoding("UTF-8");
 					url : '/cart/cartDelete',
 					type : 'POST', 
 					data : {
-						cartNum : cartNum
+						pno : pno
 					},
 					success : function(data) {
 						alert("삭제되었습니다.");
