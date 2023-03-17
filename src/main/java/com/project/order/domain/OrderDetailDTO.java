@@ -2,13 +2,25 @@ package com.project.order.domain;
 
 public class OrderDetailDTO {
 	
-	private int orderNum; // [2] 여기로 들어온 키가
+	private int orderDetailNum; // [2] 여기로 들어온 키가
+	private int orderNum;
 	private int pno;  // [3] 다시 여기로 역전됨
-	private int productPrice;
+	private int productTotalPrice;
 	private int productCnt;
-	private String orderStatus;
-	private int userNum;
 	
+	
+	// 이너 조인 값
+	private String userId;
+	private String productName;
+	private int productPrice;
+	
+	
+	public int getOrderDetailNum() {
+		return orderDetailNum;
+	}
+	public void setOrderDetailNum(int orderDetailNum) {
+		this.orderDetailNum = orderDetailNum;
+	}
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -21,11 +33,11 @@ public class OrderDetailDTO {
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
-	public int getProductPrice() {
-		return productPrice;
+	public int getProductTotalPrice() {
+		return productTotalPrice;
 	}
-	public void setProductPrice(int productPrice) {
-		this.productPrice = productPrice;
+	public void setProductTotalPrice(int productTotalPrice) {
+		this.productTotalPrice = productTotalPrice;
 	}
 	public int getProductCnt() {
 		return productCnt;
@@ -33,23 +45,33 @@ public class OrderDetailDTO {
 	public void setProductCnt(int productCnt) {
 		this.productCnt = productCnt;
 	}
-	public String getOrderStatus() {
-		return orderStatus;
+	public String getUserId() {
+		return userId;
 	}
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public int getUserNum() {
-		return userNum;
+	public String getProductName() {
+		return productName;
 	}
-	public void setUserNum(int userNum) {
-		this.userNum = userNum;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+	
 	@Override
 	public String toString() {
-		return "OrderDetailDTO [orderNum=" + orderNum + ", pno=" + pno + ", productPrice=" + productPrice
-				+ ", productCnt=" + productCnt + ", orderStatus=" + orderStatus + ", userNum=" + userNum + "]";
+		return "OrderDetailDTO [orderDetailNum=" + orderDetailNum + ", pno=" + pno + ", productTotalPrice="
+				+ productTotalPrice + ", productCnt=" + productCnt + ", orderNum=" + orderNum + ", userId="
+				+ userId + ", productName=" + productName + ", productPrice=" + productPrice + "]";
 	}
+	
 	
 	
 }
